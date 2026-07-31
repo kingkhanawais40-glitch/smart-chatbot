@@ -1,0 +1,1833 @@
+[{
+        "keywords": ["hello", "hi", "hey", "salam", "assalam o alaikum"],
+        "answer": "Hello! 👋 How can I help you today?"
+    },
+    {
+        "keywords": ["how are you", "how r u", "kaise ho"],
+        "answer": "I am working perfectly. Thank you for asking! 😊"
+    },
+    {
+        "keywords": ["good morning"],
+        "answer": "Good morning! ☀️ Have a great day."
+    },
+    {
+        "keywords": ["good afternoon"],
+        "answer": "Good afternoon! Hope you are having a productive day."
+    },
+    {
+        "keywords": ["good night"],
+        "answer": "Good night! 🌙 Sleep well."
+    },
+    {
+        "keywords": ["thank you", "thanks", "shukriya"],
+        "answer": "You're welcome! 😊"
+    },
+    {
+        "keywords": ["bye", "goodbye", "allah hafiz"],
+        "answer": "Goodbye! Have a great day. 👋"
+    },
+    {
+        "keywords": ["your name", "what is your name"],
+        "answer": "I am Smart Offline Chatbot."
+    },
+    {
+        "keywords": ["who are you"],
+        "answer": "I am a smart rule-based chatbot created by Muhammad Awais."
+    },
+    {
+        "keywords": ["who created you", "creator"],
+        "answer": "I was created by Muhammad Awais using HTML, CSS and JavaScript."
+    },
+    {
+        "keywords": ["what can you do", "your features"],
+        "answer": "I can answer questions about programming, AI, technology and general topics."
+    },
+    {
+        "keywords": ["are you ai", "are you artificial intelligence"],
+        "answer": "I am a smart rule-based chatbot. I use predefined knowledge to answer questions."
+    },
+    {
+        "keywords": ["help"],
+        "answer": "Sure! Ask me about programming, web development, AI or technology."
+    },
+    {
+        "keywords": ["what is chatbot"],
+        "answer": "A chatbot is a software application designed to communicate with users through text."
+    },
+    {
+        "keywords": ["what is technology"],
+        "answer": "Technology is the application of scientific knowledge to solve problems and improve life."
+    },
+
+    {
+        "keywords": ["what is html", "html", "html language"],
+        "answer": "HTML (HyperText Markup Language) is used to create the structure of web pages."
+    },
+    {
+        "keywords": ["what is css", "css", "css language"],
+        "answer": "CSS (Cascading Style Sheets) is used to design and style web pages."
+    },
+    {
+        "keywords": ["what is javascript", "javascript", "js"],
+        "answer": "JavaScript is a programming language used to make websites interactive and dynamic."
+    },
+    {
+        "keywords": ["what is python", "python"],
+        "answer": "Python is a high-level programming language used in AI, Machine Learning, Web Development and Automation."
+    },
+    {
+        "keywords": ["what is c++", "c++", "cpp"],
+        "answer": "C++ is a powerful programming language used for system programming, games and software development."
+    },
+    {
+        "keywords": ["what is java", "java language"],
+        "answer": "Java is an object-oriented programming language used for web, mobile and enterprise applications."
+    },
+    {
+        "keywords": ["what is react", "react js"],
+        "answer": "React is a JavaScript library used to build fast and interactive user interfaces."
+    },
+    {
+        "keywords": ["what is node js", "node"],
+        "answer": "Node.js is a JavaScript runtime environment used for backend development."
+    },
+    {
+        "keywords": ["what is php", "php language"],
+        "answer": "PHP is a server-side scripting language mainly used for web development."
+    },
+    {
+        "keywords": ["what is sql", "sql database"],
+        "answer": "SQL is a language used to store, manage and retrieve data from databases."
+    },
+    {
+        "keywords": ["what is git"],
+        "answer": "Git is a version control system used to track changes in software projects."
+    },
+    {
+        "keywords": ["what is github"],
+        "answer": "GitHub is an online platform used for hosting and managing software projects."
+    },
+    {
+        "keywords": ["what is api"],
+        "answer": "API allows different software applications to communicate with each other."
+    },
+    {
+        "keywords": ["what is frontend"],
+        "answer": "Frontend is the part of a website that users see and interact with directly."
+    },
+    {
+        "keywords": ["what is backend"],
+        "answer": "Backend handles server logic, databases and application functionality."
+    },
+    {
+        "keywords": ["what is dsa", "dsa", "data structures"],
+        "answer": "Data Structures and Algorithms (DSA) are used to organize data and solve programming problems efficiently."
+    },
+    {
+        "keywords": ["what is algorithm", "algorithm"],
+        "answer": "An algorithm is a step-by-step procedure used to solve a problem."
+    },
+    {
+        "keywords": ["what is array", "array"],
+        "answer": "An array is a data structure that stores multiple values of the same type in a continuous memory location."
+    },
+    {
+        "keywords": ["what is linked list", "linked list"],
+        "answer": "A linked list is a linear data structure where elements are stored in nodes connected through links."
+    },
+    {
+        "keywords": ["what is stack", "stack data structure"],
+        "answer": "A stack is a data structure that follows LIFO (Last In First Out) principle."
+    },
+    {
+        "keywords": ["what is queue", "queue data structure"],
+        "answer": "A queue is a data structure that follows FIFO (First In First Out) principle."
+    },
+    {
+        "keywords": ["what is tree", "tree data structure"],
+        "answer": "A tree is a hierarchical data structure consisting of nodes connected by edges."
+    },
+    {
+        "keywords": ["what is binary tree", "binary tree"],
+        "answer": "A binary tree is a tree where each node can have at most two children."
+    },
+    {
+        "keywords": ["what is sorting", "sorting algorithm"],
+        "answer": "Sorting is the process of arranging data in ascending or descending order."
+    },
+    {
+        "keywords": ["what is searching", "searching algorithm"],
+        "answer": "Searching is the process of finding a specific element from a collection of data."
+    },
+    {
+        "keywords": ["what is oop", "object oriented programming"],
+        "answer": "OOP is a programming approach based on objects and classes."
+    },
+    {
+        "keywords": ["what is class", "class in oop"],
+        "answer": "A class is a blueprint used to create objects in object-oriented programming."
+    },
+    {
+        "keywords": ["what is object", "object in oop"],
+        "answer": "An object is an instance of a class that contains data and behavior."
+    },
+    {
+        "keywords": ["what is inheritance"],
+        "answer": "Inheritance allows one class to acquire properties and methods from another class."
+    },
+    {
+        "keywords": ["what is polymorphism"],
+        "answer": "Polymorphism allows the same function or method to behave differently in different situations."
+    },
+    {
+        "keywords": ["what is dbms", "database management system"],
+        "answer": "DBMS is software used to store, manage and retrieve data from databases."
+    },
+    {
+        "keywords": ["what is database", "database"],
+        "answer": "A database is an organized collection of data that can be easily accessed and managed."
+    },
+    {
+        "keywords": ["what is operating system", "os"],
+        "answer": "An operating system manages computer hardware and software resources."
+    },
+    {
+        "keywords": ["what is process"],
+        "answer": "A process is a program that is currently running in a computer system."
+    },
+    {
+        "keywords": ["what is thread"],
+        "answer": "A thread is the smallest unit of execution inside a process."
+    },
+    {
+        "keywords": ["what is networking", "computer network"],
+        "answer": "Computer networking is the connection between computers to share data and resources."
+    },
+    {
+        "keywords": ["what is ip address", "ip address"],
+        "answer": "An IP address is a unique address assigned to a device on a network."
+    },
+    {
+        "keywords": ["what is http"],
+        "answer": "HTTP is a protocol used for communication between web browsers and servers."
+    },
+    {
+        "keywords": ["what is https"],
+        "answer": "HTTPS is a secure version of HTTP that encrypts communication."
+    },
+    {
+        "keywords": ["what is software engineering"],
+        "answer": "Software Engineering is the process of designing, developing, testing and maintaining software."
+    },
+    {
+        "keywords": ["what is ai", "artificial intelligence", "ai"],
+        "answer": "Artificial Intelligence (AI) is the field of computer science that enables machines to perform tasks that normally require human intelligence."
+    },
+    {
+        "keywords": ["what is machine learning", "machine learning", "ml"],
+        "answer": "Machine Learning is a branch of AI that allows computers to learn from data and improve automatically."
+    },
+    {
+        "keywords": ["what is deep learning", "deep learning"],
+        "answer": "Deep Learning is a part of Machine Learning that uses artificial neural networks to learn from large amounts of data."
+    },
+    {
+        "keywords": ["what is neural network", "neural network"],
+        "answer": "A neural network is a computing system inspired by the human brain that helps machines recognize patterns."
+    },
+    {
+        "keywords": ["what is nlp", "natural language processing"],
+        "answer": "NLP is a branch of AI that enables computers to understand and process human language."
+    },
+    {
+        "keywords": ["what is computer vision", "computer vision"],
+        "answer": "Computer Vision allows computers to understand and analyze images and videos."
+    },
+    {
+        "keywords": ["what is chatbot ai", "ai chatbot"],
+        "answer": "An AI chatbot uses artificial intelligence to understand user messages and generate responses."
+    },
+    {
+        "keywords": ["what is data science", "data science"],
+        "answer": "Data Science combines programming, statistics and machine learning to extract useful information from data."
+    },
+    {
+        "keywords": ["what is dataset", "dataset"],
+        "answer": "A dataset is a collection of data used for analysis and training machine learning models."
+    },
+    {
+        "keywords": ["what is training data", "training dataset"],
+        "answer": "Training data is the data used to teach a machine learning model."
+    },
+    {
+        "keywords": ["what is testing data", "testing dataset"],
+        "answer": "Testing data is used to evaluate the performance of a trained machine learning model."
+    },
+    {
+        "keywords": ["what is supervised learning", "supervised learning"],
+        "answer": "Supervised learning trains models using labeled data where the correct output is already known."
+    },
+    {
+        "keywords": ["what is unsupervised learning", "unsupervised learning"],
+        "answer": "Unsupervised learning finds patterns in data without predefined labels."
+    },
+    {
+        "keywords": ["what is reinforcement learning", "reinforcement learning"],
+        "answer": "Reinforcement learning allows an agent to learn through rewards and penalties."
+    },
+    {
+        "keywords": ["what is algorithm in ai", "ai algorithm"],
+        "answer": "AI algorithms are mathematical methods that allow machines to learn and make decisions."
+    },
+    {
+        "keywords": ["what is model in machine learning", "ml model"],
+        "answer": "A machine learning model is a trained system that can make predictions from new data."
+    },
+    {
+        "keywords": ["what is accuracy", "model accuracy"],
+        "answer": "Accuracy measures how many predictions made by a model are correct."
+    },
+    {
+        "keywords": ["what is overfitting", "overfitting"],
+        "answer": "Overfitting happens when a model learns training data too closely and performs poorly on new data."
+    },
+    {
+        "keywords": ["what is underfitting", "underfitting"],
+        "answer": "Underfitting happens when a model is too simple to learn important patterns from data."
+    },
+    {
+        "keywords": ["what is python used in ai", "python ai"],
+        "answer": "Python is widely used in AI because of libraries like TensorFlow, PyTorch, NumPy and Scikit-learn."
+    },
+    {
+        "keywords": ["what is tensorflow", "tensorflow"],
+        "answer": "TensorFlow is an open-source framework used for machine learning and deep learning."
+    },
+    {
+        "keywords": ["what is pytorch", "pytorch"],
+        "answer": "PyTorch is a popular deep learning framework used for building neural networks."
+    },
+    {
+        "keywords": ["what is computer vision ai"],
+        "answer": "Computer Vision AI helps machines understand visual information from images and videos."
+    },
+    {
+        "keywords": ["what is robotics", "robotics"],
+        "answer": "Robotics is a field that combines engineering and programming to create intelligent machines."
+    },
+    {
+        "keywords": ["future of ai", "ai future"],
+        "answer": "AI will continue improving automation, healthcare, education, robotics and many other fields."
+    },
+
+    {
+        "keywords": ["what is web development", "web development"],
+        "answer": "Web Development is the process of creating websites and web applications using frontend and backend technologies."
+    },
+    {
+        "keywords": ["what is website", "website"],
+        "answer": "A website is a collection of web pages accessible through the internet."
+    },
+    {
+        "keywords": ["what is web application", "web app"],
+        "answer": "A web application is an interactive software application that runs inside a web browser."
+    },
+    {
+        "keywords": ["what is frontend development", "frontend development"],
+        "answer": "Frontend development focuses on creating the user interface and user experience of websites."
+    },
+    {
+        "keywords": ["what is backend development", "backend development"],
+        "answer": "Backend development handles server-side logic, databases and application functionality."
+    },
+    {
+        "keywords": ["what is full stack development", "full stack"],
+        "answer": "Full stack development means working with both frontend and backend technologies."
+    },
+    {
+        "keywords": ["what is responsive design", "responsive website"],
+        "answer": "Responsive design makes websites adjust properly on mobile, tablet and desktop screens."
+    },
+    {
+        "keywords": ["what is bootstrap", "bootstrap"],
+        "answer": "Bootstrap is a CSS framework used to build responsive and modern websites quickly."
+    },
+    {
+        "keywords": ["what is tailwind css", "tailwind"],
+        "answer": "Tailwind CSS is a utility-first CSS framework used for designing modern user interfaces."
+    },
+    {
+        "keywords": ["what is react js", "react"],
+        "answer": "React is a JavaScript library developed for building fast and reusable user interfaces."
+    },
+    {
+        "keywords": ["what is component in react", "react component"],
+        "answer": "A React component is a reusable piece of UI that controls part of a web application."
+    },
+    {
+        "keywords": ["what is jsx"],
+        "answer": "JSX is a syntax extension that allows HTML-like code inside JavaScript in React."
+    },
+    {
+        "keywords": ["what is state in react", "react state"],
+        "answer": "State stores and manages changing data inside a React component."
+    },
+    {
+        "keywords": ["what is props in react", "react props"],
+        "answer": "Props are used to pass data from one React component to another."
+    },
+    {
+        "keywords": ["what is node js", "node js"],
+        "answer": "Node.js allows JavaScript to run on the server side for backend development."
+    },
+    {
+        "keywords": ["what is express js", "express"],
+        "answer": "Express.js is a Node.js framework used to build web servers and APIs."
+    },
+    {
+        "keywords": ["what is django", "django"],
+        "answer": "Django is a Python framework used for building secure and scalable web applications."
+    },
+    {
+        "keywords": ["what is flask", "flask"],
+        "answer": "Flask is a lightweight Python framework used for creating web applications and APIs."
+    },
+    {
+        "keywords": ["what is api development", "api development"],
+        "answer": "API development creates communication interfaces between different software applications."
+    },
+    {
+        "keywords": ["what is rest api", "rest api"],
+        "answer": "REST API is an architectural style used to communicate between client and server using HTTP methods."
+    },
+    {
+        "keywords": ["what is json", "json"],
+        "answer": "JSON is a lightweight data format used to exchange information between applications."
+    },
+    {
+        "keywords": ["what is xml", "xml"],
+        "answer": "XML is a markup language used for storing and transporting data."
+    },
+    {
+        "keywords": ["what is server", "server"],
+        "answer": "A server is a computer system that provides services and resources to other devices."
+    },
+    {
+        "keywords": ["what is hosting", "web hosting"],
+        "answer": "Web hosting is a service that stores website files and makes them available online."
+    },
+    {
+        "keywords": ["what is domain", "domain name"],
+        "answer": "A domain is the unique address used to access a website on the internet."
+    },
+
+    {
+        "keywords": ["what is database", "database"],
+        "answer": "A database is an organized collection of data that can be stored, managed and accessed easily."
+    },
+    {
+        "keywords": ["what is dbms", "dbms"],
+        "answer": "DBMS (Database Management System) is software used to create, store and manage databases."
+    },
+    {
+        "keywords": ["what is rdbms", "rdbms"],
+        "answer": "RDBMS is a database system that stores data in tables with relationships between them."
+    },
+    {
+        "keywords": ["what is sql", "sql"],
+        "answer": "SQL (Structured Query Language) is used to create, manage and retrieve data from databases."
+    },
+    {
+        "keywords": ["what is mysql", "mysql"],
+        "answer": "MySQL is an open-source relational database management system that uses SQL."
+    },
+    {
+        "keywords": ["what is table", "database table"],
+        "answer": "A table stores data in rows and columns inside a database."
+    },
+    {
+        "keywords": ["what is row", "database row"],
+        "answer": "A row represents a single record or entry in a database table."
+    },
+    {
+        "keywords": ["what is column", "database column"],
+        "answer": "A column represents a specific attribute or field in a database table."
+    },
+    {
+        "keywords": ["what is primary key", "primary key"],
+        "answer": "A primary key is a unique identifier for each record in a database table."
+    },
+    {
+        "keywords": ["what is foreign key", "foreign key"],
+        "answer": "A foreign key connects one table with another table by referencing a primary key."
+    },
+    {
+        "keywords": ["what is normalization", "database normalization"],
+        "answer": "Normalization is a technique used to organize database tables and reduce data redundancy."
+    },
+    {
+        "keywords": ["what is denormalization"],
+        "answer": "Denormalization combines tables to improve database read performance."
+    },
+    {
+        "keywords": ["what is query", "database query"],
+        "answer": "A query is a request used to retrieve or modify data in a database."
+    },
+    {
+        "keywords": ["what is select query", "select"],
+        "answer": "SELECT query is used to retrieve data from database tables."
+    },
+    {
+        "keywords": ["what is insert query", "insert"],
+        "answer": "INSERT query is used to add new records into a database table."
+    },
+    {
+        "keywords": ["what is update query", "update"],
+        "answer": "UPDATE query is used to modify existing data in a database."
+    },
+    {
+        "keywords": ["what is delete query", "delete"],
+        "answer": "DELETE query is used to remove records from a database table."
+    },
+    {
+        "keywords": ["what is join", "sql join"],
+        "answer": "JOIN is used to combine data from multiple database tables."
+    },
+    {
+        "keywords": ["what is inner join"],
+        "answer": "INNER JOIN returns matching records from two or more tables."
+    },
+    {
+        "keywords": ["what is left join"],
+        "answer": "LEFT JOIN returns all records from the left table and matching records from the right table."
+    },
+    {
+        "keywords": ["what is database index", "index"],
+        "answer": "A database index improves the speed of data searching and retrieval."
+    },
+    {
+        "keywords": ["what is transaction"],
+        "answer": "A transaction is a sequence of database operations performed as a single unit."
+    },
+    {
+        "keywords": ["what is acid property", "acid"],
+        "answer": "ACID properties ensure reliable database transactions: Atomicity, Consistency, Isolation and Durability."
+    },
+    {
+        "keywords": ["what is mongodb", "mongodb"],
+        "answer": "MongoDB is a NoSQL database that stores data in flexible document format."
+    },
+    {
+        "keywords": ["what is nosql", "nosql"],
+        "answer": "NoSQL databases store data without traditional relational table structures."
+    },
+
+    {
+        "keywords": ["what is software engineering", "software engineering"],
+        "answer": "Software Engineering is the process of designing, developing, testing and maintaining software using engineering principles."
+    },
+    {
+        "keywords": ["what is sdlc", "sdlc"],
+        "answer": "SDLC (Software Development Life Cycle) is a process used to develop software through different phases."
+    },
+    {
+        "keywords": ["phases of sdlc", "sdlc phases"],
+        "answer": "SDLC phases include planning, requirement analysis, design, development, testing, deployment and maintenance."
+    },
+    {
+        "keywords": ["what is requirement analysis"],
+        "answer": "Requirement analysis is the process of collecting and analyzing user needs before software development."
+    },
+    {
+        "keywords": ["what is srs", "software requirement specification"],
+        "answer": "SRS is a document that describes functional and non-functional requirements of a software system."
+    },
+    {
+        "keywords": ["what is software design"],
+        "answer": "Software design defines the structure, components and architecture of a software system."
+    },
+    {
+        "keywords": ["what is software testing"],
+        "answer": "Software testing is the process of finding errors and ensuring software quality."
+    },
+    {
+        "keywords": ["what is unit testing"],
+        "answer": "Unit testing tests individual components or functions of a software application."
+    },
+    {
+        "keywords": ["what is integration testing"],
+        "answer": "Integration testing checks whether different software modules work correctly together."
+    },
+    {
+        "keywords": ["what is system testing"],
+        "answer": "System testing evaluates the complete software system to verify requirements."
+    },
+    {
+        "keywords": ["what is debugging"],
+        "answer": "Debugging is the process of finding and fixing errors in software code."
+    },
+    {
+        "keywords": ["what is bug"],
+        "answer": "A bug is an error or defect in software that causes incorrect behavior."
+    },
+    {
+        "keywords": ["what is agile"],
+        "answer": "Agile is a software development approach that focuses on flexibility, teamwork and continuous improvement."
+    },
+    {
+        "keywords": ["what is scrum"],
+        "answer": "Scrum is an Agile framework used to manage software development projects."
+    },
+    {
+        "keywords": ["what is waterfall model"],
+        "answer": "Waterfall is a sequential software development model where each phase is completed before the next phase begins."
+    },
+    {
+        "keywords": ["what is oop", "object oriented programming"],
+        "answer": "OOP is a programming approach based on objects and classes."
+    },
+    {
+        "keywords": ["four pillars of oop"],
+        "answer": "The four pillars of OOP are Encapsulation, Inheritance, Polymorphism and Abstraction."
+    },
+    {
+        "keywords": ["what is encapsulation"],
+        "answer": "Encapsulation combines data and methods into a single unit and protects data from unauthorized access."
+    },
+    {
+        "keywords": ["what is abstraction"],
+        "answer": "Abstraction hides complex implementation details and shows only important information."
+    },
+    {
+        "keywords": ["what is compiler"],
+        "answer": "A compiler translates high-level programming code into machine language."
+    },
+    {
+        "keywords": ["what is interpreter"],
+        "answer": "An interpreter executes programming code line by line."
+    },
+    {
+        "keywords": ["what is programming language"],
+        "answer": "A programming language is used to communicate instructions to computers."
+    },
+    {
+        "keywords": ["what is framework"],
+        "answer": "A framework is a pre-built structure that helps developers create applications faster."
+    },
+    {
+        "keywords": ["what is library"],
+        "answer": "A library is a collection of reusable code that developers can use in their programs."
+    },
+    {
+        "keywords": ["what is version control"],
+        "answer": "Version control tracks changes in code and helps developers manage different versions of projects."
+    },
+
+    {
+        "keywords": ["who is muhammad awais", "who is awais", "about awais"],
+        "answer": "Muhammad Awais is a Software Engineering student who works on web development, AI projects and modern software solutions."
+    },
+    {
+        "keywords": ["what does awais study", "education", "degree"],
+        "answer": "Muhammad Awais is a Software Engineering student."
+    },
+    {
+        "keywords": ["what are awais skills", "skills", "technical skills"],
+        "answer": "His skills include HTML, CSS, JavaScript, Python, C++, SQL, React, Git, GitHub and Machine Learning basics."
+    },
+    {
+        "keywords": ["what programming languages does awais know", "programming languages"],
+        "answer": "Muhammad Awais works with C++, Python, JavaScript, HTML, CSS and SQL."
+    },
+    {
+        "keywords": ["what projects has awais made", "projects"],
+        "answer": "Muhammad Awais has worked on projects including AI Cricket Vision, chatbot systems, websites and machine learning projects."
+    },
+    {
+        "keywords": ["what is ai cricket vision"],
+        "answer": "AI Cricket Vision is an AI-based project that uses computer vision techniques for cricket analysis."
+    },
+    {
+        "keywords": ["what is awais portfolio", "portfolio"],
+        "answer": "This portfolio showcases Muhammad Awais's skills, projects, education and software development work."
+    },
+    {
+        "keywords": ["github profile", "github link"],
+        "answer": "You can find Muhammad Awais's projects on his GitHub profile."
+    },
+    {
+        "keywords": ["linkedin profile", "linkedin"],
+        "answer": "Muhammad Awais uses LinkedIn to connect with developers and share professional updates."
+    },
+    {
+        "keywords": ["contact awais", "contact"],
+        "answer": "You can contact Muhammad Awais through his professional social media profiles."
+    },
+    {
+        "keywords": ["what is your purpose"],
+        "answer": "My purpose is to help visitors understand Muhammad Awais's skills, projects and technical knowledge."
+    },
+    {
+        "keywords": ["why hire awais", "hire awais"],
+        "answer": "Muhammad Awais is continuously improving his software engineering skills and building practical projects."
+    },
+    {
+        "keywords": ["what technologies does awais use", "technologies"],
+        "answer": "He works with frontend technologies, programming languages, databases and AI tools."
+    },
+    {
+        "keywords": ["awais future goal", "goal"],
+        "answer": "His goal is to become a skilled software engineer and create innovative technology solutions."
+    },
+    {
+        "keywords": ["tell me about this chatbot"],
+        "answer": "This is a Smart Offline Rule-Based Chatbot built using HTML, CSS and JavaScript with a JSON knowledge base."
+    },
+
+    {
+        "keywords": ["tell me a joke", "joke"],
+        "answer": "Why do programmers prefer dark mode? Because light attracts bugs! 😄"
+    },
+    {
+        "keywords": ["motivate me", "motivation"],
+        "answer": "Success comes from consistency, learning and never giving up. Keep improving! 🚀"
+    },
+    {
+        "keywords": ["quote", "quote of the day"],
+        "answer": "The best way to predict the future is to create it."
+    },
+    {
+        "keywords": ["what is your favorite color"],
+        "answer": "I like digital colors, especially the ones used in modern interfaces. 😊"
+    },
+    {
+        "keywords": ["what is programming"],
+        "answer": "Programming is the process of creating instructions that tell computers what to do."
+    },
+    {
+        "keywords": ["what is computer"],
+        "answer": "A computer is an electronic device that processes data and performs tasks."
+    },
+    {
+        "keywords": ["what is internet"],
+        "answer": "The internet is a global network that connects millions of computers worldwide."
+    },
+    {
+        "keywords": ["what is cloud computing"],
+        "answer": "Cloud computing provides computing services like storage, servers and databases over the internet."
+    },
+    {
+        "keywords": ["what is cybersecurity"],
+        "answer": "Cybersecurity protects computers, networks and data from unauthorized access and attacks."
+    },
+    {
+        "keywords": ["what is encryption"],
+        "answer": "Encryption converts data into a secure format to protect information."
+    },
+    {
+        "keywords": ["what is password security"],
+        "answer": "Password security means creating and managing strong passwords to protect accounts."
+    },
+    {
+        "keywords": ["what is blockchain"],
+        "answer": "Blockchain is a distributed digital ledger technology used to record transactions securely."
+    },
+    {
+        "keywords": ["what is cryptocurrency"],
+        "answer": "Cryptocurrency is a digital currency that uses blockchain technology."
+    },
+    {
+        "keywords": ["what is virtual reality"],
+        "answer": "Virtual Reality creates a computer-generated environment that users can experience interactively."
+    },
+    {
+        "keywords": ["what is augmented reality"],
+        "answer": "Augmented Reality adds digital information and objects to the real world."
+    },
+    {
+        "keywords": ["who invented computer"],
+        "answer": "Charles Babbage is known as the father of the computer."
+    },
+    {
+        "keywords": ["who invented internet"],
+        "answer": "The internet was developed through the work of many researchers, including ARPANET researchers."
+    },
+    {
+        "keywords": ["what is smartphone"],
+        "answer": "A smartphone is a mobile device that combines communication and computing features."
+    },
+    {
+        "keywords": ["what is robot"],
+        "answer": "A robot is a programmable machine that can perform tasks automatically."
+    },
+    {
+        "keywords": ["what is automation"],
+        "answer": "Automation uses technology to perform tasks with minimal human involvement."
+    },
+
+    {
+        "keywords": ["what is machine vision", "machine vision"],
+        "answer": "Machine Vision allows computers to capture, process and understand visual information using cameras and AI."
+    },
+    {
+        "keywords": ["what is yolo", "yolo algorithm"],
+        "answer": "YOLO (You Only Look Once) is a real-time object detection algorithm used in computer vision."
+    },
+    {
+        "keywords": ["what is object detection", "object detection"],
+        "answer": "Object detection is an AI technique used to identify and locate objects in images or videos."
+    },
+    {
+        "keywords": ["what is image processing", "image processing"],
+        "answer": "Image processing is the technique of improving and analyzing digital images using computers."
+    },
+    {
+        "keywords": ["what is pandas", "pandas python"],
+        "answer": "Pandas is a Python library used for data analysis and manipulation."
+    },
+    {
+        "keywords": ["what is numpy", "numpy"],
+        "answer": "NumPy is a Python library used for numerical computing and mathematical operations."
+    },
+    {
+        "keywords": ["what is scikit learn", "sklearn"],
+        "answer": "Scikit-learn is a Python library used for machine learning algorithms and data analysis."
+    },
+    {
+        "keywords": ["what is matplotlib"],
+        "answer": "Matplotlib is a Python library used for creating data visualizations and graphs."
+    },
+    {
+        "keywords": ["what is jupyter notebook", "jupyter"],
+        "answer": "Jupyter Notebook is an interactive environment used for programming, data analysis and machine learning."
+    },
+    {
+        "keywords": ["what is google colab", "colab"],
+        "answer": "Google Colab is a cloud-based platform used to run Python and machine learning code."
+    },
+    {
+        "keywords": ["what is vscode", "visual studio code"],
+        "answer": "VS Code is a popular code editor used for software development."
+    },
+    {
+        "keywords": ["what is npm", "npm"],
+        "answer": "NPM is a package manager used to install and manage JavaScript packages."
+    },
+    {
+        "keywords": ["what is vite", "vite js"],
+        "answer": "Vite is a modern frontend build tool used for fast web development."
+    },
+    {
+        "keywords": ["what is webpack"],
+        "answer": "Webpack is a tool used to bundle JavaScript and frontend project files."
+    },
+    {
+        "keywords": ["what is docker", "docker"],
+        "answer": "Docker is a platform used to create and manage applications inside containers."
+    },
+    {
+        "keywords": ["what is github actions"],
+        "answer": "GitHub Actions is a tool used for automating software workflows like testing and deployment."
+    },
+    {
+        "keywords": ["what is deployment"],
+        "answer": "Deployment is the process of making a software application available for users."
+    },
+    {
+        "keywords": ["what is testing automation"],
+        "answer": "Testing automation uses software tools to automatically test applications."
+    },
+    {
+        "keywords": ["what is clean code"],
+        "answer": "Clean code is readable, maintainable and easy-to-understand programming code."
+    },
+    {
+        "keywords": ["what is open source"],
+        "answer": "Open source software has source code that is publicly available for use and modification."
+    },
+
+    {
+        "keywords": ["what is computer network", "computer network"],
+        "answer": "A computer network is a group of connected devices that share data and resources."
+    },
+    {
+        "keywords": ["what is lan", "lan"],
+        "answer": "LAN (Local Area Network) connects computers within a small geographical area like an office or home."
+    },
+    {
+        "keywords": ["what is wan", "wan"],
+        "answer": "WAN (Wide Area Network) connects networks over large geographical areas."
+    },
+    {
+        "keywords": ["what is man", "man network"],
+        "answer": "MAN (Metropolitan Area Network) covers a city or large campus area."
+    },
+    {
+        "keywords": ["what is network topology", "topology"],
+        "answer": "Network topology defines how devices are arranged and connected in a network."
+    },
+    {
+        "keywords": ["what is star topology"],
+        "answer": "Star topology connects all devices to a central device like a switch."
+    },
+    {
+        "keywords": ["what is bus topology"],
+        "answer": "Bus topology connects all devices through a single communication cable."
+    },
+    {
+        "keywords": ["what is ring topology"],
+        "answer": "Ring topology connects devices in a circular structure."
+    },
+    {
+        "keywords": ["what is router", "router"],
+        "answer": "A router connects different networks and forwards data packets."
+    },
+    {
+        "keywords": ["what is switch", "network switch"],
+        "answer": "A switch connects devices in a local network and forwards data efficiently."
+    },
+    {
+        "keywords": ["what is hub"],
+        "answer": "A hub connects multiple devices but broadcasts data to all connected devices."
+    },
+    {
+        "keywords": ["what is modem"],
+        "answer": "A modem converts digital signals into signals suitable for internet communication."
+    },
+    {
+        "keywords": ["what is ip address", "ip address"],
+        "answer": "An IP address is a unique identifier assigned to a device on a network."
+    },
+    {
+        "keywords": ["what is ipv4"],
+        "answer": "IPv4 is a version of Internet Protocol that uses 32-bit addresses."
+    },
+    {
+        "keywords": ["what is ipv6"],
+        "answer": "IPv6 is a newer Internet Protocol version with a larger address space."
+    },
+    {
+        "keywords": ["what is mac address"],
+        "answer": "A MAC address is a unique hardware address assigned to a network device."
+    },
+    {
+        "keywords": ["what is dns", "dns"],
+        "answer": "DNS converts domain names into IP addresses."
+    },
+    {
+        "keywords": ["what is dhcp"],
+        "answer": "DHCP automatically assigns IP addresses to devices on a network."
+    },
+    {
+        "keywords": ["what is tcp"],
+        "answer": "TCP is a communication protocol that provides reliable data transmission."
+    },
+    {
+        "keywords": ["what is udp"],
+        "answer": "UDP is a faster protocol that sends data without guaranteeing delivery."
+    },
+    {
+        "keywords": ["what is http", "http"],
+        "answer": "HTTP is a protocol used for communication between web browsers and servers."
+    },
+    {
+        "keywords": ["what is https", "https"],
+        "answer": "HTTPS is a secure version of HTTP that encrypts communication."
+    },
+    {
+        "keywords": ["what is ftp"],
+        "answer": "FTP is a protocol used for transferring files between computers."
+    },
+    {
+        "keywords": ["what is vpn", "vpn"],
+        "answer": "VPN creates a secure connection over the internet and protects user privacy."
+    },
+    {
+        "keywords": ["what is firewall", "firewall"],
+        "answer": "A firewall monitors and controls network traffic to protect systems."
+    },
+    {
+        "keywords": ["what is antivirus"],
+        "answer": "Antivirus software detects and removes malicious programs."
+    },
+    {
+        "keywords": ["what is malware"],
+        "answer": "Malware is malicious software designed to damage or access systems illegally."
+    },
+    {
+        "keywords": ["what is virus"],
+        "answer": "A computer virus is a harmful program that can replicate and damage files."
+    },
+    {
+        "keywords": ["what is trojan"],
+        "answer": "A Trojan is malware that appears as a legitimate application."
+    },
+    {
+        "keywords": ["what is ransomware"],
+        "answer": "Ransomware is malware that locks data and demands payment."
+    },
+    {
+        "keywords": ["what is phishing"],
+        "answer": "Phishing is a cyber attack that tricks users into revealing sensitive information."
+    },
+    {
+        "keywords": ["what is hacking"],
+        "answer": "Hacking is the process of gaining access to computer systems."
+    },
+    {
+        "keywords": ["what is ethical hacking"],
+        "answer": "Ethical hacking is authorized security testing to find vulnerabilities."
+    },
+    {
+        "keywords": ["what is encryption"],
+        "answer": "Encryption converts data into a secure format to prevent unauthorized access."
+    },
+    {
+        "keywords": ["what is decryption"],
+        "answer": "Decryption converts encrypted data back into readable information."
+    },
+    {
+        "keywords": ["what is authentication"],
+        "answer": "Authentication verifies the identity of a user or system."
+    },
+    {
+        "keywords": ["what is authorization"],
+        "answer": "Authorization determines what actions a user is allowed to perform."
+    },
+    {
+        "keywords": ["what is cybersecurity"],
+        "answer": "Cybersecurity protects systems, networks and data from digital attacks."
+    },
+    {
+        "keywords": ["what is data privacy"],
+        "answer": "Data privacy focuses on protecting personal and sensitive information."
+    },
+    {
+        "keywords": ["what is ssl"],
+        "answer": "SSL is a security technology used to encrypt communication over networks."
+    },
+    {
+        "keywords": ["what is port number"],
+        "answer": "A port number identifies specific services or applications on a network."
+    },
+    {
+        "keywords": ["what is packet"],
+        "answer": "A packet is a small unit of data transmitted over a network."
+    },
+    {
+        "keywords": ["what is bandwidth"],
+        "answer": "Bandwidth is the maximum amount of data that can be transferred over a network."
+    },
+    {
+        "keywords": ["what is latency"],
+        "answer": "Latency is the delay in data transmission between devices."
+    },
+    {
+        "keywords": ["what is cloud security"],
+        "answer": "Cloud security protects data and applications hosted in cloud environments."
+    },
+    {
+        "keywords": ["what is zero trust security"],
+        "answer": "Zero Trust security requires continuous verification before allowing access."
+    },
+    {
+        "keywords": ["what is ddos attack"],
+        "answer": "A DDoS attack floods a system with traffic to make it unavailable."
+    },
+    {
+        "keywords": ["what is vulnerability"],
+        "answer": "A vulnerability is a weakness that attackers can exploit."
+    },
+    {
+        "keywords": ["what is security testing"],
+        "answer": "Security testing identifies vulnerabilities and protects software systems."
+    },
+
+    {
+        "keywords": ["what is variable", "variable"],
+        "answer": "A variable is a container used to store data values in a program."
+    },
+    {
+        "keywords": ["what is data type", "data type"],
+        "answer": "A data type defines the type of data that a variable can store."
+    },
+    {
+        "keywords": ["what is function", "function"],
+        "answer": "A function is a reusable block of code that performs a specific task."
+    },
+    {
+        "keywords": ["what is loop", "loop"],
+        "answer": "A loop is used to execute a block of code repeatedly."
+    },
+    {
+        "keywords": ["what is for loop"],
+        "answer": "A for loop repeats code for a specific number of times."
+    },
+    {
+        "keywords": ["what is while loop"],
+        "answer": "A while loop executes code as long as a condition is true."
+    },
+    {
+        "keywords": ["what is conditional statement"],
+        "answer": "Conditional statements allow programs to make decisions based on conditions."
+    },
+    {
+        "keywords": ["what is if else"],
+        "answer": "If else statements execute different code depending on whether a condition is true or false."
+    },
+    {
+        "keywords": ["what is array"],
+        "answer": "An array stores multiple values in a single variable."
+    },
+    {
+        "keywords": ["what is string"],
+        "answer": "A string is a sequence of characters used to store text."
+    },
+    {
+        "keywords": ["what is recursion"],
+        "answer": "Recursion is a technique where a function calls itself to solve a problem."
+    },
+    {
+        "keywords": ["what is memory management"],
+        "answer": "Memory management controls allocation and release of computer memory."
+    },
+    {
+        "keywords": ["what is pointer", "pointer"],
+        "answer": "A pointer is a variable that stores the memory address of another variable."
+    },
+    {
+        "keywords": ["what is exception handling"],
+        "answer": "Exception handling manages runtime errors to prevent program crashes."
+    },
+    {
+        "keywords": ["what is api key"],
+        "answer": "An API key is a unique identifier used to access an API service."
+    },
+    {
+        "keywords": ["what is json api"],
+        "answer": "JSON API is an API that exchanges data using JSON format."
+    },
+    {
+        "keywords": ["what is ajax"],
+        "answer": "AJAX allows web pages to communicate with servers without reloading."
+    },
+    {
+        "keywords": ["what is dom", "dom"],
+        "answer": "DOM represents an HTML document as objects that JavaScript can manipulate."
+    },
+    {
+        "keywords": ["what is event handling"],
+        "answer": "Event handling allows programs to respond to user actions like clicks and typing."
+    },
+    {
+        "keywords": ["what is es6"],
+        "answer": "ES6 is a modern version of JavaScript with new features and improvements."
+    },
+    {
+        "keywords": ["what is typescript"],
+        "answer": "TypeScript is a programming language that adds static typing to JavaScript."
+    },
+    {
+        "keywords": ["what is angular"],
+        "answer": "Angular is a TypeScript-based framework for building web applications."
+    },
+    {
+        "keywords": ["what is vue js"],
+        "answer": "Vue.js is a JavaScript framework used for building user interfaces."
+    },
+    {
+        "keywords": ["what is next js"],
+        "answer": "Next.js is a React framework used for building fast full-stack web applications."
+    },
+    {
+        "keywords": ["what is mongodb database"],
+        "answer": "MongoDB is a NoSQL database that stores data in document format."
+    },
+    {
+        "keywords": ["what is firebase"],
+        "answer": "Firebase is a Google platform that provides backend services for applications."
+    },
+    {
+        "keywords": ["what is authentication system"],
+        "answer": "An authentication system verifies users before allowing access."
+    },
+    {
+        "keywords": ["what is jwt"],
+        "answer": "JWT is a token-based authentication method used for secure communication."
+    },
+    {
+        "keywords": ["what is session"],
+        "answer": "A session stores user information while interacting with a website."
+    },
+    {
+        "keywords": ["what is cookie"],
+        "answer": "A cookie stores small pieces of information in a user's browser."
+    },
+    {
+        "keywords": ["what is machine learning model"],
+        "answer": "A machine learning model learns patterns from data to make predictions."
+    },
+    {
+        "keywords": ["what is feature engineering"],
+        "answer": "Feature engineering creates useful input features for machine learning models."
+    },
+    {
+        "keywords": ["what is classification"],
+        "answer": "Classification is a machine learning task that predicts categories."
+    },
+    {
+        "keywords": ["what is regression"],
+        "answer": "Regression predicts continuous numerical values."
+    },
+    {
+        "keywords": ["what is clustering"],
+        "answer": "Clustering groups similar data points together without labels."
+    },
+    {
+        "keywords": ["what is random forest"],
+        "answer": "Random Forest is a machine learning algorithm that uses multiple decision trees."
+    },
+    {
+        "keywords": ["what is decision tree"],
+        "answer": "Decision Tree is a model that makes decisions using a tree-like structure."
+    },
+    {
+        "keywords": ["what is svm"],
+        "answer": "SVM is a machine learning algorithm used mainly for classification problems."
+    },
+    {
+        "keywords": ["what is linear regression"],
+        "answer": "Linear Regression predicts values by finding relationships between variables."
+    },
+    {
+        "keywords": ["what is logistic regression"],
+        "answer": "Logistic Regression is used for classification problems."
+    },
+    {
+        "keywords": ["what is cnn"],
+        "answer": "CNN is a deep learning network commonly used for image processing."
+    },
+    {
+        "keywords": ["what is rnn"],
+        "answer": "RNN is a neural network designed for sequential data like text."
+    },
+    {
+        "keywords": ["what is transformer ai"],
+        "answer": "Transformer is a deep learning architecture used in modern AI language models."
+    },
+    {
+        "keywords": ["what is generative ai"],
+        "answer": "Generative AI creates new content such as text, images and audio."
+    },
+    {
+        "keywords": ["what is large language model"],
+        "answer": "A Large Language Model is an AI model trained on huge text datasets to understand and generate language."
+    },
+    {
+        "keywords": ["what is prompt engineering"],
+        "answer": "Prompt engineering is the process of creating effective instructions for AI models."
+    },
+    {
+        "keywords": ["what is openai"],
+        "answer": "OpenAI is an AI research and technology company that develops artificial intelligence systems."
+    },
+    {
+        "keywords": ["what is gemini ai"],
+        "answer": "Gemini is Google's AI model family used for text, coding and multimodal tasks."
+    },
+    {
+        "keywords": ["what is groq ai"],
+        "answer": "Groq provides fast AI inference technology for running AI models efficiently."
+    },
+
+    {
+        "keywords": ["what is cloud computing", "cloud computing"],
+        "answer": "Cloud computing provides computing resources like servers, storage and databases over the internet."
+    },
+    {
+        "keywords": ["what is aws", "amazon web services"],
+        "answer": "AWS is a cloud platform that provides services like servers, databases and storage."
+    },
+    {
+        "keywords": ["what is microsoft azure", "azure"],
+        "answer": "Azure is Microsoft's cloud computing platform for building and deploying applications."
+    },
+    {
+        "keywords": ["what is google cloud", "gcp"],
+        "answer": "Google Cloud is a cloud platform that provides computing, storage and AI services."
+    },
+    {
+        "keywords": ["what is virtualization"],
+        "answer": "Virtualization creates virtual versions of computers, servers or operating systems."
+    },
+    {
+        "keywords": ["what is virtual machine", "vm"],
+        "answer": "A virtual machine is a software-based computer running inside a physical computer."
+    },
+    {
+        "keywords": ["what is container"],
+        "answer": "A container packages an application with its dependencies so it can run consistently."
+    },
+    {
+        "keywords": ["what is docker container", "docker container"],
+        "answer": "Docker containers allow applications to run in isolated environments."
+    },
+    {
+        "keywords": ["what is kubernetes", "kubernetes"],
+        "answer": "Kubernetes is a platform used to manage and automate containers."
+    },
+    {
+        "keywords": ["what is devops", "devops"],
+        "answer": "DevOps combines development and operations to improve software delivery."
+    },
+    {
+        "keywords": ["what is ci cd", "ci cd"],
+        "answer": "CI/CD automates software building, testing and deployment processes."
+    },
+    {
+        "keywords": ["what is continuous integration"],
+        "answer": "Continuous Integration automatically tests and integrates code changes."
+    },
+    {
+        "keywords": ["what is continuous deployment"],
+        "answer": "Continuous Deployment automatically releases tested software updates."
+    },
+    {
+        "keywords": ["what is pipeline"],
+        "answer": "A pipeline is an automated workflow for building, testing and deploying software."
+    },
+    {
+        "keywords": ["what is linux", "linux"],
+        "answer": "Linux is an open-source operating system widely used for servers and development."
+    },
+    {
+        "keywords": ["what is ubuntu"],
+        "answer": "Ubuntu is a popular Linux-based operating system."
+    },
+    {
+        "keywords": ["what is command line"],
+        "answer": "Command line is a text-based interface used to interact with computers."
+    },
+    {
+        "keywords": ["what is terminal"],
+        "answer": "A terminal allows users to execute commands and manage systems."
+    },
+    {
+        "keywords": ["what is shell"],
+        "answer": "A shell is a program that interprets commands and communicates with the operating system."
+    },
+    {
+        "keywords": ["what is bash"],
+        "answer": "Bash is a popular command-line shell used in Linux systems."
+    },
+    {
+        "keywords": ["what is mobile application"],
+        "answer": "A mobile application is software designed to run on smartphones and tablets."
+    },
+    {
+        "keywords": ["what is android"],
+        "answer": "Android is a mobile operating system developed by Google."
+    },
+    {
+        "keywords": ["what is ios"],
+        "answer": "iOS is Apple's mobile operating system used on iPhones and iPads."
+    },
+    {
+        "keywords": ["what is flutter"],
+        "answer": "Flutter is Google's framework for building cross-platform mobile applications."
+    },
+    {
+        "keywords": ["what is react native"],
+        "answer": "React Native is a framework for building mobile apps using JavaScript and React."
+    },
+    {
+        "keywords": ["what is kotlin"],
+        "answer": "Kotlin is a modern programming language mainly used for Android development."
+    },
+    {
+        "keywords": ["what is swift"],
+        "answer": "Swift is Apple's programming language used for iOS application development."
+    },
+    {
+        "keywords": ["what is software quality"],
+        "answer": "Software quality measures how reliable, efficient and maintainable software is."
+    },
+    {
+        "keywords": ["what is qa testing", "qa"],
+        "answer": "QA testing ensures software meets quality standards and requirements."
+    },
+    {
+        "keywords": ["what is manual testing"],
+        "answer": "Manual testing is performed by humans without automation tools."
+    },
+    {
+        "keywords": ["what is automation testing"],
+        "answer": "Automation testing uses tools and scripts to test software automatically."
+    },
+    {
+        "keywords": ["what is selenium"],
+        "answer": "Selenium is a tool used for automating web browser testing."
+    },
+    {
+        "keywords": ["what is postman"],
+        "answer": "Postman is a tool used for testing and developing APIs."
+    },
+    {
+        "keywords": ["what is unit test"],
+        "answer": "Unit testing checks individual parts of a software application."
+    },
+    {
+        "keywords": ["what is integration test"],
+        "answer": "Integration testing verifies communication between software modules."
+    },
+    {
+        "keywords": ["what is performance testing"],
+        "answer": "Performance testing checks software speed, stability and scalability."
+    },
+    {
+        "keywords": ["what is load testing"],
+        "answer": "Load testing evaluates system behavior under expected user traffic."
+    },
+    {
+        "keywords": ["what is security testing"],
+        "answer": "Security testing identifies vulnerabilities and protects applications."
+    },
+    {
+        "keywords": ["what is code review"],
+        "answer": "Code review is the process of examining code to improve quality and find issues."
+    },
+    {
+        "keywords": ["what is design pattern"],
+        "answer": "Design patterns are reusable solutions to common software design problems."
+    },
+    {
+        "keywords": ["what is mvc"],
+        "answer": "MVC separates applications into Model, View and Controller components."
+    },
+    {
+        "keywords": ["what is microservices"],
+        "answer": "Microservices architecture builds applications as small independent services."
+    },
+    {
+        "keywords": ["what is monolithic architecture"],
+        "answer": "Monolithic architecture builds an application as a single unified system."
+    },
+    {
+        "keywords": ["what is api gateway"],
+        "answer": "API Gateway manages communication between clients and backend services."
+    },
+    {
+        "keywords": ["what is scalability"],
+        "answer": "Scalability is the ability of a system to handle increased workload."
+    },
+    {
+        "keywords": ["what is reliability"],
+        "answer": "Reliability means a system performs correctly and consistently over time."
+    },
+    {
+        "keywords": ["what is availability"],
+        "answer": "Availability measures how often a system is operational and accessible."
+    },
+    {
+        "keywords": ["what is big data"],
+        "answer": "Big Data refers to extremely large datasets that require advanced processing methods."
+    },
+    {
+        "keywords": ["what is hadoop"],
+        "answer": "Hadoop is a framework used for storing and processing large datasets."
+    },
+    {
+        "keywords": ["what is spark"],
+        "answer": "Apache Spark is a fast data processing framework used for big data analytics."
+    },
+
+    {
+        "keywords": ["what is software developer", "software developer"],
+        "answer": "A software developer designs, develops and maintains software applications."
+    },
+    {
+        "keywords": ["what is software engineer", "software engineer"],
+        "answer": "A software engineer applies engineering principles to design and develop reliable software systems."
+    },
+    {
+        "keywords": ["what skills needed for software engineer"],
+        "answer": "Important skills include programming, problem solving, databases, algorithms, communication and software design."
+    },
+    {
+        "keywords": ["what is programming interview"],
+        "answer": "A programming interview evaluates coding skills, problem solving ability and technical knowledge."
+    },
+    {
+        "keywords": ["what is data structure interview"],
+        "answer": "Data structure interviews test knowledge of arrays, linked lists, trees, graphs and algorithms."
+    },
+    {
+        "keywords": ["what is algorithm complexity"],
+        "answer": "Algorithm complexity describes the time and memory required by an algorithm."
+    },
+    {
+        "keywords": ["what is big o notation", "big o"],
+        "answer": "Big O notation describes the efficiency of an algorithm based on input size."
+    },
+    {
+        "keywords": ["what is time complexity"],
+        "answer": "Time complexity measures how execution time grows with input size."
+    },
+    {
+        "keywords": ["what is space complexity"],
+        "answer": "Space complexity measures the memory used by an algorithm."
+    },
+    {
+        "keywords": ["what is binary search"],
+        "answer": "Binary search finds elements in a sorted list by repeatedly dividing the search area."
+    },
+    {
+        "keywords": ["what is bubble sort"],
+        "answer": "Bubble sort is a simple sorting algorithm that repeatedly swaps adjacent elements."
+    },
+    {
+        "keywords": ["what is merge sort"],
+        "answer": "Merge sort is an efficient sorting algorithm based on divide and conquer."
+    },
+    {
+        "keywords": ["what is quick sort"],
+        "answer": "Quick sort is a fast sorting algorithm that uses a pivot element."
+    },
+    {
+        "keywords": ["what is graph data structure"],
+        "answer": "A graph is a data structure consisting of nodes and connections called edges."
+    },
+    {
+        "keywords": ["what is bfs"],
+        "answer": "BFS (Breadth First Search) explores graph nodes level by level."
+    },
+    {
+        "keywords": ["what is dfs"],
+        "answer": "DFS (Depth First Search) explores graph nodes by going deep before backtracking."
+    },
+    {
+        "keywords": ["what is api testing"],
+        "answer": "API testing checks whether APIs work correctly and return expected results."
+    },
+    {
+        "keywords": ["what is software architecture"],
+        "answer": "Software architecture defines the overall structure and organization of a software system."
+    },
+    {
+        "keywords": ["what is system design"],
+        "answer": "System design defines how different components of a software system work together."
+    },
+    {
+        "keywords": ["what is database design"],
+        "answer": "Database design defines tables, relationships and data organization."
+    },
+    {
+        "keywords": ["what is responsive ui"],
+        "answer": "Responsive UI adapts the interface to different screen sizes."
+    },
+    {
+        "keywords": ["what is user experience"],
+        "answer": "User Experience (UX) focuses on improving how users interact with products."
+    },
+    {
+        "keywords": ["what is user interface"],
+        "answer": "User Interface (UI) is the visual part of an application that users interact with."
+    },
+    {
+        "keywords": ["what is figma"],
+        "answer": "Figma is a design tool used for creating user interfaces and prototypes."
+    },
+    {
+        "keywords": ["what is prototype"],
+        "answer": "A prototype is an early model used to test ideas before final development."
+    },
+    {
+        "keywords": ["what is github repository"],
+        "answer": "A GitHub repository stores project files, code and version history."
+    },
+    {
+        "keywords": ["what is open source project"],
+        "answer": "An open source project allows developers to view and contribute to its source code."
+    },
+    {
+        "keywords": ["what is freelancing"],
+        "answer": "Freelancing is providing services to clients independently through online platforms."
+    },
+    {
+        "keywords": ["how to learn programming"],
+        "answer": "Learn programming by practicing daily, building projects and solving problems."
+    },
+    {
+        "keywords": ["best programming language"],
+        "answer": "The best programming language depends on your goals. Python, JavaScript and C++ are popular choices."
+    },
+    {
+        "keywords": ["what is ai engineer"],
+        "answer": "An AI engineer builds artificial intelligence systems using programming and machine learning."
+    },
+    {
+        "keywords": ["what is data analyst"],
+        "answer": "A data analyst collects, processes and analyzes data to find useful insights."
+    },
+    {
+        "keywords": ["what is data scientist"],
+        "answer": "A data scientist uses statistics, programming and machine learning to analyze data."
+    },
+    {
+        "keywords": ["what is machine learning engineer"],
+        "answer": "A machine learning engineer develops and deploys machine learning models."
+    },
+    {
+        "keywords": ["what is prompt"],
+        "answer": "A prompt is an instruction given to an AI model to generate a response."
+    },
+    {
+        "keywords": ["what is ai automation"],
+        "answer": "AI automation uses artificial intelligence to automate tasks and workflows."
+    },
+    {
+        "keywords": ["what is natural language generation"],
+        "answer": "Natural Language Generation allows computers to create human-like text."
+    },
+    {
+        "keywords": ["what is speech recognition"],
+        "answer": "Speech recognition converts spoken language into text using AI."
+    },
+    {
+        "keywords": ["what is recommendation system"],
+        "answer": "A recommendation system suggests items based on user preferences and behavior."
+    },
+    {
+        "keywords": ["what is internet of things", "iot"],
+        "answer": "IoT connects physical devices to the internet for data exchange and automation."
+    },
+    {
+        "keywords": ["what is embedded system"],
+        "answer": "An embedded system is a computer system designed for a specific function inside a device."
+    },
+    {
+        "keywords": ["what is robotics engineering"],
+        "answer": "Robotics engineering combines mechanical, electrical and software engineering to build robots."
+    },
+    {
+        "keywords": ["what is innovation"],
+        "answer": "Innovation means creating new ideas, products or solutions to solve problems."
+    },
+    {
+        "keywords": ["what is career in software engineering"],
+        "answer": "Software engineering offers careers in web development, AI, mobile apps, cloud and cybersecurity."
+    },
+    {
+        "keywords": ["how to improve coding skills"],
+        "answer": "Improve coding skills by practicing, reading code, building projects and learning algorithms."
+    },
+    {
+        "keywords": ["what makes good programmer"],
+        "answer": "A good programmer has problem solving skills, patience and continuous learning ability."
+    },
+    {
+        "keywords": ["what is debugging skill"],
+        "answer": "Debugging skill is the ability to find and fix problems in software code."
+    },
+    {
+        "keywords": ["what is clean architecture"],
+        "answer": "Clean architecture separates software components to make systems maintainable and scalable."
+    },
+
+    {
+        "keywords": ["what is machine learning application", "ml applications"],
+        "answer": "Machine Learning is used in healthcare, finance, recommendation systems, image recognition and automation."
+    },
+    {
+        "keywords": ["what is artificial neural network"],
+        "answer": "Artificial Neural Network is a computing model inspired by the human brain used for learning patterns."
+    },
+    {
+        "keywords": ["what is ai ethics"],
+        "answer": "AI ethics focuses on creating responsible, fair and safe artificial intelligence systems."
+    },
+    {
+        "keywords": ["what is data preprocessing"],
+        "answer": "Data preprocessing prepares raw data by cleaning and transforming it before machine learning."
+    },
+    {
+        "keywords": ["what is data cleaning"],
+        "answer": "Data cleaning removes errors, duplicates and missing values from datasets."
+    },
+    {
+        "keywords": ["what is feature selection"],
+        "answer": "Feature selection chooses the most important features for a machine learning model."
+    },
+    {
+        "keywords": ["what is model evaluation"],
+        "answer": "Model evaluation measures how well a machine learning model performs."
+    },
+    {
+        "keywords": ["what is confusion matrix"],
+        "answer": "A confusion matrix evaluates classification models by comparing predicted and actual results."
+    },
+    {
+        "keywords": ["what is precision"],
+        "answer": "Precision measures how many predicted positive results are actually correct."
+    },
+    {
+        "keywords": ["what is recall"],
+        "answer": "Recall measures how many actual positive cases are correctly identified."
+    },
+    {
+        "keywords": ["what is f1 score"],
+        "answer": "F1 score combines precision and recall into a single performance metric."
+    },
+    {
+        "keywords": ["what is api integration"],
+        "answer": "API integration connects different software systems to exchange data and services."
+    },
+    {
+        "keywords": ["what is backend api"],
+        "answer": "Backend API handles communication between frontend applications and server logic."
+    },
+    {
+        "keywords": ["what is database server"],
+        "answer": "A database server stores and manages database operations for applications."
+    },
+    {
+        "keywords": ["what is caching"],
+        "answer": "Caching stores frequently used data temporarily to improve application speed."
+    },
+    {
+        "keywords": ["what is load balancing"],
+        "answer": "Load balancing distributes traffic across multiple servers to improve performance."
+    },
+    {
+        "keywords": ["what is scalability in software"],
+        "answer": "Scalability allows software systems to handle increasing users and workload."
+    },
+    {
+        "keywords": ["what is maintenance in software"],
+        "answer": "Software maintenance involves updating, fixing and improving software after release."
+    },
+    {
+        "keywords": ["what is version control system"],
+        "answer": "A version control system tracks code changes and manages project history."
+    },
+    {
+        "keywords": ["what is git branch"],
+        "answer": "A Git branch allows developers to work on separate versions of code."
+    },
+    {
+        "keywords": ["what is git merge"],
+        "answer": "Git merge combines changes from different branches."
+    },
+    {
+        "keywords": ["what is pull request"],
+        "answer": "A pull request allows developers to review and merge code changes."
+    },
+    {
+        "keywords": ["what is software license"],
+        "answer": "A software license defines rules for using and distributing software."
+    },
+    {
+        "keywords": ["what is debugging in python"],
+        "answer": "Python debugging is the process of finding and fixing errors in Python programs."
+    },
+    {
+        "keywords": ["what is virtual environment python"],
+        "answer": "A Python virtual environment creates an isolated environment for project dependencies."
+    },
+    {
+        "keywords": ["what is pip"],
+        "answer": "Pip is Python's package manager used to install libraries."
+    },
+    {
+        "keywords": ["what is package"],
+        "answer": "A package is a collection of reusable software modules."
+    },
+    {
+        "keywords": ["what is module"],
+        "answer": "A module is a file containing reusable code such as functions and classes."
+    },
+    {
+        "keywords": ["what is exception in python"],
+        "answer": "An exception is an error event that interrupts normal program execution."
+    },
+    {
+        "keywords": ["what is lambda function"],
+        "answer": "A lambda function is a small anonymous function in programming."
+    },
+    {
+        "keywords": ["what is api security"],
+        "answer": "API security protects APIs from unauthorized access and attacks."
+    },
+    {
+        "keywords": ["what is oauth"],
+        "answer": "OAuth is an authorization framework used for secure access without sharing passwords."
+    },
+    {
+        "keywords": ["what is two factor authentication"],
+        "answer": "Two-factor authentication adds an extra security layer using a second verification method."
+    },
+    {
+        "keywords": ["what is cloud storage"],
+        "answer": "Cloud storage saves data on remote servers accessible through the internet."
+    },
+    {
+        "keywords": ["what is saas"],
+        "answer": "SaaS provides software applications through the internet without local installation."
+    },
+    {
+        "keywords": ["what is paas"],
+        "answer": "PaaS provides a platform for developers to build and deploy applications."
+    },
+    {
+        "keywords": ["what is iaas"],
+        "answer": "IaaS provides virtual computing infrastructure through the cloud."
+    },
+    {
+        "keywords": ["what is digital transformation"],
+        "answer": "Digital transformation uses technology to improve business processes and services."
+    },
+    {
+        "keywords": ["what is automation testing tool"],
+        "answer": "Automation testing tools execute tests automatically to improve software testing speed."
+    },
+    {
+        "keywords": ["what is software deployment"],
+        "answer": "Software deployment is the process of releasing software for users."
+    },
+    {
+        "keywords": ["what is software update"],
+        "answer": "A software update improves features, security and performance."
+    },
+    {
+        "keywords": ["what is bug fixing"],
+        "answer": "Bug fixing is the process of correcting errors in software."
+    },
+    {
+        "keywords": ["what is technical documentation"],
+        "answer": "Technical documentation explains how software works and how to use it."
+    },
+    {
+        "keywords": ["what is developer documentation"],
+        "answer": "Developer documentation provides information needed to build and maintain software."
+    },
+    {
+        "keywords": ["what is coding standard"],
+        "answer": "Coding standards define rules for writing clean and consistent code."
+    },
+    {
+        "keywords": ["what is software project"],
+        "answer": "A software project is an organized effort to create a software solution."
+    },
+    {
+        "keywords": ["what is final year project"],
+        "answer": "A final year project is a major academic project demonstrating technical skills."
+    },
+    {
+        "keywords": ["what is portfolio website"],
+        "answer": "A portfolio website showcases a person's skills, projects and professional work."
+    },
+    {
+        "keywords": ["thank you chatbot"],
+        "answer": "You are welcome! 😊 Feel free to ask more questions."
+    }
+]
