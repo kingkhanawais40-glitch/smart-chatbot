@@ -65,6 +65,18 @@ function sendMessage() {
 
         const data = await response.json();
 
+        if (!response.ok) {
+    console.error("Backend error:", data);
+
+    botMessage(
+        data.details?.error?.message ||
+        data.error ||
+        "Gemini API request failed."
+    );
+
+    return;
+}
+
         if (data.reply) {
 
     conversationHistory.push({
