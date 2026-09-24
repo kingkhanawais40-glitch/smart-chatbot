@@ -1,5 +1,5 @@
 let chatbotData = [];
-let conversationHistory = [];
+let previousInteractionId = null;
 
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
@@ -32,108 +32,68 @@ userInput.addEventListener("keypress", function(event) {
 
 // Main function
 function sendMessage() {
-
     let message = userInput.value.trim();
 
     if (message === "") return;
 
-
     userMessage(message);
-
     userInput.value = "";
-
-
     showTyping();
 
-
     setTimeout(async () => {
+        removeTyping();
 
-    removeTyping();
+        try {
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: message,
+                    previousInteractionId: previousInteractionId
+                })
+            });
 
-    try {
+            const data = await response.json();
 
-        const response = await fetch("/api/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-    message: message,
-    history: conversationHistory
-})
-        });
+            if (!response.ok) {
+                console.error("Backend error:", data);
 
-        const data = await response.json();
+                botMessage(
+                    data.details?.error?.message ||
+                    data.error ||
+                    "Gemini API request failed."
+                );
 
-        if (!response.ok) {
-    console.error("Backend error:", data);
+                return;
+            }
 
-    botMessage(
-        data.details?.error?.message ||
-        data.error ||
-        "Gemini API request failed."
-    );
+            if (data.reply) {
+                botMessage(data.reply);
 
-    return;
+                // Save Gemini interaction ID
+                if (data.interactionId) {
+                    previousInteractionId = data.interactionId;
+                }
+
+            } else {
+                const fallbackAnswer = findAnswer(message);
+
+                botMessage(fallbackAnswer);
+            }
+
+        } catch (error) {
+            console.error("Backend error:", error);
+
+            const fallbackAnswer = findAnswer(message);
+
+            botMessage(fallbackAnswer);
+        }
+
+    }, 800);
 }
 
-        if (data.reply) {
-
-    conversationHistory.push({
-        role: "user",
-        parts: [
-            {
-                text: message
-            }
-        ]
-    });
-
-    conversationHistory.push({
-        role: "model",
-        parts: [
-            {
-                text: data.reply
-            }
-        ]
-    });
-
-    botMessage(data.reply);
-
-} else {
-
-    const fallbackAnswer = findAnswer(message);
-
-    conversationHistory.push({
-        role: "user",
-        parts: [
-            {
-                text: message
-            }
-        ]
-    });
-
-    conversationHistory.push({
-        role: "model",
-        parts: [
-            {
-                text: fallbackAnswer
-            }
-        ]
-    });
-
-    botMessage(fallbackAnswer);
-}
-
-    } catch (error) {
-
-        console.error("Backend error:", error);
-
-        botMessage(findAnswer(message));
-
-    }
-
-}, 800);
-}
 
 
 

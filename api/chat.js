@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { message, history = [] } = req.body || {};
+        const { message, previousInteractionId = null } = req.body || {};
 
         if (!message || typeof message !== "string") {
             return res.status(400).json({
@@ -22,54 +22,32 @@ export default async function handler(req, res) {
             });
         }
 
-        // Clean and validate conversation history
-        const cleanHistory = Array.isArray(history)
-            ? history
-                .filter(item =>
-                    item &&
-                    (item.role === "user" || item.role === "model") &&
-                    Array.isArray(item.parts) &&
-                    item.parts.length > 0 &&
-                    typeof item.parts[0]?.text === "string"
-                )
-                .map(item => ({
-                    role: item.role,
-                    parts: [
-                        {
-                            text: item.parts[0].text
-                        }
-                    ]
-                }))
-            : [];
+        const requestBody = {
+            model: "gemini-3.8-flash",
+            input: message
+        };
+
+        // Continue previous conversation when an interaction ID exists
+        if (previousInteractionId) {
+            requestBody.previous_interaction_id = previousInteractionId;
+        }
 
         const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
+            "https://generativelanguage.googleapis.com/v1beta/interactions",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "x-goog-api-key": apiKey
                 },
-                body: JSON.stringify({
-                    contents: [
-                        ...cleanHistory,
-                        {
-                            role: "user",
-                            parts: [
-                                {
-                                    text: message
-                                }
-                            ]
-                        }
-                    ]
-                })
+                body: JSON.stringify(requestBody)
             }
         );
 
         const data = await response.json();
 
         if (!response.ok) {
-            console.error("Gemini API error:", data);
+            console.error("Gemini Interactions API error:", data);
 
             return res.status(response.status).json({
                 error: "Gemini API request failed",
@@ -78,7 +56,11 @@ export default async function handler(req, res) {
         }
 
         const reply =
-            data?.candidates?.[0]?.content?.parts?.[0]?.text;
+            data?.steps
+                ?.filter(step => step.type === "model_output")
+                ?.flatMap(step => step.content || [])
+                ?.find(content => content.type === "text")
+                ?.text;
 
         if (!reply) {
             return res.status(500).json({
@@ -88,7 +70,8 @@ export default async function handler(req, res) {
 
         return res.status(200).json({
             success: true,
-            reply: reply
+            reply: reply,
+            interactionId: data.id
         });
 
     } catch (error) {
