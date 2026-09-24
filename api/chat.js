@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     }
 
     try {
-       const { message, history = [] } = req.body || {};
+        const { message, history = [] } = req.body || {};
 
         if (!message || typeof message !== "string") {
             return res.status(400).json({
@@ -22,6 +22,26 @@ export default async function handler(req, res) {
             });
         }
 
+        // Clean and validate conversation history
+        const cleanHistory = Array.isArray(history)
+            ? history
+                .filter(item =>
+                    item &&
+                    (item.role === "user" || item.role === "model") &&
+                    Array.isArray(item.parts) &&
+                    item.parts.length > 0 &&
+                    typeof item.parts[0]?.text === "string"
+                )
+                .map(item => ({
+                    role: item.role,
+                    parts: [
+                        {
+                            text: item.parts[0].text
+                        }
+                    ]
+                }))
+            : [];
+
         const response = await fetch(
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent",
             {
@@ -32,16 +52,16 @@ export default async function handler(req, res) {
                 },
                 body: JSON.stringify({
                     contents: [
-    ...history,
-    {
-        role: "user",
-        parts: [
-            {
-                text: message
-            }
-        ]
-    }
-]
+                        ...cleanHistory,
+                        {
+                            role: "user",
+                            parts: [
+                                {
+                                    text: message
+                                }
+                            ]
+                        }
+                    ]
                 })
             }
         );
@@ -49,13 +69,13 @@ export default async function handler(req, res) {
         const data = await response.json();
 
         if (!response.ok) {
-    console.error("Gemini API error:", data);
+            console.error("Gemini API error:", data);
 
-    return res.status(response.status).json({
-        error: "Gemini API request failed",
-        details: data
-    });
-}
+            return res.status(response.status).json({
+                error: "Gemini API request failed",
+                details: data
+            });
+        }
 
         const reply =
             data?.candidates?.[0]?.content?.parts?.[0]?.text;
