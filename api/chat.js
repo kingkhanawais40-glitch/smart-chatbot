@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { message } = req.body || {};
+       const { message, history = [] } = req.body || {};
 
         if (!message || typeof message !== "string") {
             return res.status(400).json({
@@ -32,15 +32,16 @@ export default async function handler(req, res) {
                 },
                 body: JSON.stringify({
                     contents: [
-                        {
-                            role: "user",
-                            parts: [
-                                {
-                                    text: message
-                                }
-                            ]
-                        }
-                    ]
+    ...history,
+    {
+        role: "user",
+        parts: [
+            {
+                text: message
+            }
+        ]
+    }
+]
                 })
             }
         );

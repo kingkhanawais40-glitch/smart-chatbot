@@ -1,4 +1,5 @@
 let chatbotData = [];
+let conversationHistory = [];
 
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
@@ -57,17 +58,59 @@ function sendMessage() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                message: message
-            })
+    message: message,
+    history: conversationHistory
+})
         });
 
         const data = await response.json();
 
         if (data.reply) {
-            botMessage(data.reply);
-        } else {
-            botMessage(findAnswer(message));
-        }
+
+    conversationHistory.push({
+        role: "user",
+        parts: [
+            {
+                text: message
+            }
+        ]
+    });
+
+    conversationHistory.push({
+        role: "model",
+        parts: [
+            {
+                text: data.reply
+            }
+        ]
+    });
+
+    botMessage(data.reply);
+
+} else {
+
+    const fallbackAnswer = findAnswer(message);
+
+    conversationHistory.push({
+        role: "user",
+        parts: [
+            {
+                text: message
+            }
+        ]
+    });
+
+    conversationHistory.push({
+        role: "model",
+        parts: [
+            {
+                text: fallbackAnswer
+            }
+        ]
+    });
+
+    botMessage(fallbackAnswer);
+}
 
     } catch (error) {
 
