@@ -45,17 +45,39 @@ function sendMessage() {
     showTyping();
 
 
-    setTimeout(() => {
+    setTimeout(async () => {
 
-        removeTyping();
+    removeTyping();
 
-        let answer = findAnswer(message);
+    try {
 
-        botMessage(answer);
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: message
+            })
+        });
 
+        const data = await response.json();
 
-    }, 800);
+        if (data.reply) {
+            botMessage(data.reply);
+        } else {
+            botMessage(findAnswer(message));
+        }
 
+    } catch (error) {
+
+        console.error("Backend error:", error);
+
+        botMessage(findAnswer(message));
+
+    }
+
+}, 800);
 }
 
 
