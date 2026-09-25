@@ -641,12 +641,9 @@
     },
     {
         "keywords": ["what projects has awais made", "projects"],
-        "answer": "Muhammad Awais has worked on projects including AI Cricket Vision, chatbot systems, websites and machine learning projects."
+        "answer": "Muhammad Awais has worked on projects including  chatbot systems, websites and machine learning projects."
     },
-    {
-        "keywords": ["what is ai cricket vision"],
-        "answer": "AI Cricket Vision is an AI-based project that uses computer vision techniques for cricket analysis."
-    },
+    
     {
         "keywords": ["what is awais portfolio", "portfolio"],
         "answer": "This portfolio showcases Muhammad Awais's skills, projects, education and software development work."
@@ -1829,5 +1826,240 @@
     {
         "keywords": ["thank you chatbot"],
         "answer": "You are welcome! 😊 Feel free to ask more questions."
+    },
+
+    {
+        "keywords": [
+            "who is muhammad awais",
+            "who is awais",
+            "about awais",
+            "tell me about muhammad awais"
+        ],
+        "answer": "Muhammad Awais is a Software Engineering student who works on web development, Artificial Intelligence, Machine Learning, Computer Vision and modern software solutions."
+    },
+    {
+        "keywords": [
+            "what does awais study",
+            "what is awais education",
+            "awais education",
+            "degree",
+            "what degree does awais have"
+        ],
+        "answer": "Muhammad Awais is a Software Engineering student."
+    },
+    {
+        "keywords": [
+            "what are awais skills",
+            "awais skills",
+            "skills",
+            "technical skills"
+        ],
+        "answer": "His skills include HTML, CSS, JavaScript, Python, C++, SQL, React, Git, GitHub and Machine Learning basics."
+    },
+    {
+        "keywords": [
+            "what programming languages does awais know",
+            "awais programming languages",
+            "programming languages"
+        ],
+        "answer": "Muhammad Awais works with C++, Python, JavaScript, HTML, CSS and SQL."
+    },
+
+    {
+        "keywords": [
+            "what projects has awais made",
+            "what projects has muhammad awais built",
+            "what projects has awais built",
+            "awais projects",
+            "muhammad awais projects",
+            "projects"
+        ],
+        "answer": "Muhammad Awais has worked on projects including Skin Disease Detection, AI Quiz Generator, Weather Dashboard, Student Attendance System and Smart Chatbot."
+    },
+
+    {
+        "keywords": [
+            "skin disease detection",
+            "skin disease project",
+            "skin disease detection project",
+            "skin disease",
+            "skin detection",
+            "medical ai project",
+            "medical machine learning project",
+            "awais skin disease project",
+            "muhammad awais skin disease project"
+        ],
+        "answer": "Skin Disease Detection is a Machine Learning and Computer Vision project developed by Muhammad Awais. The project analyzes skin lesion images and uses an EfficientNetB0-based deep learning model to classify different skin disease categories. The project is focused on applying AI and computer vision to medical image classification."
+    },
+
+    {
+        "keywords": [
+            "tell me about skin disease detection",
+            "what is skin disease detection",
+            "how does skin disease detection work",
+            "which project detects skin diseases",
+            "which project detects skin disease",
+            "awais medical ai project"
+        ],
+        "answer": "Muhammad Awais's Skin Disease Detection project is a medical image classification project based on Machine Learning and Computer Vision. It uses an EfficientNetB0 deep learning model to analyze skin lesion images and classify them into different categories."
+    },
+
+    {
+        "keywords": [
+            "what is ai quiz generator",
+            "ai quiz generator",
+            "quiz generator",
+            "awais quiz project",
+            "muhammad awais quiz project"
+        ],
+        "answer": "AI Quiz Generator is a project developed by Muhammad Awais that uses Artificial Intelligence to generate quizzes based on user-selected topics and difficulty levels."
+    },
+
+    {
+        "keywords": [
+            "tell me about ai quiz generator",
+            "how does ai quiz generator work",
+            "what can ai quiz generator do",
+            "quiz generator project"
+        ],
+        "answer": "AI Quiz Generator allows users to enter a topic, select difficulty and configure quiz options. The application uses AI to generate questions and provides functionality for users to interact with and download the generated quiz."
+    },
+
+    {
+        "keywords": [
+            "what is weather dashboard",
+            "weather dashboard",
+            "weather project",
+            "awais weather project",
+            "muhammad awais weather project"
+        ],
+        "answer": "Weather Dashboard is a project developed by Muhammad Awais that provides weather information through a user-friendly dashboard."
+    },
+
+    {
+        "keywords": [
+            "tell me about weather dashboard",
+            "what does weather dashboard do",
+            "how does weather dashboard work"
+        ],
+        "answer": "The Weather Dashboard is designed to display weather information in an easy-to-understand interface. It is one of Muhammad Awais's software development projects."
+    },
+
+    {
+        "keywords": [
+            "what is student attendance system",
+            "student attendance system",
+            "attendance project",
+            "awais attendance project",
+            "muhammad awais attendance project"
+        ],
+        "answer": "Student Attendance System is a software project developed by Muhammad Awais for managing student attendance records."
+    },
+
+    {
+        "keywords": [
+            "tell me about student attendance system",
+            "how does student attendance system work",
+            "attendance management system"
+        ],
+        "answer": "The Student Attendance System is designed to manage student attendance information digitally. It is built as a software development project using backend technologies and a database."
+    },
+
+    {
+        "keywords": [
+            "what is smart chatbot",
+            "smart chatbot",
+            "chatbot project",
+            "awais chatbot",
+            "muhammad awais chatbot"
+        ],
+        "answer": "Smart Chatbot is a project developed by Muhammad Awais using HTML, CSS, JavaScript and a JSON knowledge base. The project has been upgraded with a Gemini-powered AI backend and conversation context."
+    },
+
+    {
+        "keywords": [
+            "tell me about smart chatbot",
+            "how does smart chatbot work",
+            "what technologies does smart chatbot use",
+            "chatbot technologies"
+        ],
+        "answer": "Muhammad Awais's Smart Chatbot uses a modern web interface with HTML, CSS and JavaScript, a JSON knowledge base and a serverless backend connected to Google's Gemini AI. It can maintain conversation context and use predefined knowledge when relevant."
+    },
+
+    {
+        "keywords": [
+            "what is awais portfolio",
+            "muhammad awais portfolio",
+            "awais portfolio",
+            "portfolio"
+        ],
+        "answer": "This portfolio showcases Muhammad Awais's skills, projects, education and software development work."
+    },
+
+    {
+        "keywords": [
+            "github profile",
+            "github link",
+            "awais github"
+        ],
+        "answer": "You can find Muhammad Awais's projects on his GitHub profile."
+    },
+
+    {
+        "keywords": [
+            "linkedin profile",
+            "linkedin",
+            "awais linkedin"
+        ],
+        "answer": "Muhammad Awais uses LinkedIn to connect with developers and share professional updates."
+    },
+
+    {
+        "keywords": [
+            "contact awais",
+            "contact muhammad awais",
+            "contact"
+        ],
+        "answer": "You can contact Muhammad Awais through his professional social media profiles."
+    },
+
+    {
+        "keywords": [
+            "what is your purpose"
+        ],
+        "answer": "My purpose is to help visitors understand Muhammad Awais's skills, projects and technical knowledge."
+    },
+
+    {
+        "keywords": [
+            "why hire awais",
+            "hire awais"
+        ],
+        "answer": "Muhammad Awais is continuously improving his software engineering skills and building practical projects."
+    },
+
+    {
+        "keywords": [
+            "what technologies does awais use",
+            "awais technologies",
+            "technologies"
+        ],
+        "answer": "He works with frontend technologies, programming languages, databases, Artificial Intelligence, Machine Learning and Computer Vision tools."
+    },
+
+    {
+        "keywords": [
+            "awais future goal",
+            "muhammad awais goal",
+            "goal"
+        ],
+        "answer": "His goal is to become a skilled software engineer and create innovative technology solutions, particularly in Artificial Intelligence and Machine Learning."
+    },
+
+    {
+        "keywords": [
+            "tell me about this chatbot"
+        ],
+        "answer": "This is Smart Chatbot, developed by Muhammad Awais. It uses a web-based interface, a JSON knowledge base and a Gemini-powered AI backend to provide intelligent responses."
     }
 ]
