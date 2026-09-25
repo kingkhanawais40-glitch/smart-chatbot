@@ -363,7 +363,211 @@ function botMessage(message) {
     scrollChat();
 
 }
+// ===============================
+// FORMAT BOT MESSAGE
+// ===============================
 
+function formatBotMessage(message) {
+
+    if (!message) {
+        return "";
+    }
+
+    let formatted = String(message);
+
+    // Escape HTML
+    formatted = formatted
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+
+    // ===============================
+    // CODE BLOCKS
+    // ===============================
+
+    formatted = formatted.replace(
+        /```([a-zA-Z0-9_+-]*)\s*\n?([\s\S]*?)```/g,
+        function(match, language, code) {
+
+            const cleanLanguage =
+                language.trim() || "Code";
+
+            return `
+                <div class="code-block">
+
+                    <div class="code-header">
+
+                        <span class="code-language">
+                            ${cleanLanguage}
+                        </span>
+
+                        <button
+                            class="copy-code-btn"
+                            type="button"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+                    <pre><code>${code.trim()}</code></pre>
+
+                </div>
+            `;
+        }
+    );
+
+
+    // ===============================
+    // BOLD TEXT
+    // ===============================
+
+    formatted = formatted.replace(
+        /\*\*(.*?)\*\*/g,
+        "<strong>$1</strong>"
+    );
+
+
+    // ===============================
+    // INLINE CODE
+    // ===============================
+
+    formatted = formatted.replace(
+        /`([^`\n]+)`/g,
+        "<code class=\"inline-code\">$1</code>"
+    );
+
+
+    // ===============================
+    // BULLET POINTS
+    // ===============================
+
+    formatted = formatted.replace(
+        /^[-•]\s+(.*)$/gm,
+        "<li>$1</li>"
+    );
+
+
+    // ===============================
+    // NUMBERED LISTS
+    // ===============================
+
+    formatted = formatted.replace(
+        /^\d+\.\s+(.*)$/gm,
+        "<li>$1</li>"
+    );
+
+
+    // ===============================
+    // LINE BREAKS
+    // ===============================
+
+    formatted = formatted.replace(
+        /\n/g,
+        "<br>"
+    );
+
+
+    return formatted;
+
+}
+
+
+// ===============================
+// COPY CODE BUTTON
+// ===============================
+
+function addCopyButtons() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".copy-code-btn"
+        );
+
+
+    buttons.forEach(button => {
+
+        if (button.dataset.copyReady) {
+            return;
+        }
+
+
+        button.dataset.copyReady = "true";
+
+
+        button.addEventListener(
+            "click",
+            async function() {
+
+                const codeBlock =
+                    button.closest(
+                        ".code-block"
+                    );
+
+
+                if (!codeBlock) {
+                    return;
+                }
+
+
+                const code =
+                    codeBlock.querySelector(
+                        "code"
+                    );
+
+
+                if (!code) {
+                    return;
+                }
+
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        code.innerText
+                    );
+
+
+                    button.innerText =
+                        "Copied!";
+
+
+                    setTimeout(() => {
+
+                        button.innerText =
+                            "Copy";
+
+                    }, 1500);
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Copy failed:",
+                        error
+                    );
+
+
+                    button.innerText =
+                        "Failed";
+
+
+                    setTimeout(() => {
+
+                        button.innerText =
+                            "Copy";
+
+                    }, 1500);
+
+                }
+
+            }
+        );
+
+    });
+
+}
 
 // ===============================
 // TYPING INDICATOR
