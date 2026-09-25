@@ -32,6 +32,7 @@ const promptCards = document.querySelectorAll(".prompt-card");
 fetch("knowledge/responses.json")
     .then(response => response.json())
     .then(data => {
+
         chatbotData = data;
 
         console.log(
@@ -39,13 +40,19 @@ fetch("knowledge/responses.json")
             chatbotData.length,
             "questions"
         );
+
     })
     .catch(error => {
-        console.error("JSON loading error:", error);
+
+        console.error(
+            "JSON loading error:",
+            error
+        );
 
         botMessage(
             "Sorry, chatbot database load nahi ho saka."
         );
+
     });
 
 
@@ -53,7 +60,14 @@ fetch("knowledge/responses.json")
 // SEND BUTTON
 // ===============================
 
-sendBtn.addEventListener("click", sendMessage);
+if (sendBtn) {
+
+    sendBtn.addEventListener(
+        "click",
+        sendMessage
+    );
+
+}
 
 
 // ===============================
@@ -62,30 +76,51 @@ sendBtn.addEventListener("click", sendMessage);
 // Shift + Enter = New Line
 // ===============================
 
-userInput.addEventListener("keydown", function(event) {
+if (userInput) {
 
-    if (event.key === "Enter" && !event.shiftKey) {
+    userInput.addEventListener(
+        "keydown",
+        function(event) {
 
-        event.preventDefault();
+            if (
+                event.key === "Enter" &&
+                !event.shiftKey
+            ) {
 
-        sendMessage();
-    }
+                event.preventDefault();
 
-});
+                sendMessage();
+
+            }
+
+        }
+    );
+
+}
 
 
 // ===============================
 // AUTO RESIZE TEXTAREA
 // ===============================
 
-userInput.addEventListener("input", function() {
+if (userInput) {
 
-    this.style.height = "auto";
+    userInput.addEventListener(
+        "input",
+        function() {
 
-    this.style.height =
-        Math.min(this.scrollHeight, 160) + "px";
+            this.style.height = "auto";
 
-});
+            this.style.height =
+                Math.min(
+                    this.scrollHeight,
+                    160
+                ) + "px";
+
+        }
+    );
+
+}
 
 
 // ===============================
@@ -94,19 +129,28 @@ userInput.addEventListener("input", function() {
 
 promptCards.forEach(card => {
 
-    card.addEventListener("click", function() {
+    card.addEventListener(
+        "click",
+        function() {
 
-        const prompt = this.dataset.prompt;
+            const prompt =
+                this.dataset.prompt;
 
-        if (!prompt) return;
+            if (!prompt) {
+                return;
+            }
 
-        userInput.value = prompt;
+            userInput.value =
+                prompt;
 
-        userInput.dispatchEvent(new Event("input"));
+            userInput.dispatchEvent(
+                new Event("input")
+            );
 
-        sendMessage();
+            sendMessage();
 
-    });
+        }
+    );
 
 });
 
@@ -117,9 +161,16 @@ promptCards.forEach(card => {
 
 function sendMessage() {
 
-    const message = userInput.value.trim();
+    if (!userInput) {
+        return;
+    }
 
-    if (message === "") return;
+    const message =
+        userInput.value.trim();
+
+    if (message === "") {
+        return;
+    }
 
 
     // Hide welcome screen
@@ -133,7 +184,8 @@ function sendMessage() {
     // Clear input
     userInput.value = "";
 
-    userInput.style.height = "auto";
+    userInput.style.height =
+        "auto";
 
 
     // Show typing indicator
@@ -141,109 +193,121 @@ function sendMessage() {
 
 
     // Small delay for natural interaction
-    setTimeout(async () => {
+    setTimeout(
+        async () => {
 
-        try {
+            try {
 
-            const response = await fetch("/api/chat", {
+                const response =
+                    await fetch(
+                        "/api/chat",
+                        {
+                            method: "POST",
 
-                method: "POST",
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                            body: JSON.stringify({
 
-                body: JSON.stringify({
+                                message:
+                                    message,
 
-                    message: message,
+                                previousInteractionId:
+                                    previousInteractionId
 
-                    previousInteractionId:
-                        previousInteractionId
+                            })
 
-                })
-
-            });
-
-
-            const data = await response.json();
-
-
-            // Remove typing indicator
-            removeTyping();
-
-
-            // Backend error
-            if (!response.ok) {
-
-                console.error(
-                    "Backend error:",
-                    data
-                );
+                        }
+                    );
 
 
-                botMessage(
-
-                    data.details?.error?.message ||
-
-                    data.error ||
-
-                    "Gemini API request failed."
-
-                );
+                const data =
+                    await response.json();
 
 
-                return;
-            }
+                // Remove typing indicator
+                removeTyping();
 
 
-            // Gemini response
-            if (data.reply) {
+                // Backend error
+                if (!response.ok) {
 
-                botMessage(data.reply);
+                    console.error(
+                        "Backend error:",
+                        data
+                    );
 
 
-                // Save Gemini interaction ID
-                if (data.interactionId) {
+                    botMessage(
 
-                    previousInteractionId =
-                        data.interactionId;
+                        data.details?.error?.message ||
+
+                        data.error ||
+
+                        "Gemini API request failed."
+
+                    );
+
+                    return;
+                }
+
+
+                // Gemini response
+                if (data.reply) {
+
+                    botMessage(
+                        data.reply
+                    );
+
+
+                    // Save Gemini interaction ID
+                    if (data.interactionId) {
+
+                        previousInteractionId =
+                            data.interactionId;
+
+                    }
+
+                } else {
+
+                    // Knowledge base fallback
+                    const fallbackAnswer =
+                        findAnswer(message);
+
+                    botMessage(
+                        fallbackAnswer
+                    );
 
                 }
 
 
-            } else {
+            } catch (error) {
+
+                removeTyping();
+
+
+                console.error(
+                    "Backend error:",
+                    error
+                );
+
 
                 // Knowledge base fallback
                 const fallbackAnswer =
                     findAnswer(message);
 
 
-                botMessage(fallbackAnswer);
+                botMessage(
+                    fallbackAnswer
+                );
 
             }
 
-
-        } catch (error) {
-
-            removeTyping();
-
-
-            console.error(
-                "Backend error:",
-                error
-            );
-
-
-            // Knowledge base fallback
-            const fallbackAnswer =
-                findAnswer(message);
-
-
-            botMessage(fallbackAnswer);
-
-        }
-
-    }, 700);
+        },
+        700
+    );
 
 }
 
@@ -254,7 +318,8 @@ function sendMessage() {
 
 function findAnswer(question) {
 
-    question = question.toLowerCase();
+    question =
+        question.toLowerCase();
 
 
     let bestMatch = null;
@@ -267,46 +332,86 @@ function findAnswer(question) {
         let score = 0;
 
 
-        item.keywords.forEach(keyword => {
+        if (
+            !Array.isArray(
+                item.keywords
+            )
+        ) {
 
-            keyword =
-                keyword.toLowerCase();
+            return;
+
+        }
 
 
-            // Exact phrase match
-            if (question.includes(keyword)) {
+        item.keywords.forEach(
+            keyword => {
 
-                score += 2;
+                if (
+                    typeof keyword !==
+                    "string"
+                ) {
+
+                    return;
+
+                }
+
+
+                keyword =
+                    keyword.toLowerCase();
+
+
+                // Exact phrase match
+                if (
+                    question.includes(
+                        keyword
+                    )
+                ) {
+
+                    score += 2;
+
+                }
+
+
+                // Individual word match
+                const words =
+                    question.split(
+                        /\s+/
+                    );
+
+
+                if (
+                    words.includes(
+                        keyword
+                    )
+                ) {
+
+                    score += 1;
+
+                }
 
             }
+        );
 
 
-            // Individual word match
-            const words =
-                question.split(/\s+/);
+        if (
+            score > maxScore
+        ) {
 
+            maxScore =
+                score;
 
-            if (words.includes(keyword)) {
-
-                score += 1;
-
-            }
-
-        });
-
-
-        if (score > maxScore) {
-
-            maxScore = score;
-
-            bestMatch = item.answer;
+            bestMatch =
+                item.answer;
 
         }
 
     });
 
 
-    if (bestMatch && maxScore > 0) {
+    if (
+        bestMatch &&
+        maxScore > 0
+    ) {
 
         return bestMatch;
 
@@ -325,18 +430,23 @@ function findAnswer(question) {
 function userMessage(message) {
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     div.className =
         "user-message";
 
 
-    div.innerHTML =
+    // Use textContent for safety
+    div.textContent =
         message;
 
 
-    chatBox.appendChild(div);
+    chatBox.appendChild(
+        div
+    );
 
 
     scrollChat();
@@ -350,19 +460,35 @@ function userMessage(message) {
 
 function botMessage(message) {
 
-    const div = document.createElement("div");
+    const div =
+        document.createElement(
+            "div"
+        );
 
-    div.className = "bot-message";
 
-    div.innerHTML = formatBotMessage(message);
+    div.className =
+        "bot-message";
 
-    chatBox.appendChild(div);
+
+    div.innerHTML =
+        formatBotMessage(
+            message
+        );
+
+
+    chatBox.appendChild(
+        div
+    );
+
 
     addCopyButtons();
+
 
     scrollChat();
 
 }
+
+
 // ===============================
 // FORMAT BOT MESSAGE
 // ===============================
@@ -373,33 +499,163 @@ function formatBotMessage(message) {
         return "";
     }
 
-    let formatted = String(message);
 
-    // Escape HTML
-    formatted = formatted
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+    let formatted =
+        String(message);
 
 
     // ===============================
-    // CODE BLOCKS
+    // EXTRACT CODE BLOCKS FIRST
     // ===============================
 
-    formatted = formatted.replace(
-        /```([a-zA-Z0-9_+-]*)\s*\n?([\s\S]*?)```/g,
-        function(match, language, code) {
+    const codeBlocks = [];
 
-            const cleanLanguage =
-                language.trim() || "Code";
 
-            return `
+    formatted =
+        formatted.replace(
+            /```([a-zA-Z0-9_+#.-]*)[ \t]*\n?([\s\S]*?)```/g,
+            function(
+                match,
+                language,
+                code
+            ) {
+
+                const index =
+                    codeBlocks.length;
+
+
+                const cleanLanguage =
+                    language.trim() ||
+                    "Code";
+
+
+                // Escape code safely
+                const escapedCode =
+                    code
+                        .replace(
+                            /&/g,
+                            "&amp;"
+                        )
+                        .replace(
+                            /</g,
+                            "&lt;"
+                        )
+                        .replace(
+                            />/g,
+                            "&gt;"
+                        );
+
+
+                codeBlocks.push({
+
+                    language:
+                        cleanLanguage,
+
+                    code:
+                        escapedCode
+
+                });
+
+
+                // Temporary placeholder
+                return `___CODE_BLOCK_${index}___`;
+
+            }
+        );
+
+
+    // ===============================
+    // ESCAPE NORMAL HTML
+    // ===============================
+
+    formatted =
+        formatted
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            );
+
+
+    // ===============================
+    // BOLD TEXT
+    // ===============================
+
+    formatted =
+        formatted.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+        );
+
+
+    // ===============================
+    // INLINE CODE
+    // ===============================
+
+    formatted =
+        formatted.replace(
+            /`([^`\n]+)`/g,
+            '<code class="inline-code">$1</code>'
+        );
+
+
+    // ===============================
+    // BULLET POINTS
+    // ===============================
+
+    formatted =
+        formatted.replace(
+            /^[-•]\s+(.*)$/gm,
+            "<li>$1</li>"
+        );
+
+
+    // ===============================
+    // NUMBERED LISTS
+    // ===============================
+
+    formatted =
+        formatted.replace(
+            /^\d+\.\s+(.*)$/gm,
+            "<li>$1</li>"
+        );
+
+
+    // ===============================
+    // LINE BREAKS
+    // ===============================
+
+    formatted =
+        formatted.replace(
+            /\n/g,
+            "<br>"
+        );
+
+
+    // ===============================
+    // RESTORE CODE BLOCKS
+    // ===============================
+
+    codeBlocks.forEach(
+        function(
+            block,
+            index
+        ) {
+
+            const codeBlockHTML = `
                 <div class="code-block">
 
                     <div class="code-header">
 
                         <span class="code-language">
-                            ${cleanLanguage}
+                            ${block.language}
                         </span>
 
                         <button
@@ -411,61 +667,19 @@ function formatBotMessage(message) {
 
                     </div>
 
-                    <pre><code>${code.trim()}</code></pre>
+                    <pre><code>${block.code}</code></pre>
 
                 </div>
             `;
+
+
+            formatted =
+                formatted.replace(
+                    `___CODE_BLOCK_${index}___`,
+                    codeBlockHTML
+                );
+
         }
-    );
-
-
-    // ===============================
-    // BOLD TEXT
-    // ===============================
-
-    formatted = formatted.replace(
-        /\*\*(.*?)\*\*/g,
-        "<strong>$1</strong>"
-    );
-
-
-    // ===============================
-    // INLINE CODE
-    // ===============================
-
-    formatted = formatted.replace(
-        /`([^`\n]+)`/g,
-        "<code class=\"inline-code\">$1</code>"
-    );
-
-
-    // ===============================
-    // BULLET POINTS
-    // ===============================
-
-    formatted = formatted.replace(
-        /^[-•]\s+(.*)$/gm,
-        "<li>$1</li>"
-    );
-
-
-    // ===============================
-    // NUMBERED LISTS
-    // ===============================
-
-    formatted = formatted.replace(
-        /^\d+\.\s+(.*)$/gm,
-        "<li>$1</li>"
-    );
-
-
-    // ===============================
-    // LINE BREAKS
-    // ===============================
-
-    formatted = formatted.replace(
-        /\n/g,
-        "<br>"
     );
 
 
@@ -486,88 +700,102 @@ function addCopyButtons() {
         );
 
 
-    buttons.forEach(button => {
+    buttons.forEach(
+        button => {
 
-        if (button.dataset.copyReady) {
-            return;
-        }
+            if (
+                button.dataset.copyReady
+            ) {
 
-
-        button.dataset.copyReady = "true";
-
-
-        button.addEventListener(
-            "click",
-            async function() {
-
-                const codeBlock =
-                    button.closest(
-                        ".code-block"
-                    );
-
-
-                if (!codeBlock) {
-                    return;
-                }
-
-
-                const code =
-                    codeBlock.querySelector(
-                        "code"
-                    );
-
-
-                if (!code) {
-                    return;
-                }
-
-
-                try {
-
-                    await navigator.clipboard.writeText(
-                        code.innerText
-                    );
-
-
-                    button.innerText =
-                        "Copied!";
-
-
-                    setTimeout(() => {
-
-                        button.innerText =
-                            "Copy";
-
-                    }, 1500);
-
-
-                } catch (error) {
-
-                    console.error(
-                        "Copy failed:",
-                        error
-                    );
-
-
-                    button.innerText =
-                        "Failed";
-
-
-                    setTimeout(() => {
-
-                        button.innerText =
-                            "Copy";
-
-                    }, 1500);
-
-                }
+                return;
 
             }
-        );
 
-    });
+
+            button.dataset.copyReady =
+                "true";
+
+
+            button.addEventListener(
+                "click",
+                async function() {
+
+                    const codeBlock =
+                        button.closest(
+                            ".code-block"
+                        );
+
+
+                    if (!codeBlock) {
+                        return;
+                    }
+
+
+                    const code =
+                        codeBlock.querySelector(
+                            "code"
+                        );
+
+
+                    if (!code) {
+                        return;
+                    }
+
+
+                    try {
+
+                        await navigator.clipboard.writeText(
+                            code.innerText
+                        );
+
+
+                        button.innerText =
+                            "Copied!";
+
+
+                        setTimeout(
+                            () => {
+
+                                button.innerText =
+                                    "Copy";
+
+                            },
+                            1500
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Copy failed:",
+                            error
+                        );
+
+
+                        button.innerText =
+                            "Failed";
+
+
+                        setTimeout(
+                            () => {
+
+                                button.innerText =
+                                    "Copy";
+
+                            },
+                            1500
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
 
 }
+
 
 // ===============================
 // TYPING INDICATOR
@@ -579,7 +807,9 @@ function showTyping() {
 
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     div.id =
@@ -599,7 +829,9 @@ function showTyping() {
     `;
 
 
-    chatBox.appendChild(div);
+    chatBox.appendChild(
+        div
+    );
 
 
     scrollChat();
@@ -614,7 +846,9 @@ function showTyping() {
 function removeTyping() {
 
     const typing =
-        document.getElementById("typing");
+        document.getElementById(
+            "typing"
+        );
 
 
     if (typing) {
@@ -631,6 +865,11 @@ function removeTyping() {
 // ===============================
 
 function scrollChat() {
+
+    if (!chatBox) {
+        return;
+    }
+
 
     chatBox.scrollTop =
         chatBox.scrollHeight;
@@ -691,16 +930,25 @@ function saveChat() {
 function loadChatHistory() {
 
     const oldChat =
-        localStorage.getItem("chatHistory");
+        localStorage.getItem(
+            "chatHistory"
+        );
 
 
-    if (oldChat && oldChat.trim() !== "") {
+    if (
+        oldChat &&
+        oldChat.trim() !== ""
+    ) {
 
         chatBox.innerHTML =
             oldChat;
 
 
         hideWelcomeScreen();
+
+
+        // Restore copy buttons
+        addCopyButtons();
 
     }
 
@@ -713,10 +961,12 @@ function loadChatHistory() {
 
 function clearChat() {
 
-    chatBox.innerHTML = "";
+    chatBox.innerHTML =
+        "";
 
 
-    previousInteractionId = null;
+    previousInteractionId =
+        null;
 
 
     localStorage.removeItem(
@@ -727,9 +977,12 @@ function clearChat() {
     showWelcomeScreen();
 
 
-    userInput.value = "";
+    userInput.value =
+        "";
 
-    userInput.style.height = "auto";
+
+    userInput.style.height =
+        "auto";
 
 
     userInput.focus();
@@ -743,10 +996,12 @@ function clearChat() {
 
 function startNewChat() {
 
-    chatBox.innerHTML = "";
+    chatBox.innerHTML =
+        "";
 
 
-    previousInteractionId = null;
+    previousInteractionId =
+        null;
 
 
     localStorage.removeItem(
@@ -757,9 +1012,12 @@ function startNewChat() {
     showWelcomeScreen();
 
 
-    userInput.value = "";
+    userInput.value =
+        "";
 
-    userInput.style.height = "auto";
+
+    userInput.style.height =
+        "auto";
 
 
     closeMobileSidebar();
@@ -792,14 +1050,18 @@ function openMobileSidebar() {
 
     if (sidebar) {
 
-        sidebar.classList.add("open");
+        sidebar.classList.add(
+            "open"
+        );
 
     }
 
 
     if (sidebarOverlay) {
 
-        sidebarOverlay.classList.add("active");
+        sidebarOverlay.classList.add(
+            "active"
+        );
 
     }
 
@@ -810,14 +1072,18 @@ function closeMobileSidebar() {
 
     if (sidebar) {
 
-        sidebar.classList.remove("open");
+        sidebar.classList.remove(
+            "open"
+        );
 
     }
 
 
     if (sidebarOverlay) {
 
-        sidebarOverlay.classList.remove("active");
+        sidebarOverlay.classList.remove(
+            "active"
+        );
 
     }
 
@@ -863,9 +1129,13 @@ if (sidebarOverlay) {
 
 function applyTheme(theme) {
 
-    if (theme === "light") {
+    if (
+        theme === "light"
+    ) {
 
-        document.body.classList.add("light");
+        document.body.classList.add(
+            "light"
+        );
 
 
         if (themeBtn) {
@@ -1000,6 +1270,7 @@ function startVoiceRecognition() {
                 "recording"
             );
 
+
             console.error(
                 "Voice recognition error:",
                 event.error
@@ -1050,11 +1321,15 @@ window.addEventListener(
 
         if (savedTheme) {
 
-            applyTheme(savedTheme);
+            applyTheme(
+                savedTheme
+            );
 
         } else {
 
-            applyTheme("dark");
+            applyTheme(
+                "dark"
+            );
 
         }
 
@@ -1076,23 +1351,29 @@ const originalUserMessage =
     userMessage;
 
 
-userMessage = function(message) {
+userMessage =
+    function(message) {
 
-    originalUserMessage(message);
+        originalUserMessage(
+            message
+        );
 
-    saveChat();
+        saveChat();
 
-};
+    };
 
 
 const originalBotMessage =
     botMessage;
 
 
-botMessage = function(message) {
+botMessage =
+    function(message) {
 
-    originalBotMessage(message);
+        originalBotMessage(
+            message
+        );
 
-    saveChat();
+        saveChat();
 
-};
+    };
