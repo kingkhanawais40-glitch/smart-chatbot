@@ -1903,6 +1903,18 @@
     ],
     "answer": "The Skin Disease Detection project uses the ISIC 2018 Task 3 dataset. The project uses a 700-image subset covering 7 skin lesion categories: akiec, bcc, bkl, df, mel, nv and vasc. The data was split into 490 training images, 105 validation images and 105 test images."
 },
+{
+    "keywords": [
+        "what accuracy did the skin disease detection project achieve",
+        "skin disease detection accuracy",
+        "skin disease project accuracy",
+        "what is the accuracy of skin disease detection",
+        "how accurate is the skin disease detection project",
+        "skin disease detection model accuracy",
+        "efficientnetb0 accuracy"
+    ],
+    "answer": "The current Skin Disease Detection project uses the EfficientNetB0 V2 model, which achieved 52.38% accuracy on the test set."
+},
 
     {
         "keywords": [
