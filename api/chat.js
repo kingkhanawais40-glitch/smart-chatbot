@@ -286,7 +286,6 @@ Machine Learning and Computer Vision.
 
 Known portfolio projects:
 - Skin Disease Detection
-- AI Cricket Vision
 - AI Quiz Generator
 - Weather Dashboard
 - Student Attendance System
