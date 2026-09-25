@@ -1,109 +1,264 @@
 let chatbotData = [];
 let previousInteractionId = null;
 
+
+// ===============================
+// DOM ELEMENTS
+// ===============================
+
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
 
-// Load JSON file
+const themeBtn = document.getElementById("theme-btn");
+const voiceBtn = document.getElementById("voice-btn");
+
+const newChatBtn = document.getElementById("new-chat-btn");
+
+const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+const mobileCloseBtn = document.getElementById("mobile-close-btn");
+const sidebarOverlay = document.getElementById("sidebar-overlay");
+const sidebar = document.getElementById("sidebar");
+
+const welcomeScreen = document.getElementById("welcome-screen");
+
+const promptCards = document.querySelectorAll(".prompt-card");
+
+
+// ===============================
+// LOAD KNOWLEDGE BASE
+// ===============================
+
 fetch("knowledge/responses.json")
     .then(response => response.json())
     .then(data => {
         chatbotData = data;
-        console.log("Chatbot database loaded:", chatbotData.length, "questions");
+
+        console.log(
+            "Chatbot database loaded:",
+            chatbotData.length,
+            "questions"
+        );
     })
     .catch(error => {
         console.error("JSON loading error:", error);
-        botMessage("Sorry, chatbot database load nahi ho saka.");
+
+        botMessage(
+            "Sorry, chatbot database load nahi ho saka."
+        );
     });
 
 
-// Send message button
+// ===============================
+// SEND BUTTON
+// ===============================
+
 sendBtn.addEventListener("click", sendMessage);
 
 
-// Enter key support
-userInput.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
+// ===============================
+// ENTER KEY
+// Enter = Send
+// Shift + Enter = New Line
+// ===============================
+
+userInput.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter" && !event.shiftKey) {
+
+        event.preventDefault();
+
         sendMessage();
     }
+
 });
 
 
-// Main function
+// ===============================
+// AUTO RESIZE TEXTAREA
+// ===============================
+
+userInput.addEventListener("input", function() {
+
+    this.style.height = "auto";
+
+    this.style.height =
+        Math.min(this.scrollHeight, 160) + "px";
+
+});
+
+
+// ===============================
+// PROMPT CARDS
+// ===============================
+
+promptCards.forEach(card => {
+
+    card.addEventListener("click", function() {
+
+        const prompt = this.dataset.prompt;
+
+        if (!prompt) return;
+
+        userInput.value = prompt;
+
+        userInput.dispatchEvent(new Event("input"));
+
+        sendMessage();
+
+    });
+
+});
+
+
+// ===============================
+// MAIN SEND MESSAGE FUNCTION
+// ===============================
+
 function sendMessage() {
-    let message = userInput.value.trim();
+
+    const message = userInput.value.trim();
 
     if (message === "") return;
 
+
+    // Hide welcome screen
+    hideWelcomeScreen();
+
+
+    // Show user message
     userMessage(message);
+
+
+    // Clear input
     userInput.value = "";
+
+    userInput.style.height = "auto";
+
+
+    // Show typing indicator
     showTyping();
 
+
+    // Small delay for natural interaction
     setTimeout(async () => {
-        removeTyping();
 
         try {
+
             const response = await fetch("/api/chat", {
+
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
+
                     message: message,
-                    previousInteractionId: previousInteractionId
+
+                    previousInteractionId:
+                        previousInteractionId
+
                 })
+
             });
+
 
             const data = await response.json();
 
+
+            // Remove typing indicator
+            removeTyping();
+
+
+            // Backend error
             if (!response.ok) {
-                console.error("Backend error:", data);
+
+                console.error(
+                    "Backend error:",
+                    data
+                );
+
 
                 botMessage(
+
                     data.details?.error?.message ||
+
                     data.error ||
+
                     "Gemini API request failed."
+
                 );
+
 
                 return;
             }
 
+
+            // Gemini response
             if (data.reply) {
+
                 botMessage(data.reply);
+
 
                 // Save Gemini interaction ID
                 if (data.interactionId) {
-                    previousInteractionId = data.interactionId;
+
+                    previousInteractionId =
+                        data.interactionId;
+
                 }
 
+
             } else {
-                const fallbackAnswer = findAnswer(message);
+
+                // Knowledge base fallback
+                const fallbackAnswer =
+                    findAnswer(message);
+
 
                 botMessage(fallbackAnswer);
+
             }
 
-        } catch (error) {
-            console.error("Backend error:", error);
 
-            const fallbackAnswer = findAnswer(message);
+        } catch (error) {
+
+            removeTyping();
+
+
+            console.error(
+                "Backend error:",
+                error
+            );
+
+
+            // Knowledge base fallback
+            const fallbackAnswer =
+                findAnswer(message);
+
 
             botMessage(fallbackAnswer);
+
         }
 
-    }, 800);
+    }, 700);
+
 }
 
 
+// ===============================
+// FIND KNOWLEDGE BASE ANSWER
+// ===============================
 
-
-// Find matching answer
 function findAnswer(question) {
 
     question = question.toLowerCase();
 
 
     let bestMatch = null;
+
     let maxScore = 0;
 
 
@@ -114,34 +269,41 @@ function findAnswer(question) {
 
         item.keywords.forEach(keyword => {
 
-            keyword = keyword.toLowerCase();
+            keyword =
+                keyword.toLowerCase();
 
 
+            // Exact phrase match
             if (question.includes(keyword)) {
-                score++;
+
+                score += 2;
+
             }
 
 
-            let words = question.split(" ");
+            // Individual word match
+            const words =
+                question.split(/\s+/);
+
 
             if (words.includes(keyword)) {
-                score++;
+
+                score += 1;
+
             }
 
         });
 
 
-
         if (score > maxScore) {
 
             maxScore = score;
+
             bestMatch = item.answer;
 
         }
 
-
     });
-
 
 
     if (bestMatch && maxScore > 0) {
@@ -156,61 +318,100 @@ function findAnswer(question) {
 }
 
 
+// ===============================
+// USER MESSAGE
+// ===============================
 
-// User message display
 function userMessage(message) {
 
-    let div = document.createElement("div");
+    const div =
+        document.createElement("div");
 
-    div.className = "user-message";
 
-    div.innerHTML = message;
+    div.className =
+        "user-message";
+
+
+    div.innerHTML =
+        message;
+
 
     chatBox.appendChild(div);
+
 
     scrollChat();
 
 }
 
 
+// ===============================
+// BOT MESSAGE
+// ===============================
 
-// Bot message display
 function botMessage(message) {
 
-    let div = document.createElement("div");
+    const div = document.createElement("div");
 
     div.className = "bot-message";
 
-    div.innerHTML = message;
+    div.innerHTML = formatBotMessage(message);
 
     chatBox.appendChild(div);
+
+    addCopyButtons();
 
     scrollChat();
 
 }
 
 
+// ===============================
+// TYPING INDICATOR
+// ===============================
 
-// Typing animation
 function showTyping() {
 
-    let div = document.createElement("div");
+    removeTyping();
 
-    div.id = "typing";
 
-    div.className = "bot-message";
+    const div =
+        document.createElement("div");
 
-    div.innerHTML = "Bot is typing...";
+
+    div.id =
+        "typing";
+
+
+    div.className =
+        "bot-message typing-message";
+
+
+    div.innerHTML = `
+        <span class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    `;
+
 
     chatBox.appendChild(div);
+
+
+    scrollChat();
 
 }
 
 
+// ===============================
+// REMOVE TYPING
+// ===============================
 
 function removeTyping() {
 
-    let typing = document.getElementById("typing");
+    const typing =
+        document.getElementById("typing");
+
 
     if (typing) {
 
@@ -221,22 +422,53 @@ function removeTyping() {
 }
 
 
-// Auto scroll
+// ===============================
+// AUTO SCROLL
+// ===============================
+
 function scrollChat() {
 
-    chatBox.scrollTop = chatBox.scrollHeight;
+    chatBox.scrollTop =
+        chatBox.scrollHeight;
 
 }
 
 
+// ===============================
+// HIDE WELCOME SCREEN
+// ===============================
 
-// Clear chat function
-function clearChat() {
+function hideWelcomeScreen() {
 
-    chatBox.innerHTML = "";
+    if (welcomeScreen) {
+
+        welcomeScreen.style.display =
+            "none";
+
+    }
 
 }
-// Save chat history
+
+
+// ===============================
+// SHOW WELCOME SCREEN
+// ===============================
+
+function showWelcomeScreen() {
+
+    if (welcomeScreen) {
+
+        welcomeScreen.style.display =
+            "flex";
+
+    }
+
+}
+
+
+// ===============================
+// SAVE CHAT HISTORY
+// ===============================
 
 function saveChat() {
 
@@ -248,92 +480,415 @@ function saveChat() {
 }
 
 
-// Load chat history
+// ===============================
+// LOAD CHAT HISTORY
+// ===============================
 
-window.onload = function() {
+function loadChatHistory() {
 
-    let oldChat = localStorage.getItem("chatHistory");
+    const oldChat =
+        localStorage.getItem("chatHistory");
 
-    if (oldChat) {
 
-        chatBox.innerHTML = oldChat;
+    if (oldChat && oldChat.trim() !== "") {
+
+        chatBox.innerHTML =
+            oldChat;
+
+
+        hideWelcomeScreen();
 
     }
 
-};
+}
 
 
+// ===============================
+// CLEAR CHAT
+// ===============================
 
-// Save after every message
+function clearChat() {
 
-const oldUserMessage = userMessage;
+    chatBox.innerHTML = "";
 
-userMessage = function(message) {
 
-    oldUserMessage(message);
-    saveChat();
+    previousInteractionId = null;
+
+
+    localStorage.removeItem(
+        "chatHistory"
+    );
+
+
+    showWelcomeScreen();
+
+
+    userInput.value = "";
+
+    userInput.style.height = "auto";
+
+
+    userInput.focus();
 
 }
 
 
+// ===============================
+// NEW CHAT
+// ===============================
 
-const oldBotMessage = botMessage;
+function startNewChat() {
 
-botMessage = function(message) {
+    chatBox.innerHTML = "";
 
-    oldBotMessage(message);
-    saveChat();
+
+    previousInteractionId = null;
+
+
+    localStorage.removeItem(
+        "chatHistory"
+    );
+
+
+    showWelcomeScreen();
+
+
+    userInput.value = "";
+
+    userInput.style.height = "auto";
+
+
+    closeMobileSidebar();
+
+
+    userInput.focus();
 
 }
 
 
+// ===============================
+// NEW CHAT BUTTON
+// ===============================
 
-// Theme change
+if (newChatBtn) {
 
-const themeBtn = document.getElementById("theme-btn");
+    newChatBtn.addEventListener(
+        "click",
+        startNewChat
+    );
+
+}
 
 
-themeBtn.onclick = function() {
+// ===============================
+// MOBILE SIDEBAR
+// ===============================
 
-    document.body.classList.toggle("dark");
+function openMobileSidebar() {
+
+    if (sidebar) {
+
+        sidebar.classList.add("open");
+
+    }
 
 
-    if (document.body.classList.contains("dark")) {
+    if (sidebarOverlay) {
 
-        themeBtn.innerHTML = "☀️";
+        sidebarOverlay.classList.add("active");
+
+    }
+
+}
+
+
+function closeMobileSidebar() {
+
+    if (sidebar) {
+
+        sidebar.classList.remove("open");
+
+    }
+
+
+    if (sidebarOverlay) {
+
+        sidebarOverlay.classList.remove("active");
+
+    }
+
+}
+
+
+// Open mobile menu
+if (mobileMenuBtn) {
+
+    mobileMenuBtn.addEventListener(
+        "click",
+        openMobileSidebar
+    );
+
+}
+
+
+// Close mobile menu
+if (mobileCloseBtn) {
+
+    mobileCloseBtn.addEventListener(
+        "click",
+        closeMobileSidebar
+    );
+
+}
+
+
+// Close when clicking overlay
+if (sidebarOverlay) {
+
+    sidebarOverlay.addEventListener(
+        "click",
+        closeMobileSidebar
+    );
+
+}
+
+
+// ===============================
+// THEME
+// ===============================
+
+function applyTheme(theme) {
+
+    if (theme === "light") {
+
+        document.body.classList.add("light");
+
+
+        if (themeBtn) {
+
+            themeBtn.innerHTML =
+                "☀";
+
+        }
 
     } else {
 
-        themeBtn.innerHTML = "🌙";
+        document.body.classList.remove(
+            "light"
+        );
+
+
+        if (themeBtn) {
+
+            themeBtn.innerHTML =
+                "☾";
+
+        }
 
     }
 
-};
-// Voice Input Feature
 
-const voiceBtn = document.getElementById("voice-btn");
+    localStorage.setItem(
+        "theme",
+        theme
+    );
+
+}
 
 
-voiceBtn.onclick = function() {
+// Theme button
+if (themeBtn) {
 
-    let recognition = new webkitSpeechRecognition();
+    themeBtn.addEventListener(
+        "click",
+        function() {
 
-    recognition.lang = "en-US";
+            const isLight =
+                document.body.classList.contains(
+                    "light"
+                );
+
+
+            applyTheme(
+                isLight
+                    ? "dark"
+                    : "light"
+            );
+
+        }
+    );
+
+}
+
+
+// ===============================
+// VOICE INPUT
+// ===============================
+
+if (voiceBtn) {
+
+    voiceBtn.addEventListener(
+        "click",
+        startVoiceRecognition
+    );
+
+}
+
+
+function startVoiceRecognition() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if (!SpeechRecognition) {
+
+        botMessage(
+            "Voice input is not supported in this browser."
+        );
+
+        return;
+
+    }
+
+
+    const recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang =
+        "en-US";
+
+
+    recognition.interimResults =
+        false;
+
+
+    recognition.maxAlternatives =
+        1;
+
+
+    recognition.onstart =
+        function() {
+
+            voiceBtn.classList.add(
+                "recording"
+            );
+
+        };
+
+
+    recognition.onend =
+        function() {
+
+            voiceBtn.classList.remove(
+                "recording"
+            );
+
+        };
+
+
+    recognition.onerror =
+        function(event) {
+
+            voiceBtn.classList.remove(
+                "recording"
+            );
+
+            console.error(
+                "Voice recognition error:",
+                event.error
+            );
+
+        };
+
+
+    recognition.onresult =
+        function(event) {
+
+            const voiceText =
+                event.results[0][0].transcript;
+
+
+            userInput.value =
+                voiceText;
+
+
+            userInput.dispatchEvent(
+                new Event("input")
+            );
+
+
+            userInput.focus();
+
+        };
 
 
     recognition.start();
 
+}
 
 
-    recognition.onresult = function(event) {
+// ===============================
+// RESTORE THEME + CHAT
+// ===============================
 
-        let voiceText = event.results[0][0].transcript;
+window.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const savedTheme =
+            localStorage.getItem(
+                "theme"
+            );
 
 
-        userInput.value = voiceText;
+        if (savedTheme) {
+
+            applyTheme(savedTheme);
+
+        } else {
+
+            applyTheme("dark");
+
+        }
 
 
-    };
+        loadChatHistory();
 
+    }
+);
+
+
+// ===============================
+// SAVE CHAT AFTER MESSAGES
+// ===============================
+
+// Keep original message functions
+// and automatically save chat.
+
+const originalUserMessage =
+    userMessage;
+
+
+userMessage = function(message) {
+
+    originalUserMessage(message);
+
+    saveChat();
+
+};
+
+
+const originalBotMessage =
+    botMessage;
+
+
+botMessage = function(message) {
+
+    originalBotMessage(message);
+
+    saveChat();
 
 };

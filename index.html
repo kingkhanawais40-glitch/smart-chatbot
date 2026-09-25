@@ -5,72 +5,310 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Smart AI Chatbot</title>
+    <title>Smart AI Assistant | Muhammad Awais</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <link rel="stylesheet" href="style.css">
-
 </head>
-
 
 <body>
 
+    <div class="app-shell">
 
-    <div class="chat-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
 
+            <div class="sidebar-top">
 
-        <!-- Header -->
+                <div class="brand">
+                    <div class="brand-icon">
+                        <span>✦</span>
+                    </div>
 
-        <div class="chat-header">
+                    <div class="brand-text">
+                        <h1>Smart AI</h1>
+                        <span>Assistant</span>
+                    </div>
+                </div>
 
-            <h2>🤖 Smart Chatbot</h2>
+                <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close sidebar">
+                    ×
+                </button>
 
-            <p>Created by Muhammad Awais</p>
-
-            <button id="theme-btn">
-            🌙
-        </button>
-
-        </div>
-
-
-
-        <!-- Chat Messages -->
-
-        <div id="chat-box">
-
-            <div class="bot-message">
-
-                Hello 👋 I am Smart Offline Chatbot. Ask me anything about programming, AI, technology or portfolio.
+                <button class="new-chat-btn" id="new-chat-btn">
+                    <span class="new-chat-icon">＋</span>
+                    <span>New Chat</span>
+                </button>
 
             </div>
 
 
-        </div>
+            <!-- Sidebar Navigation -->
+            <div class="sidebar-section">
+
+                <div class="section-label">
+                    Workspace
+                </div>
+
+                <button class="sidebar-item active">
+                    <span class="sidebar-item-icon">⌁</span>
+                    <span>AI Assistant</span>
+                </button>
+
+                <button class="sidebar-item">
+                    <span class="sidebar-item-icon">◷</span>
+                    <span>Recent Chats</span>
+                </button>
+
+            </div>
 
 
+            <!-- Sidebar Bottom -->
+            <div class="sidebar-bottom">
 
-        <!-- Input Area -->
+                <div class="creator-card">
+                    <div class="creator-avatar">
+                        MA
+                    </div>
 
-        <div class="input-area">
+                    <div class="creator-info">
+                        <strong>Muhammad Awais</strong>
+                        <span>Software Engineer</span>
+                    </div>
+                </div>
 
-            <input type="text" id="user-input" placeholder="Type your message...">
+            </div>
 
-            <button id="voice-btn">
-        🎤
-    </button>
+        </aside>
 
-            <button id="send-btn">
-        Send
-    </button>
 
-            <button onclick="clearChat()">
-        🗑️
-    </button>
+        <!-- Mobile Overlay -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
-        </div>
-        🗑️
-        <script src="script.js"></script>
 
+        <!-- Main Application -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
+                        ☰
+                    </button>
+
+                    <div class="page-title">
+                        <div class="online-dot"></div>
+
+                        <div>
+                            <strong>Smart AI Assistant</strong>
+                            <span>Online & ready to help</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <button
+                        class="icon-btn"
+                        id="theme-btn"
+                        aria-label="Toggle theme"
+                        title="Toggle theme"
+                    >
+                        ☾
+                    </button>
+
+                    <button
+                        class="icon-btn"
+                        onclick="clearChat()"
+                        aria-label="Clear chat"
+                        title="Clear chat"
+                    >
+                        ⌫
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- Chat Workspace -->
+            <section class="chat-workspace">
+
+                <div id="chat-box">
+
+                    <!-- Welcome Screen -->
+                    <div class="welcome-screen" id="welcome-screen">
+
+                        <div class="welcome-icon">
+                            <div class="welcome-icon-inner">
+                                ✦
+                            </div>
+                        </div>
+
+                        <div class="welcome-content">
+
+                            <span class="welcome-label">
+                                YOUR INTELLIGENT WORKSPACE
+                            </span>
+
+                            <h2>
+                                Think smarter.<br>
+                                <span>Build better.</span>
+                            </h2>
+
+                            <p>
+                                I'm Smart AI Assistant, built by Muhammad Awais.
+                                Ask questions, explore ideas, solve coding problems,
+                                or learn something new.
+                            </p>
+
+                        </div>
+
+
+                        <!-- Prompt Suggestions -->
+                        <div class="prompt-grid">
+
+                            <button
+                                class="prompt-card"
+                                data-prompt="Explain Python in simple words"
+                            >
+                                <span class="prompt-icon blue">⌘</span>
+
+                                <span class="prompt-text">
+                                    <strong>Learn Python</strong>
+                                    <small>Explain a programming concept</small>
+                                </span>
+
+                                <span class="prompt-arrow">↗</span>
+                            </button>
+
+
+                            <button
+                                class="prompt-card"
+                                data-prompt="Explain Artificial Intelligence and Machine Learning"
+                            >
+                                <span class="prompt-icon purple">✦</span>
+
+                                <span class="prompt-text">
+                                    <strong>Explore AI</strong>
+                                    <small>Understand AI & ML concepts</small>
+                                </span>
+
+                                <span class="prompt-arrow">↗</span>
+                            </button>
+
+
+                            <button
+                                class="prompt-card"
+                                data-prompt="Help me solve a programming problem"
+                            >
+                                <span class="prompt-icon green">{ }</span>
+
+                                <span class="prompt-text">
+                                    <strong>Coding Help</strong>
+                                    <small>Debug or improve your code</small>
+                                </span>
+
+                                <span class="prompt-arrow">↗</span>
+                            </button>
+
+
+                            <button
+                                class="prompt-card"
+                                data-prompt="Tell me something interesting about technology"
+                            >
+                                <span class="prompt-icon orange">◉</span>
+
+                                <span class="prompt-text">
+                                    <strong>Discover</strong>
+                                    <small>Ask anything about technology</small>
+                                </span>
+
+                                <span class="prompt-arrow">↗</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Composer -->
+                <div class="composer-wrapper">
+
+                    <div class="composer">
+
+                        <button
+                            class="composer-action"
+                            id="attach-btn"
+                            type="button"
+                            title="More options"
+                            aria-label="More options"
+                        >
+                            ＋
+                        </button>
+
+                        <textarea
+                            id="user-input"
+                            rows="1"
+                            placeholder="Ask Smart AI anything..."
+                            autocomplete="off"
+                        ></textarea>
+
+
+                        <div class="composer-actions">
+
+                            <button
+                                id="voice-btn"
+                                class="composer-action voice-action"
+                                type="button"
+                                title="Voice input"
+                                aria-label="Voice input"
+                            >
+                                ◉
+                            </button>
+
+                            <button
+                                id="send-btn"
+                                class="send-btn"
+                                type="button"
+                                aria-label="Send message"
+                                title="Send message"
+                            >
+                                <span>↑</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="composer-footer">
+                        <span>Smart AI can make mistakes. Verify important information.</span>
+                        <span class="keyboard-hint">Enter ↵ to send</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
 
 </body>
 
