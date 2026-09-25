@@ -1891,6 +1891,18 @@
         ],
         "answer": "Skin Disease Detection is a Machine Learning and Computer Vision project developed by Muhammad Awais. The project analyzes skin lesion images and uses an EfficientNetB0-based deep learning model to classify different skin disease categories. The project is focused on applying AI and computer vision to medical image classification."
     },
+    {
+    "keywords": [
+        "what dataset was used for skin disease detection",
+        "which dataset was used for skin disease detection",
+        "skin disease detection dataset",
+        "skin disease dataset",
+        "isic 2018",
+        "isic2018",
+        "what dataset does skin disease detection use"
+    ],
+    "answer": "The Skin Disease Detection project uses the ISIC 2018 Task 3 dataset. The project uses a 700-image subset covering 7 skin lesion categories: akiec, bcc, bkl, df, mel, nv and vasc. The data was split into 490 training images, 105 validation images and 105 test images."
+},
 
     {
         "keywords": [
