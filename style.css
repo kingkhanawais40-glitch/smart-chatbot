@@ -1400,3 +1400,104 @@ body.light .new-chat-btn:hover {
         font-size: 12px;
     }
 }
+/* ===============================
+   CODE BLOCK
+================================ */
+
+.code-block {
+    position: relative;
+    margin: 14px 0;
+    background: #0b1120;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.code-block::before {
+    content: "CODE";
+    display: block;
+    padding: 9px 14px;
+    background: #111827;
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.code-block pre {
+    margin: 0;
+    padding: 18px;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.code-block code {
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #e2e8f0;
+}
+
+.copy-code-btn {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+
+    padding: 5px 10px;
+
+    border: 1px solid #334155;
+    border-radius: 7px;
+
+    background: #1e293b;
+    color: #cbd5e1;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.copy-code-btn:hover {
+    background: #334155;
+    color: white;
+}
+
+
+/* ===============================
+   LIGHT MODE CODE BLOCK
+================================ */
+
+body.light .code-block {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+body.light .code-block::before {
+    background: #1e293b;
+    color: #cbd5e1;
+}
+
+
+/* ===============================
+   MOBILE CODE
+================================ */
+
+@media (max-width: 600px) {
+
+    .code-block {
+        margin-left: -4px;
+        margin-right: -4px;
+    }
+
+    .code-block pre {
+        padding: 14px;
+    }
+
+    .code-block code {
+        font-size: 12px;
+    }
+
+}
