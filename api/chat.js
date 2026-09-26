@@ -12,13 +12,17 @@ const requestTracker = new Map();
 
 const RATE_LIMIT_WINDOW = 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 20;
+const MAX_MESSAGE_LENGTH = 4000;
+const GEMINI_TIMEOUT = 30000;
 
 function isRateLimited(identifier) {
     const now = Date.now();
-
     const existing = requestTracker.get(identifier);
 
-    if (!existing || now - existing.startTime >= RATE_LIMIT_WINDOW) {
+    if (
+        !existing ||
+        now - existing.startTime >= RATE_LIMIT_WINDOW
+    ) {
         requestTracker.set(identifier, {
             startTime: now,
             count: 1
@@ -29,26 +33,33 @@ function isRateLimited(identifier) {
 
     existing.count += 1;
 
-    if (existing.count > MAX_REQUESTS_PER_WINDOW) {
-        return true;
-    }
-
-    return false;
+    return existing.count > MAX_REQUESTS_PER_WINDOW;
 }
 
 function loadKnowledgeBase() {
     try {
-        const file = fs.readFileSync(KNOWLEDGE_FILE, "utf8");
+        const file = fs.readFileSync(
+            KNOWLEDGE_FILE,
+            "utf8"
+        );
+
         const data = JSON.parse(file);
 
         if (!Array.isArray(data)) {
-            console.error("Knowledge base is not an array.");
+            console.error(
+                "Knowledge base is not an array."
+            );
+
             return [];
         }
 
         return data;
     } catch (error) {
-        console.error("Knowledge base loading error:", error);
+        console.error(
+            "Knowledge base loading error:",
+            error
+        );
+
         return [];
     }
 }
@@ -61,7 +72,10 @@ function normalizeText(text) {
         .trim();
 }
 
-function findRelevantKnowledge(message, knowledgeBase) {
+function findRelevantKnowledge(
+    message,
+    knowledgeBase
+) {
     const question = normalizeText(message);
 
     if (!question) {
@@ -82,7 +96,8 @@ function findRelevantKnowledge(message, knowledgeBase) {
                 return;
             }
 
-            const normalizedKeyword = normalizeText(keyword);
+            const normalizedKeyword =
+                normalizeText(keyword);
 
             if (!normalizedKeyword) {
                 return;
@@ -94,7 +109,8 @@ function findRelevantKnowledge(message, knowledgeBase) {
             }
 
             // Individual keyword matching
-            const keywordWords = normalizedKeyword.split(" ");
+            const keywordWords =
+                normalizedKeyword.split(" ");
 
             keywordWords.forEach((word) => {
                 if (questionWords.includes(word)) {
@@ -116,7 +132,9 @@ function findRelevantKnowledge(message, knowledgeBase) {
         .map((result) => result.item);
 }
 
-function createKnowledgeContext(relevantKnowledge) {
+function createKnowledgeContext(
+    relevantKnowledge
+) {
     if (!relevantKnowledge.length) {
         return "No directly matching knowledge-base information was found.";
     }
@@ -173,6 +191,17 @@ function extractGeminiReply(data) {
     return reply.trim();
 }
 
+function getClientIdentifier(req) {
+    return (
+        req.headers["x-forwarded-for"] ||
+        req.headers["x-real-ip"] ||
+        "unknown"
+    )
+        .toString()
+        .split(",")[0]
+        .trim();
+}
+
 export default async function handler(req, res) {
 
     // Only POST requests are allowed
@@ -183,34 +212,35 @@ export default async function handler(req, res) {
     }
 
     // JSON requests are required
-    const contentType = req.headers["content-type"] || "";
+    const contentType =
+        req.headers["content-type"] || "";
 
-    if (!contentType.toLowerCase().includes("application/json")) {
+    if (
+        !contentType
+            .toLowerCase()
+            .includes("application/json")
+    ) {
         return res.status(415).json({
             error: "Content-Type must be application/json"
         });
     }
-try {
 
-    const clientIdentifier = (
-    req.headers["x-forwarded-for"] ||
-    req.headers["x-real-ip"] ||
-    "unknown"
-)
-    .toString()
-    .split(",")[0]
-    .trim();
+    try {
+        // Rate limiting
+        const clientIdentifier =
+            getClientIdentifier(req);
 
-    if (isRateLimited(clientIdentifier)) {
-        return res.status(429).json({
-            error: "Too many requests. Please try again later."
-        });
-    }
+        if (isRateLimited(clientIdentifier)) {
+            return res.status(429).json({
+                error: "Too many requests. Please try again later."
+            });
+        }
 
-    const {
-        message,
-        previousInteractionId = null
-    } = req.body || {};
+        const {
+            message,
+            previousInteractionId = null
+        } = req.body || {};
+
         // Validate message
         if (
             !message ||
@@ -222,47 +252,62 @@ try {
             });
         }
 
+        // Clean user input
         const userMessage = message
-    .trim()
-    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
+            .trim()
+            .replace(
+                /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g,
+                ""
+            );
 
-const MAX_MESSAGE_LENGTH = 4000;
-
-if (!userMessage) {
-    return res.status(400).json({
-        error: "Message is required"
-    });
-}
-
-if (userMessage.length > MAX_MESSAGE_LENGTH) {
-    return res.status(400).json({
-        error: "Message is too long. Maximum 4000 characters are allowed."
-    });
-}
-        // Gemini API key
-        const apiKey = process.env.GEMINI_API_KEY;
-
-        if (!apiKey) {
-            console.error("GEMINI_API_KEY is missing.");
-
-            return res.status(500).json({
-                error: "Gemini API key is not configured"
+        if (!userMessage) {
+            return res.status(400).json({
+                error: "Message is required"
             });
         }
 
-        // Load existing chatbot knowledge
-        const knowledgeBase = loadKnowledgeBase();
+        // Limit message size
+        if (
+            userMessage.length >
+            MAX_MESSAGE_LENGTH
+        ) {
+            return res.status(400).json({
+                error:
+                    "Message is too long. Maximum 4000 characters are allowed."
+            });
+        }
 
-        // Find relevant knowledge from responses.json
-        const relevantKnowledge = findRelevantKnowledge(
-            userMessage,
-            knowledgeBase
-        );
+        // Gemini API key
+        const apiKey =
+            process.env.GEMINI_API_KEY;
 
-        // Convert matching knowledge into AI context
-        const knowledgeContext = createKnowledgeContext(
-            relevantKnowledge
-        );
+        if (!apiKey) {
+            console.error(
+                "GEMINI_API_KEY is missing."
+            );
+
+            return res.status(500).json({
+                error:
+                    "Gemini API key is not configured"
+            });
+        }
+
+        // Load chatbot knowledge
+        const knowledgeBase =
+            loadKnowledgeBase();
+
+        // Find relevant knowledge
+        const relevantKnowledge =
+            findRelevantKnowledge(
+                userMessage,
+                knowledgeBase
+            );
+
+        // Create AI knowledge context
+        const knowledgeContext =
+            createKnowledgeContext(
+                relevantKnowledge
+            );
 
         /*
          * Smart AI Assistant instructions
@@ -388,10 +433,7 @@ ${knowledgeContext}
 `;
 
         /*
-         * User input sent to Gemini.
-         *
-         * The knowledge context is already supplied through the
-         * system instruction, so the user message remains clean.
+         * User input sent to Gemini
          */
         const input = `
 User message:
@@ -413,111 +455,139 @@ when it applies.
         };
 
         /*
-         * Continue previous conversation when available.
+         * Continue previous conversation
          */
         if (previousInteractionId !== null) {
-    if (
-        typeof previousInteractionId !== "string" ||
-        previousInteractionId.length > 200
-    ) {
-        return res.status(400).json({
-            error: "Invalid interaction ID"
-        });
-    }
+            if (
+                typeof previousInteractionId !== "string" ||
+                previousInteractionId.length > 200
+            ) {
+                return res.status(400).json({
+                    error: "Invalid interaction ID"
+                });
+            }
 
-    if (previousInteractionId.trim()) {
-        requestBody.previous_interaction_id =
-            previousInteractionId.trim();
-    }
-}
-const controller = new AbortController();
-
-const timeout = setTimeout(() => {
-    controller.abort();
-}, 30000);
-
-        const response = await fetch(
-    "https://generativelanguage.googleapis.com/v1beta/interactions",
-    {
-        method: "POST",
-
-        headers: {
-            "Content-Type": "application/json",
-            "x-goog-api-key": apiKey
-        },
-
-        body: JSON.stringify(requestBody),
-        signal: controller.signal
-    }
-);
-
-clearTimeout(timeout);
-        const data = await response.json();
-
-        /*
-         * Gemini returned an error
-         */
-        if (!response.ok) {
-
-    console.error(
-        "Gemini Interactions API error:",
-        {
-            status: response.status,
-            statusText: response.statusText
+            if (previousInteractionId.trim()) {
+                requestBody.previous_interaction_id =
+                    previousInteractionId.trim();
+            }
         }
-    );
 
-    if (response.status === 429) {
-        return res.status(429).json({
-            error: "The AI service is temporarily busy. Please try again in a moment."
-        });
-    }
-
-    if (response.status >= 500) {
-        return res.status(502).json({
-            error: "The AI service is temporarily unavailable. Please try again."
-        });
-    }
-
-    return res.status(502).json({
-        error: "The AI service could not process the request."
-    });
-}
         /*
-         * Extract Gemini text response
+         * Gemini request timeout
          */
-        const reply = extractGeminiReply(data);
+        const controller =
+            new AbortController();
 
-        if (!reply) {
-            console.error(
-                "Gemini returned no text response:",
-                data
+        const timeout = setTimeout(() => {
+            controller.abort();
+        }, GEMINI_TIMEOUT);
+
+        try {
+            const response = await fetch(
+                "https://generativelanguage.googleapis.com/v1beta/interactions",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+                        "x-goog-api-key":
+                            apiKey
+                    },
+
+                    body: JSON.stringify(
+                        requestBody
+                    ),
+                    signal:
+                        controller.signal
+                }
             );
 
-            return res.status(500).json({
-                error: "Gemini returned an empty response"
+            const data =
+                await response.json();
+
+            /*
+             * Gemini returned an error
+             */
+            if (!response.ok) {
+                console.error(
+                    "Gemini Interactions API error:",
+                    {
+                        status:
+                            response.status,
+                        statusText:
+                            response.statusText
+                    }
+                );
+
+                if (
+                    response.status === 429
+                ) {
+                    return res.status(429).json({
+                        error:
+                            "The AI service is temporarily busy. Please try again in a moment."
+                    });
+                }
+
+                if (
+                    response.status >= 500
+                ) {
+                    return res.status(502).json({
+                        error:
+                            "The AI service is temporarily unavailable. Please try again."
+                    });
+                }
+
+                return res.status(502).json({
+                    error:
+                        "The AI service could not process the request."
+                });
+            }
+
+            /*
+             * Extract Gemini response
+             */
+            const reply =
+                extractGeminiReply(data);
+
+            if (!reply) {
+                console.error(
+                    "Gemini returned no text response."
+                );
+
+                return res.status(500).json({
+                    error:
+                        "Gemini returned an empty response"
+                });
+            }
+
+            /*
+             * Send response to frontend
+             */
+            return res.status(200).json({
+                success: true,
+                reply,
+                interactionId:
+                    data.id || null,
+                knowledgeUsed:
+                    relevantKnowledge.length
             });
+        } finally {
+            clearTimeout(timeout);
         }
+    } catch (error) {
 
-        /*
-         * Send response back to frontend
-         */
-        return res.status(200).json({
-            success: true,
-            reply,
-            interactionId: data.id || null,
-            knowledgeUsed: relevantKnowledge.length
-        });
-
-        } catch (error) {
-
-        if (error?.name === "AbortError") {
+        if (
+            error?.name === "AbortError"
+        ) {
             console.error(
                 "Gemini API request timed out."
             );
 
             return res.status(504).json({
-                error: "The AI service took too long to respond. Please try again."
+                error:
+                    "The AI service took too long to respond. Please try again."
             });
         }
 
@@ -527,7 +597,8 @@ clearTimeout(timeout);
         );
 
         return res.status(500).json({
-            error: "Unable to process your request. Please try again."
+            error:
+                "Unable to process your request. Please try again."
         });
     }
 }
