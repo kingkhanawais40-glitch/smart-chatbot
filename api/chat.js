@@ -169,9 +169,17 @@ export default async function handler(req, res) {
             });
         }
 
-        const userMessage = message.trim();
+        const userMessage = message
+    .trim()
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
 
 const MAX_MESSAGE_LENGTH = 4000;
+
+if (!userMessage) {
+    return res.status(400).json({
+        error: "Message is required"
+    });
+}
 
 if (userMessage.length > MAX_MESSAGE_LENGTH) {
     return res.status(400).json({
