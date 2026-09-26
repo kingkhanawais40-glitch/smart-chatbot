@@ -2,85 +2,339 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Smart AI Assistant | Muhammad Awais</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+        name="theme-color"
+        content="#080b12"
+    >
+
+    <meta
+        name="description"
+        content="Smart AI Assistant by Muhammad Awais — an interactive AI assistant for portfolio, software engineering, AI and machine learning."
+    >
+
+    <meta
+        name="author"
+        content="Muhammad Awais"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta
+        property="og:title"
+        content="Smart AI Assistant | Muhammad Awais"
+    >
+
+    <meta
+        property="og:description"
+        content="Explore Muhammad Awais's software engineering, AI and machine learning projects through an interactive AI assistant."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:site_name"
+        content="Muhammad Awais"
+    >
+
+    <title>
+        Smart AI Assistant | Muhammad Awais
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+         ===================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="style.css">
+
+    <!-- =====================================================
+         MAIN CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
+
+    <!-- =====================================================
+         APP SHELL
+         ===================================================== -->
+
     <div class="app-shell">
 
-        <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
 
-            <div class="sidebar-top">
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
 
-                <div class="brand">
-                    <div class="brand-icon">
-                        <span>✦</span>
-                    </div>
+        <aside
+            class="sidebar"
+            id="sidebar"
+            aria-label="Main navigation"
+        >
 
-                    <div class="brand-text">
-                        <h1>Smart AI</h1>
-                        <span>Assistant</span>
-                    </div>
+
+            <!-- =================================================
+                 BRAND
+                 ================================================= -->
+
+            <div class="brand">
+
+                <div
+                    class="brand-icon"
+                    aria-hidden="true"
+                >
+                    AI
                 </div>
 
-                <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close sidebar">
-                    ×
-                </button>
+                <div class="brand-text">
 
-                <button class="new-chat-btn" id="new-chat-btn">
-                    <span class="new-chat-icon">＋</span>
-                    <span>New Chat</span>
+                    <h1>
+                        Smart AI
+                    </h1>
+
+                    <span>
+                        Assistant
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="mobile-close-btn"
+                    id="mobile-close-btn"
+                    type="button"
+                    aria-label="Close sidebar"
+                    title="Close sidebar"
+                >
+                    ×
                 </button>
 
             </div>
 
 
-            <!-- Sidebar Navigation -->
-            <div class="sidebar-section">
+            <!-- =================================================
+                 NEW CHAT
+                 ================================================= -->
+
+            <button
+                class="new-chat-btn"
+                id="new-chat-btn"
+                type="button"
+                aria-label="Start a new chat"
+            >
+
+                <span
+                    class="new-chat-icon"
+                    aria-hidden="true"
+                >
+                    +
+                </span>
+
+                <span>
+                    New Chat
+                </span>
+
+            </button>
+
+
+            <!-- =================================================
+                 SIDEBAR NAVIGATION
+                 ================================================= -->
+
+            <nav
+                class="sidebar-section"
+                aria-label="Workspace navigation"
+            >
 
                 <div class="section-label">
                     Workspace
                 </div>
 
-                <button class="sidebar-item active">
-                    <span class="sidebar-item-icon">⌁</span>
-                    <span>AI Assistant</span>
+
+                <button
+                    class="sidebar-item active"
+                    id="assistant-nav-btn"
+                    type="button"
+                    aria-current="page"
+                >
+
+                    <span
+                        class="sidebar-item-icon"
+                        aria-hidden="true"
+                    >
+                        ✦
+                    </span>
+
+                    <span>
+                        AI Assistant
+                    </span>
+
                 </button>
 
-                <button class="sidebar-item">
-                    <span class="sidebar-item-icon">◷</span>
-                    <span>Recent Chats</span>
+
+                <button
+                    class="sidebar-item"
+                    id="recent-chats-btn"
+                    type="button"
+                    aria-label="Open recent chats"
+                >
+
+                    <span
+                        class="sidebar-item-icon"
+                        aria-hidden="true"
+                    >
+                        ◷
+                    </span>
+
+                    <span>
+                        Recent Chats
+                    </span>
+
                 </button>
 
-            </div>
+            </nav>
 
 
-            <!-- Sidebar Bottom -->
+            <!-- =================================================
+                 CHAT HISTORY
+                 ================================================= -->
+
+            <section
+                class="chat-sessions-panel"
+                id="chat-sessions-panel"
+                aria-label="Conversations"
+            >
+
+                <div class="section-label">
+                    Conversations
+                </div>
+
+
+                <label
+                    for="chat-history-search"
+                    class="sr-only"
+                >
+                    Search conversations
+                </label>
+
+
+                <input
+                    type="search"
+                    class="chat-history-search"
+                    id="chat-history-search"
+                    placeholder="Search conversations..."
+                    aria-label="Search conversations"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+
+                <div
+                    class="chat-history-list"
+                    id="chat-history-list"
+                    aria-label="Chat history"
+                    role="list"
+                >
+
+                    <div
+                        class="chat-history-empty"
+                        role="status"
+                    >
+                        No conversations yet
+                    </div>
+
+                </div>
+
+
+                <div class="chat-tools">
+
+                    <button
+                        class="chat-tool-btn"
+                        id="export-chat-btn"
+                        type="button"
+                        aria-label="Export current chat"
+                    >
+                        Export
+                    </button>
+
+
+                    <button
+                        class="chat-tool-btn"
+                        id="clear-history-btn"
+                        type="button"
+                        aria-label="Clear all chat history"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SIDEBAR CREATOR
+                 ================================================= -->
+
             <div class="sidebar-bottom">
 
                 <div class="creator-card">
-                    <div class="creator-avatar">
+
+                    <div
+                        class="creator-avatar"
+                        aria-hidden="true"
+                    >
                         MA
                     </div>
 
                     <div class="creator-info">
-                        <strong>Muhammad Awais</strong>
-                        <span>Software Engineer</span>
+
+                        <strong>
+                            Muhammad Awais
+                        </strong>
+
+                        <span>
+                            Software Engineer
+                        </span>
+
                     </div>
+
                 </div>
 
             </div>
@@ -88,52 +342,113 @@
         </aside>
 
 
-        <!-- Mobile Overlay -->
-        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        <!-- =================================================
+             MOBILE OVERLAY
+
+             IMPORTANT:
+             script.js expects the ID "mobile-overlay"
+             ================================================= -->
+
+        <div
+            class="sidebar-overlay"
+            id="mobile-overlay"
+            aria-hidden="true"
+        ></div>
 
 
-        <!-- Main Application -->
-        <main class="main-content">
+        <!-- =================================================
+             MAIN CONTENT
+             ================================================= -->
 
-            <!-- Top Bar -->
+        <main
+            class="main-content"
+            id="main-content"
+        >
+
+
+            <!-- =================================================
+                 TOP BAR
+                 ================================================= -->
+
             <header class="topbar">
+
 
                 <div class="topbar-left">
 
-                    <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open menu">
+
+                    <!-- Mobile Menu -->
+
+                    <button
+                        class="mobile-menu-btn"
+                        id="mobile-menu-btn"
+                        type="button"
+                        aria-label="Open sidebar"
+                        title="Open sidebar"
+                    >
                         ☰
                     </button>
 
+
+                    <!-- Page Title / AI Status -->
+
                     <div class="page-title">
-                        <div class="online-dot"></div>
+
+                        <span
+                            class="online-dot"
+                            aria-hidden="true"
+                        ></span>
+
 
                         <div>
-                            <strong>Smart AI Assistant</strong>
-                            <span>Online & ready to help</span>
+
+                            <strong>
+                                Smart AI Assistant
+                            </strong>
+
+                            <span
+                                id="assistant-status-text"
+                                aria-live="polite"
+                            >
+                                Online
+                            </span>
+
                         </div>
+
                     </div>
 
                 </div>
 
 
+                <!-- =================================================
+                     TOP BAR ACTIONS
+                     ================================================= -->
+
                 <div class="topbar-actions">
+
+
+                    <!-- Clear Current Chat -->
+
+                    <button
+                        class="icon-btn"
+                        id="clear-chat-top-btn"
+                        type="button"
+                        title="Clear current chat"
+                        aria-label="Clear current chat"
+                    >
+                        ⌫
+                    </button>
+
+
+                    <!-- Theme -->
 
                     <button
                         class="icon-btn"
                         id="theme-btn"
-                        aria-label="Toggle theme"
-                        title="Toggle theme"
+                        type="button"
+                        title="Switch theme"
+                        aria-label="Switch theme"
                     >
                         ☾
-                    </button>
-
-                    <button
-                        class="icon-btn"
-                        onclick="clearChat()"
-                        aria-label="Clear chat"
-                        title="Clear chat"
-                    >
-                        ⌫
                     </button>
 
                 </div>
@@ -141,101 +456,247 @@
             </header>
 
 
-            <!-- Chat Workspace -->
-            <section class="chat-workspace">
+            <!-- =================================================
+                 CHAT WORKSPACE
+                 ================================================= -->
 
-                <div id="chat-box">
+            <section
+                class="chat-workspace"
+                aria-label="Chat workspace"
+            >
 
-                    <!-- Welcome Screen -->
-                    <div class="welcome-screen" id="welcome-screen">
 
-                        <div class="welcome-icon">
+                <!-- =================================================
+                     CHAT BOX
+                     ================================================= -->
+
+                <div
+                    class="chat-box"
+                    id="chat-box"
+                    aria-live="polite"
+                    aria-label="Conversation"
+                >
+
+
+                    <!-- =================================================
+                         WELCOME SCREEN
+                         ================================================= -->
+
+                    <div
+                        class="welcome-screen"
+                        id="welcome-screen"
+                    >
+
+
+                        <!-- Welcome Icon -->
+
+                        <div
+                            class="welcome-icon"
+                            aria-hidden="true"
+                        >
+
                             <div class="welcome-icon-inner">
                                 ✦
                             </div>
+
                         </div>
+
 
                         <div class="welcome-content">
 
-                            <span class="welcome-label">
-                                YOUR INTELLIGENT WORKSPACE
-                            </span>
+
+                            <div class="welcome-label">
+                                SMART AI ASSISTANT
+                            </div>
+
 
                             <h2>
-                                Think smarter.<br>
-                                <span>Build better.</span>
+                                How can I
+                                <span>
+                                    help you?
+                                </span>
                             </h2>
 
+
                             <p>
-                                I'm Smart AI Assistant, built by Muhammad Awais.
-                                Ask questions, explore ideas, solve coding problems,
-                                or learn something new.
+                                Ask me about Muhammad Awais,
+                                his projects, software engineering,
+                                AI, machine learning, Python,
+                                or technical topics.
                             </p>
 
-                        </div>
 
+                            <!-- =================================================
+                                 PROMPT CARDS
+                                 ================================================= -->
 
-                        <!-- Prompt Suggestions -->
-                        <div class="prompt-grid">
-
-                            <button
-                                class="prompt-card"
-                                data-prompt="Explain Python in simple words"
+                            <div
+                                class="prompt-grid"
+                                aria-label="Suggested questions"
                             >
-                                <span class="prompt-icon blue">⌘</span>
-
-                                <span class="prompt-text">
-                                    <strong>Learn Python</strong>
-                                    <small>Explain a programming concept</small>
-                                </span>
-
-                                <span class="prompt-arrow">↗</span>
-                            </button>
 
 
-                            <button
-                                class="prompt-card"
-                                data-prompt="Explain Artificial Intelligence and Machine Learning"
-                            >
-                                <span class="prompt-icon purple">✦</span>
+                                <!-- About -->
 
-                                <span class="prompt-text">
-                                    <strong>Explore AI</strong>
-                                    <small>Understand AI & ML concepts</small>
-                                </span>
+                                <button
+                                    class="prompt-card"
+                                    type="button"
+                                    data-prompt="Tell me about Muhammad Awais."
+                                    aria-label="Ask about Muhammad Awais"
+                                >
 
-                                <span class="prompt-arrow">↗</span>
-                            </button>
-
-
-                            <button
-                                class="prompt-card"
-                                data-prompt="Help me solve a programming problem"
-                            >
-                                <span class="prompt-icon green">{ }</span>
-
-                                <span class="prompt-text">
-                                    <strong>Coding Help</strong>
-                                    <small>Debug or improve your code</small>
-                                </span>
-
-                                <span class="prompt-arrow">↗</span>
-                            </button>
+                                    <span
+                                        class="prompt-icon blue"
+                                        aria-hidden="true"
+                                    >
+                                        👤
+                                    </span>
 
 
-                            <button
-                                class="prompt-card"
-                                data-prompt="Tell me something interesting about technology"
-                            >
-                                <span class="prompt-icon orange">◉</span>
+                                    <span class="prompt-text">
 
-                                <span class="prompt-text">
-                                    <strong>Discover</strong>
-                                    <small>Ask anything about technology</small>
-                                </span>
+                                        <strong>
+                                            About Muhammad Awais
+                                        </strong>
 
-                                <span class="prompt-arrow">↗</span>
-                            </button>
+                                        <small>
+                                            Profile and background
+                                        </small>
+
+                                    </span>
+
+
+                                    <span
+                                        class="prompt-arrow"
+                                        aria-hidden="true"
+                                    >
+                                        ↗
+                                    </span>
+
+                                </button>
+
+
+                                <!-- AI Projects -->
+
+                                <button
+                                    class="prompt-card"
+                                    type="button"
+                                    data-prompt="Tell me about the Skin Disease Detection project."
+                                    aria-label="Explore AI projects"
+                                >
+
+                                    <span
+                                        class="prompt-icon purple"
+                                        aria-hidden="true"
+                                    >
+                                        🧠
+                                    </span>
+
+
+                                    <span class="prompt-text">
+
+                                        <strong>
+                                            AI Projects
+                                        </strong>
+
+                                        <small>
+                                            Explore project details
+                                        </small>
+
+                                    </span>
+
+
+                                    <span
+                                        class="prompt-arrow"
+                                        aria-hidden="true"
+                                    >
+                                        ↗
+                                    </span>
+
+                                </button>
+
+
+                                <!-- Technologies -->
+
+                                <button
+                                    class="prompt-card"
+                                    type="button"
+                                    data-prompt="What technologies does Muhammad Awais use?"
+                                    aria-label="Ask about technologies"
+                                >
+
+                                    <span
+                                        class="prompt-icon green"
+                                        aria-hidden="true"
+                                    >
+                                        💻
+                                    </span>
+
+
+                                    <span class="prompt-text">
+
+                                        <strong>
+                                            Technologies
+                                        </strong>
+
+                                        <small>
+                                            Skills and tech stack
+                                        </small>
+
+                                    </span>
+
+
+                                    <span
+                                        class="prompt-arrow"
+                                        aria-hidden="true"
+                                    >
+                                        ↗
+                                    </span>
+
+                                </button>
+
+
+                                <!-- Machine Learning -->
+
+                                <button
+                                    class="prompt-card"
+                                    type="button"
+                                    data-prompt="How can I become a Machine Learning Engineer?"
+                                    aria-label="Ask about machine learning"
+                                >
+
+                                    <span
+                                        class="prompt-icon orange"
+                                        aria-hidden="true"
+                                    >
+                                        🚀
+                                    </span>
+
+
+                                    <span class="prompt-text">
+
+                                        <strong>
+                                            Machine Learning
+                                        </strong>
+
+                                        <small>
+                                            Learn AI and ML
+                                        </small>
+
+                                    </span>
+
+
+                                    <span
+                                        class="prompt-arrow"
+                                        aria-hidden="true"
+                                    >
+                                        ↗
+                                    </span>
+
+                                </button>
+
+
+                            </div>
 
                         </div>
 
@@ -244,49 +705,89 @@
                 </div>
 
 
-                <!-- Composer -->
+                <!-- =================================================
+                     COMPOSER
+                     ================================================= -->
+
                 <div class="composer-wrapper">
 
+
                     <div class="composer">
+
+
+                        <!-- Attachment Placeholder -->
 
                         <button
                             class="composer-action"
                             id="attach-btn"
                             type="button"
-                            title="More options"
-                            aria-label="More options"
+                            title="Attachments are not available yet"
+                            aria-label="Attachments are not available yet"
+                            disabled
                         >
-                            ＋
+                            +
                         </button>
+
+
+                        <!-- User Input -->
 
                         <textarea
                             id="user-input"
                             rows="1"
-                            placeholder="Ask Smart AI anything..."
+                            maxlength="4000"
+                            placeholder="Message Smart AI Assistant..."
+                            aria-label="Message Smart AI Assistant"
                             autocomplete="off"
+                            spellcheck="true"
                         ></textarea>
 
 
                         <div class="composer-actions">
 
+
+                            <!-- Voice -->
+
                             <button
-                                id="voice-btn"
                                 class="composer-action voice-action"
+                                id="voice-btn"
                                 type="button"
                                 title="Voice input"
                                 aria-label="Voice input"
                             >
-                                ◉
+                                🎙
                             </button>
 
+
+                            <!-- Stop Generation -->
+
                             <button
-                                id="send-btn"
-                                class="send-btn"
+                                class="stop-generation-btn"
+                                id="stop-generation-btn"
                                 type="button"
-                                aria-label="Send message"
-                                title="Send message"
+                                title="Stop generation"
+                                aria-label="Stop generation"
+                                hidden
                             >
-                                <span>↑</span>
+                                Stop
+                            </button>
+
+
+                            <!-- Send -->
+
+                            <button
+                                class="send-btn"
+                                id="send-btn"
+                                type="button"
+                                title="Send message"
+                                aria-label="Send message"
+                            >
+
+                                <span
+                                    aria-hidden="true"
+                                >
+                                    ↑
+                                </span>
+
                             </button>
 
                         </div>
@@ -294,9 +795,36 @@
                     </div>
 
 
+                    <!-- =================================================
+                         COMPOSER FOOTER
+                         ================================================= -->
+
                     <div class="composer-footer">
-                        <span>Smart AI can make mistakes. Verify important information.</span>
-                        <span class="keyboard-hint">Enter ↵ to send</span>
+
+
+                        <!-- Connection -->
+
+                        <span
+                            class="connection-status"
+                            id="connection-status"
+                            aria-live="polite"
+                        >
+
+                            <span
+                                class="connection-status-text"
+                            >
+                                Online
+                            </span>
+
+                        </span>
+
+
+                        <!-- Keyboard Hint -->
+
+                        <span class="keyboard-hint">
+                            Enter to send · Shift + Enter for new line
+                        </span>
+
                     </div>
 
                 </div>
@@ -305,10 +833,32 @@
 
         </main>
 
+
+        <!-- =====================================================
+             TOAST
+             ===================================================== -->
+
+        <div
+            class="app-toast"
+            id="app-toast"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+        ></div>
+
+
     </div>
 
 
-    <script src="script.js"></script>
+    <!-- =====================================================
+         MAIN JAVASCRIPT
+         ===================================================== -->
+
+    <script
+        src="script.js"
+        defer
+    ></script>
+
 
 </body>
 
