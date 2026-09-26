@@ -1665,3 +1665,452 @@ body.light .copy-code-btn:hover {
     }
 
 }
+/* ===============================
+   MESSAGE CONTENT
+================================ */
+
+.message-content {
+    line-height: 1.6;
+}
+
+
+/* ===============================
+   MESSAGE TIME
+================================ */
+
+.message-time {
+    margin-top: 6px;
+    font-size: 10px;
+    line-height: 1;
+    opacity: 0.5;
+    letter-spacing: 0.2px;
+    user-select: none;
+}
+
+
+/* User timestamp */
+
+.user-message .message-time {
+    text-align: right;
+    color: #cbd5e1;
+}
+
+
+/* AI timestamp */
+
+.bot-message .message-time {
+    text-align: left;
+    color: #94a3b8;
+}
+
+
+/* ===============================
+   LIGHT MODE
+================================ */
+
+body.light .user-message .message-time {
+    color: #64748b;
+}
+
+body.light .bot-message .message-time {
+    color: #64748b;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .message-time {
+        font-size: 9px;
+        margin-top: 5px;
+    }
+
+
+}
+/* ===============================
+   MESSAGE ACTIONS - UI POLISH
+================================ */
+
+.message-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    opacity: 0.75;
+    transition: opacity 0.2s ease;
+}
+
+.bot-message:hover .message-actions {
+    opacity: 1;
+}
+
+.message-action-btn {
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: transparent;
+    color: inherit;
+    border-radius: 7px;
+    padding: 5px 9px;
+    font-size: 11px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.message-action-btn:hover {
+    background: rgba(148, 163, 184, 0.12);
+    border-color: rgba(148, 163, 184, 0.45);
+    transform: translateY(-1px);
+}
+
+.message-action-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ===============================
+   MESSAGE APPEARANCE ANIMATION
+================================ */
+
+.user-message,
+.bot-message {
+    animation: messageAppear 0.25s ease-out;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===============================
+   BETTER MESSAGE SPACING
+================================ */
+
+.user-message,
+.bot-message {
+    margin-bottom: 14px;
+}
+
+.message-content {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+/* ===============================
+   LIGHT MODE
+================================ */
+
+body.light .message-action-btn {
+    border-color: rgba(100, 116, 139, 0.25);
+    color: #475569;
+}
+
+body.light .message-action-btn:hover {
+    background: rgba(100, 116, 139, 0.08);
+    border-color: rgba(100, 116, 139, 0.4);
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .message-actions {
+        gap: 5px;
+        margin-top: 7px;
+    }
+
+    .message-action-btn {
+        padding: 5px 8px;
+        font-size: 10px;
+    }
+
+    .user-message,
+    .bot-message {
+        margin-bottom: 11px;
+    }
+
+}
+
+/* ===============================
+   RESPONSIVE CHAT UI
+================================ */
+
+@media (max-width: 768px) {
+
+    .chat-box {
+        padding: 12px;
+    }
+
+    .message-content {
+        max-width: 90%;
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    .message-actions {
+        flex-wrap: wrap;
+    }
+
+    .message-action-btn {
+        min-height: 30px;
+    }
+
+}
+
+
+/* ===============================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 480px) {
+
+    .chat-box {
+        padding: 8px;
+    }
+
+    .message-content {
+        max-width: 94%;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .message-actions {
+        gap: 4px;
+    }
+
+    .message-action-btn {
+        padding: 5px 7px;
+        font-size: 10px;
+        border-radius: 6px;
+    }
+
+    .message-time {
+        font-size: 9px;
+    }
+
+}
+
+
+/* ===============================
+   VERY SMALL SCREENS
+================================ */
+
+@media (max-width: 360px) {
+
+    .message-content {
+        max-width: 96%;
+        font-size: 12px;
+    }
+
+    .message-action-btn {
+        padding: 4px 6px;
+        font-size: 9px;
+    }
+
+}
+
+/* ===============================
+   THEME CONSISTENCY
+================================ */
+
+/* Dark mode */
+
+body:not(.light) .message-action-btn {
+    background: rgba(255, 255, 255, 0.02);
+    color: #cbd5e1;
+}
+
+body:not(.light) .message-action-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+
+/* Light mode */
+
+body.light .message-action-btn {
+    background: rgba(15, 23, 42, 0.02);
+    color: #475569;
+}
+
+body.light .message-action-btn:hover {
+    background: rgba(15, 23, 42, 0.07);
+    color: #0f172a;
+}
+
+
+/* ===============================
+   MESSAGE CONTENT CONSISTENCY
+================================ */
+
+body.light .message-content {
+    color: #1e293b;
+}
+
+body:not(.light) .message-content {
+    color: #e2e8f0;
+}
+
+
+/* ===============================
+   CODE BLOCK CONSISTENCY
+================================ */
+
+.message-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+}
+
+.message-content code {
+    word-break: break-word;
+}
+
+
+/* ===============================
+   SMOOTH THEME TRANSITION
+================================ */
+
+body,
+.message-content,
+.message-action-btn,
+.chat-box {
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+
+/* ===============================
+   MOBILE THEME
+================================ */
+
+@media (max-width: 600px) {
+
+    .message-content pre {
+        font-size: 12px;
+    }
+
+}
+
+/* ===============================
+   FINAL UI POLISH
+================================ */
+
+/* Smooth chat scrolling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+.chat-box {
+    scroll-behavior: smooth;
+}
+
+
+/* ===============================
+   CUSTOM SCROLLBAR
+================================ */
+
+.chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 10px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.55);
+}
+
+
+/* Firefox */
+
+.chat-box {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+
+
+/* ===============================
+   BUTTON FOCUS
+================================ */
+
+button:focus-visible {
+    outline: 2px solid rgba(96, 165, 250, 0.7);
+    outline-offset: 2px;
+}
+
+
+/* ===============================
+   INPUT FOCUS
+================================ */
+
+input:focus-visible,
+textarea:focus-visible {
+    outline: none;
+}
+
+
+/* ===============================
+   MESSAGE TEXT SELECTION
+================================ */
+
+.message-content::selection {
+    background: rgba(96, 165, 250, 0.25);
+}
+
+
+/* ===============================
+   ACTION BUTTON FEEDBACK
+================================ */
+
+.message-action-btn {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.message-action-btn:active {
+    transform: scale(0.96);
+}
+
+
+/* ===============================
+   MOBILE TOUCH IMPROVEMENT
+================================ */
+
+@media (max-width: 600px) {
+
+    button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .message-action-btn {
+        min-width: 42px;
+        min-height: 30px;
+    }
+
+}

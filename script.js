@@ -50,7 +50,7 @@ fetch("knowledge/responses.json")
         );
 
         botMessage(
-            "Sorry, chatbot database load nahi ho saka."
+            "Sorry, chatbot database nahi load ho saka."
         );
 
     });
@@ -246,7 +246,9 @@ function sendMessage() {
 
                         data.error ||
 
-                        "Gemini API request failed."
+                        "Gemini API request failed.",
+
+                        message
 
                     );
 
@@ -258,7 +260,8 @@ function sendMessage() {
                 if (data.reply) {
 
                     botMessage(
-                        data.reply
+                        data.reply,
+                        message
                     );
 
 
@@ -277,7 +280,8 @@ function sendMessage() {
                         findAnswer(message);
 
                     botMessage(
-                        fallbackAnswer
+                        fallbackAnswer,
+                        message
                     );
 
                 }
@@ -300,7 +304,8 @@ function sendMessage() {
 
 
                 botMessage(
-                    fallbackAnswer
+                    fallbackAnswer,
+                    message
                 );
 
             }
@@ -424,6 +429,23 @@ function findAnswer(question) {
 
 
 // ===============================
+// MESSAGE TIME
+// ===============================
+
+function getMessageTime() {
+
+    return new Date().toLocaleTimeString(
+        [],
+        {
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+// ===============================
 // USER MESSAGE
 // ===============================
 
@@ -439,9 +461,26 @@ function userMessage(message) {
         "user-message";
 
 
-    // Use textContent for safety
-    div.textContent =
-        message;
+    // Escape user text safely before using innerHTML
+    const safeMessage =
+        String(message)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;")
+            .replace(/\n/g, "<br>");
+
+
+    div.innerHTML = `
+        <div class="message-content">
+            ${safeMessage}
+        </div>
+
+        <div class="message-time">
+            ${getMessageTime()}
+        </div>
+    `;
 
 
     chatBox.appendChild(
@@ -458,7 +497,10 @@ function userMessage(message) {
 // BOT MESSAGE
 // ===============================
 
-function botMessage(message) {
+function botMessage(
+    message,
+    originalUserPrompt = ""
+) {
 
     const div =
         document.createElement(
@@ -470,10 +512,40 @@ function botMessage(message) {
         "bot-message";
 
 
-    div.innerHTML =
-        formatBotMessage(
-            message
-        );
+    div.innerHTML = `
+        <div class="message-content">
+            ${formatBotMessage(message)}
+        </div>
+
+        <div class="message-time">
+            ${getMessageTime()}
+        </div>
+
+        <div class="message-actions">
+
+            <button
+                class="message-action-btn copy-message-btn"
+                type="button"
+                title="Copy response"
+            >
+                Copy
+            </button>
+
+            <button
+                class="message-action-btn regenerate-btn"
+                type="button"
+                title="Regenerate response"
+            >
+                Regenerate
+            </button>
+
+        </div>
+    `;
+
+
+    // Store original user prompt
+    div.dataset.userPrompt =
+        originalUserPrompt;
 
 
     chatBox.appendChild(
@@ -482,6 +554,8 @@ function botMessage(message) {
 
 
     addCopyButtons();
+
+    addMessageActions();
 
 
     scrollChat();
@@ -582,6 +656,17 @@ function formatBotMessage(message) {
                 />/g,
                 "&gt;"
             );
+
+
+    // ===============================
+    // REMOVE DUPLICATE CODE LABEL
+    // ===============================
+
+    formatted =
+        formatted.replace(
+            /\*\*[a-zA-Z0-9_+#.-]+Copy\*\*(?=\s*___CODE_BLOCK_\d+___)/g,
+            ""
+        );
 
 
     // ===============================
@@ -798,6 +883,303 @@ function addCopyButtons() {
 
 
 // ===============================
+// MESSAGE ACTIONS
+// ===============================
+
+function addMessageActions() {
+
+    // ===============================
+    // COPY MESSAGE
+    // ===============================
+
+    const copyButtons =
+        document.querySelectorAll(
+            ".copy-message-btn"
+        );
+
+
+    copyButtons.forEach(
+        button => {
+
+            if (
+                button.dataset.actionReady
+            ) {
+
+                return;
+
+            }
+
+
+            button.dataset.actionReady =
+                "true";
+
+
+            button.addEventListener(
+                "click",
+                async function() {
+
+                    const messageElement =
+                        button.closest(
+                            ".bot-message"
+                        );
+
+
+                    if (!messageElement) {
+                        return;
+                    }
+
+
+                    const content =
+                        messageElement.querySelector(
+                            ".message-content"
+                        );
+
+
+                    if (!content) {
+                        return;
+                    }
+
+
+                    try {
+
+                        await navigator.clipboard.writeText(
+                            content.innerText
+                        );
+
+
+                        button.innerText =
+                            "Copied!";
+
+
+                        setTimeout(
+                            () => {
+
+                                button.innerText =
+                                    "Copy";
+
+                            },
+                            1500
+                        );
+
+
+                    } catch (error) {
+
+                        console.error(
+                            "Message copy failed:",
+                            error
+                        );
+
+
+                        button.innerText =
+                            "Failed";
+
+
+                        setTimeout(
+                            () => {
+
+                                button.innerText =
+                                    "Copy";
+
+                            },
+                            1500
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    // ===============================
+    // REGENERATE
+    // ===============================
+
+    const regenerateButtons =
+        document.querySelectorAll(
+            ".regenerate-btn"
+        );
+
+
+    regenerateButtons.forEach(
+        button => {
+
+            if (
+                button.dataset.actionReady
+            ) {
+
+                return;
+
+            }
+
+
+            button.dataset.actionReady =
+                "true";
+
+
+            button.addEventListener(
+                "click",
+                async function() {
+
+                    const messageElement =
+                        button.closest(
+                            ".bot-message"
+                        );
+
+
+                    if (!messageElement) {
+                        return;
+                    }
+
+
+                    const prompt =
+                        messageElement.dataset.userPrompt;
+
+
+                    if (!prompt) {
+
+                        console.error(
+                            "Regenerate failed: original user prompt not found."
+                        );
+
+                        return;
+
+                    }
+
+
+                    button.disabled =
+                        true;
+
+
+                    button.innerText =
+                        "Regenerating...";
+
+
+                    try {
+
+                        showTyping();
+
+
+                        const response =
+                            await fetch(
+                                "/api/chat",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+
+                                        message:
+                                            prompt,
+
+                                        previousInteractionId:
+                                            null
+
+                                    })
+
+                                }
+                            );
+
+
+                        const data =
+                            await response.json();
+
+
+                        removeTyping();
+
+
+                        if (!response.ok) {
+
+                            console.error(
+                                "Regenerate error:",
+                                data
+                            );
+
+
+                            botMessage(
+                                data.details?.error?.message ||
+                                data.error ||
+                                "Unable to regenerate response.",
+                                prompt
+                            );
+
+
+                            return;
+
+                        }
+
+
+                        if (data.reply) {
+
+                            botMessage(
+                                data.reply,
+                                prompt
+                            );
+
+
+                            if (
+                                data.interactionId
+                            ) {
+
+                                previousInteractionId =
+                                    data.interactionId;
+
+                            }
+
+                        } else {
+
+                            botMessage(
+                                findAnswer(prompt),
+                                prompt
+                            );
+
+                        }
+
+
+                    } catch (error) {
+
+                        removeTyping();
+
+
+                        console.error(
+                            "Regenerate failed:",
+                            error
+                        );
+
+
+                        botMessage(
+                            findAnswer(prompt),
+                            prompt
+                        );
+
+
+                    } finally {
+
+                        button.disabled =
+                            false;
+
+
+                        button.innerText =
+                            "Regenerate";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+// ===============================
 // TYPING INDICATOR
 // ===============================
 
@@ -950,6 +1332,9 @@ function loadChatHistory() {
         // Restore copy buttons
         addCopyButtons();
 
+        // Restore message actions
+        addMessageActions();
+
     }
 
 }
@@ -1067,6 +1452,10 @@ function openMobileSidebar() {
 
 }
 
+
+// ===============================
+// CLOSE MOBILE SIDEBAR
+// ===============================
 
 function closeMobileSidebar() {
 
@@ -1368,10 +1757,18 @@ const originalBotMessage =
 
 
 botMessage =
-    function(message) {
+    function(
+        message,
+        originalUserPrompt = ""
+    ) {
+
+        // IMPORTANT:
+        // Pass the original user prompt
+        // to the real botMessage function.
 
         originalBotMessage(
-            message
+            message,
+            originalUserPrompt
         );
 
         saveChat();

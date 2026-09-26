@@ -171,6 +171,13 @@ export default async function handler(req, res) {
 
         const userMessage = message.trim();
 
+const MAX_MESSAGE_LENGTH = 4000;
+
+if (userMessage.length > MAX_MESSAGE_LENGTH) {
+    return res.status(400).json({
+        error: "Message is too long. Maximum 4000 characters are allowed."
+    });
+}
         // Gemini API key
         const apiKey = process.env.GEMINI_API_KEY;
 
@@ -347,13 +354,21 @@ when it applies.
         /*
          * Continue previous conversation when available.
          */
-        if (
-            previousInteractionId &&
-            typeof previousInteractionId === "string"
-        ) {
-            requestBody.previous_interaction_id =
-                previousInteractionId;
-        }
+        if (previousInteractionId !== null) {
+    if (
+        typeof previousInteractionId !== "string" ||
+        previousInteractionId.length > 200
+    ) {
+        return res.status(400).json({
+            error: "Invalid interaction ID"
+        });
+    }
+
+    if (previousInteractionId.trim()) {
+        requestBody.previous_interaction_id =
+            previousInteractionId.trim();
+    }
+}
 
         const response = await fetch(
             "https://generativelanguage.googleapis.com/v1beta/interactions",
@@ -380,10 +395,9 @@ when it applies.
                 data
             );
 
-            return res.status(response.status).json({
-                error: "Gemini API request failed",
-                details: data
-            });
+            return res.status(502).json({
+    error: "Gemini API request failed"
+});
         }
 
         /*
