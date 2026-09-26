@@ -7,6 +7,35 @@ const KNOWLEDGE_FILE = path.join(
     "responses.json"
 );
 
+// Basic in-memory request protection
+const requestTracker = new Map();
+
+const RATE_LIMIT_WINDOW = 60 * 1000;
+const MAX_REQUESTS_PER_WINDOW = 20;
+
+function isRateLimited(identifier) {
+    const now = Date.now();
+
+    const existing = requestTracker.get(identifier);
+
+    if (!existing || now - existing.startTime >= RATE_LIMIT_WINDOW) {
+        requestTracker.set(identifier, {
+            startTime: now,
+            count: 1
+        });
+
+        return false;
+    }
+
+    existing.count += 1;
+
+    if (existing.count > MAX_REQUESTS_PER_WINDOW) {
+        return true;
+    }
+
+    return false;
+}
+
 function loadKnowledgeBase() {
     try {
         const file = fs.readFileSync(KNOWLEDGE_FILE, "utf8");
@@ -145,6 +174,7 @@ function extractGeminiReply(data) {
 }
 
 export default async function handler(req, res) {
+
     // Only POST requests are allowed
     if (req.method !== "POST") {
         return res.status(405).json({
@@ -152,12 +182,35 @@ export default async function handler(req, res) {
         });
     }
 
-    try {
-        const {
-            message,
-            previousInteractionId = null
-        } = req.body || {};
+    // JSON requests are required
+    const contentType = req.headers["content-type"] || "";
 
+    if (!contentType.toLowerCase().includes("application/json")) {
+        return res.status(415).json({
+            error: "Content-Type must be application/json"
+        });
+    }
+try {
+
+    const clientIdentifier = (
+    req.headers["x-forwarded-for"] ||
+    req.headers["x-real-ip"] ||
+    "unknown"
+)
+    .toString()
+    .split(",")[0]
+    .trim();
+
+    if (isRateLimited(clientIdentifier)) {
+        return res.status(429).json({
+            error: "Too many requests. Please try again later."
+        });
+    }
+
+    const {
+        message,
+        previousInteractionId = null
+    } = req.body || {};
         // Validate message
         if (
             !message ||
