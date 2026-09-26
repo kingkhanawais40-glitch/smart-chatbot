@@ -377,37 +377,59 @@ when it applies.
             previousInteractionId.trim();
     }
 }
+const controller = new AbortController();
+
+const timeout = setTimeout(() => {
+    controller.abort();
+}, 30000);
 
         const response = await fetch(
-            "https://generativelanguage.googleapis.com/v1beta/interactions",
-            {
-                method: "POST",
+    "https://generativelanguage.googleapis.com/v1beta/interactions",
+    {
+        method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-goog-api-key": apiKey
-                },
+        headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey
+        },
 
-                body: JSON.stringify(requestBody)
-            }
-        );
+        body: JSON.stringify(requestBody),
+        signal: controller.signal
+    }
+);
 
+clearTimeout(timeout);
         const data = await response.json();
 
         /*
          * Gemini returned an error
          */
         if (!response.ok) {
-            console.error(
-                "Gemini Interactions API error:",
-                data
-            );
 
-            return res.status(502).json({
-    error: "Gemini API request failed"
-});
+    console.error(
+        "Gemini Interactions API error:",
+        {
+            status: response.status,
+            statusText: response.statusText
         }
+    );
 
+    if (response.status === 429) {
+        return res.status(429).json({
+            error: "The AI service is temporarily busy. Please try again in a moment."
+        });
+    }
+
+    if (response.status >= 500) {
+        return res.status(502).json({
+            error: "The AI service is temporarily unavailable. Please try again."
+        });
+    }
+
+    return res.status(502).json({
+        error: "The AI service could not process the request."
+    });
+}
         /*
          * Extract Gemini text response
          */
@@ -434,14 +456,25 @@ when it applies.
             knowledgeUsed: relevantKnowledge.length
         });
 
-    } catch (error) {
+        } catch (error) {
+
+        if (error?.name === "AbortError") {
+            console.error(
+                "Gemini API request timed out."
+            );
+
+            return res.status(504).json({
+                error: "The AI service took too long to respond. Please try again."
+            });
+        }
+
         console.error(
             "Chat API unexpected error:",
             error
         );
 
         return res.status(500).json({
-            error: "Internal server error"
+            error: "Unable to process your request. Please try again."
         });
     }
 }
