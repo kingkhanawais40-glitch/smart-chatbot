@@ -1829,5 +1829,440 @@
     {
         "keywords": ["thank you chatbot"],
         "answer": "You are welcome! 😊 Feel free to ask more questions."
+    },
+        {
+        "keywords": [
+            "tell me about skin disease detection",
+            "explain skin disease detection",
+            "what is skin disease detection project",
+            "skin disease project details",
+            "muhammad awais skin disease project"
+        ],
+        "answer": "Skin Disease Detection is a Machine Learning and Computer Vision project by Muhammad Awais. It analyzes skin lesion images and predicts one of seven supported skin lesion categories using an EfficientNetB0 image classification model."
+    },
+    {
+        "keywords": [
+            "skin disease model",
+            "what model does skin disease detection use",
+            "skin disease detection model",
+            "which model is used in skin disease project"
+        ],
+        "answer": "The Skin Disease Detection project uses EfficientNetB0 for image classification. The current portfolio version uses the EfficientNetB0 V2 model."
+    },
+    {
+        "keywords": [
+            "skin disease training",
+            "how was skin disease model trained",
+            "skin disease dataset size",
+            "how many images skin disease",
+            "skin disease 700 images"
+        ],
+        "answer": "The Skin Disease Detection project uses a 700-image subset of the ISIC 2018 Task 3 dataset, with 100 images for each of the seven supported categories. The data was divided into training, validation and test sets."
+    },
+    {
+        "keywords": [
+            "skin disease classes",
+            "skin disease categories",
+            "skin disease seven classes",
+            "what diseases can skin disease project detect"
+        ],
+        "answer": "The project supports seven skin lesion categories: actinic keratosis (akiec), basal cell carcinoma (bcc), benign keratosis (bkl), dermatofibroma (df), melanoma (mel), melanocytic nevus (nv), and vascular lesion (vasc)."
+    },
+    {
+        "keywords": [
+            "skin disease accuracy",
+            "what is skin disease accuracy",
+            "skin disease model accuracy",
+            "skin disease validation accuracy"
+        ],
+        "answer": "The current portfolio version uses the EfficientNetB0 V2 model with a recorded validation accuracy of 52.38%."
+    },
+    {
+        "keywords": [
+            "skin disease backend",
+            "skin disease flask",
+            "how does skin disease backend work",
+            "skin disease api"
+        ],
+        "answer": "The Skin Disease Detection project uses a Flask backend. The backend receives an image, processes it through the trained EfficientNetB0 model and returns the predicted category together with a confidence score."
+    },
+    {
+        "keywords": [
+            "skin disease technology",
+            "skin disease tech stack",
+            "technologies used in skin disease detection",
+            "skin disease project technologies"
+        ],
+        "answer": "The Skin Disease Detection project uses Python, TensorFlow, EfficientNetB0 and Flask. It is focused on image classification using Machine Learning and Computer Vision."
+    },
+    {
+        "keywords": [
+            "is skin disease detection medical diagnosis",
+            "can skin disease project diagnose",
+            "skin disease medical diagnosis",
+            "is skin disease project a doctor"
+        ],
+        "answer": "The Skin Disease Detection project is an AI-based image classification project for educational and research purposes. Its prediction should not be treated as a medical diagnosis or a replacement for a qualified healthcare professional."
+    },
+        {
+        "keywords": [
+            "tell me about ai quiz generator",
+            "explain ai quiz generator",
+            "what is ai quiz generator",
+            "ai quiz generator project details",
+            "muhammad awais ai quiz generator"
+        ],
+        "answer": "AI Quiz Generator is an AI-powered project by Muhammad Awais. It allows users to generate quizzes by providing a topic, difficulty level, question count and an optional description."
+    },
+    {
+        "keywords": [
+            "ai quiz generator technology",
+            "ai quiz generator technologies",
+            "ai quiz tech stack",
+            "what technology does ai quiz generator use",
+            "what is ai quiz built with"
+        ],
+        "answer": "The AI Quiz Generator is built with Python and Streamlit and uses Google's Gemini API to generate quiz content."
+    },
+    {
+        "keywords": [
+            "how does ai quiz generator work",
+            "how does ai quiz work",
+            "ai quiz generator working",
+            "how quiz generator works"
+        ],
+        "answer": "The user enters a topic, selects a difficulty level and question count, and can optionally provide a description. The application sends these requirements to Google's Gemini API, which generates the quiz content and displays it through the Streamlit interface."
+    },
+    {
+        "keywords": [
+            "ai quiz generator features",
+            "ai quiz features",
+            "what can ai quiz generator do",
+            "ai quiz project features"
+        ],
+        "answer": "The AI Quiz Generator supports topic selection, difficulty selection, question count, optional descriptions, AI-powered quiz generation and exporting or downloading the generated quiz."
+    },
+    {
+        "keywords": [
+            "ai quiz topic",
+            "quiz generator topic",
+            "can i choose quiz topic",
+            "how to select quiz topic"
+        ],
+        "answer": "Yes. The AI Quiz Generator allows the user to provide the topic they want the quiz to be based on."
+    },
+    {
+        "keywords": [
+            "ai quiz difficulty",
+            "quiz generator difficulty",
+            "can i choose difficulty",
+            "quiz difficulty level"
+        ],
+        "answer": "Yes. The AI Quiz Generator allows the user to select the desired difficulty level for the generated quiz."
+    },
+    {
+        "keywords": [
+            "ai quiz questions",
+            "quiz question count",
+            "how many questions ai quiz",
+            "can i choose question count"
+        ],
+        "answer": "The AI Quiz Generator allows the user to specify the desired number of questions for the generated quiz."
+    },
+    {
+        "keywords": [
+            "ai quiz description",
+            "quiz generator description",
+            "optional description quiz",
+            "can i add description to quiz"
+        ],
+        "answer": "Yes. The AI Quiz Generator provides an optional description field that can be used to give additional requirements or context for the quiz."
+    },
+    {
+        "keywords": [
+            "ai quiz gemini",
+            "why gemini used in ai quiz",
+            "google gemini ai quiz",
+            "gemini api ai quiz generator"
+        ],
+        "answer": "Google's Gemini API is used as the AI engine for generating quiz content based on the user's selected requirements."
+    },
+    {
+        "keywords": [
+            "ai quiz export",
+            "ai quiz download",
+            "can i download ai quiz",
+            "can i export ai quiz",
+            "quiz generator download"
+        ],
+        "answer": "Yes. The AI Quiz Generator provides an option to export or download the generated quiz."
+    },
+        {
+        "keywords": [
+            "tell me about weather dashboard",
+            "explain weather dashboard",
+            "what is weather dashboard",
+            "weather dashboard project details",
+            "muhammad awais weather dashboard"
+        ],
+        "answer": "Weather Dashboard is a web-based project by Muhammad Awais that provides weather information through an interactive dashboard."
+    },
+    {
+        "keywords": [
+            "weather dashboard technology",
+            "weather dashboard technologies",
+            "weather dashboard tech stack",
+            "what technology does weather dashboard use",
+            "weather project technology"
+        ],
+        "answer": "The Weather Dashboard is built with Python and Streamlit."
+    },
+    {
+        "keywords": [
+            "how does weather dashboard work",
+            "weather dashboard working",
+            "how weather project works",
+            "weather dashboard functionality"
+        ],
+        "answer": "The Weather Dashboard uses an interactive Streamlit interface to provide users with weather information."
+    },
+    {
+        "keywords": [
+            "weather dashboard features",
+            "weather project features",
+            "what can weather dashboard do",
+            "weather dashboard purpose"
+        ],
+        "answer": "The Weather Dashboard provides an interactive interface for accessing and viewing weather information in an easy-to-understand format."
+    },
+    {
+        "keywords": [
+            "tell me about student attendance system",
+            "explain student attendance system",
+            "what is attendance system",
+            "attendance project details",
+            "muhammad awais attendance project"
+        ],
+        "answer": "Student Attendance System is a software project by Muhammad Awais designed to manage and track student attendance digitally."
+    },
+    {
+        "keywords": [
+            "attendance system technology",
+            "attendance system technologies",
+            "attendance system tech stack",
+            "what technology does attendance system use",
+            "attendance project technology"
+        ],
+        "answer": "The Student Attendance System uses Node.js, Express.js, SQLite and JWT authentication."
+    },
+    {
+        "keywords": [
+            "how does attendance system work",
+            "attendance system working",
+            "how attendance project works",
+            "attendance system functionality"
+        ],
+        "answer": "The Student Attendance System uses a backend API to manage student and attendance data. SQLite is used for data storage and JWT is used for authenticated API access."
+    },
+    {
+        "keywords": [
+            "attendance system features",
+            "attendance project features",
+            "what can attendance system do",
+            "attendance system purpose"
+        ],
+        "answer": "The Student Attendance System is designed to manage student records and attendance information through an authenticated backend API."
+    },
+    {
+        "keywords": [
+            "attendance system database",
+            "what database does attendance system use",
+            "attendance sqlite",
+            "attendance project database"
+        ],
+        "answer": "SQLite is used as the database for the Student Attendance System."
+    },
+    {
+        "keywords": [
+            "attendance system authentication",
+            "attendance jwt",
+            "what authentication does attendance system use",
+            "jwt attendance project"
+        ],
+        "answer": "The Student Attendance System uses JSON Web Token (JWT) authentication to secure authenticated API access."
+    },
+    {
+        "keywords": [
+            "tell me about smart chatbot",
+            "explain smart chatbot",
+            "what is smart chatbot",
+            "smart chatbot project details",
+            "muhammad awais smart chatbot"
+        ],
+        "answer": "Smart Chatbot is an AI-powered portfolio project by Muhammad Awais. It combines a web interface, a JSON knowledge base and a Gemini-powered backend to provide conversational AI responses."
+    },
+    {
+        "keywords": [
+            "smart chatbot technology",
+            "smart chatbot technologies",
+            "smart chatbot tech stack",
+            "what technology does smart chatbot use",
+            "chatbot project technology"
+        ],
+        "answer": "The Smart Chatbot uses JavaScript, CSS, a web frontend, a JSON knowledge base and a server-side Gemini AI backend."
+    },
+    {
+        "keywords": [
+            "how does smart chatbot work",
+            "smart chatbot working",
+            "how chatbot project works",
+            "smart chatbot functionality"
+        ],
+        "answer": "The Smart Chatbot receives a user's message through its web interface, uses relevant information from its JSON knowledge base and sends the request to the Gemini-powered backend to generate a natural conversational response."
+    },
+    {
+        "keywords": [
+            "smart chatbot features",
+            "chatbot project features",
+            "what can smart chatbot do",
+            "smart chatbot functionality"
+        ],
+        "answer": "The Smart Chatbot supports conversational AI responses, knowledge-base integration, conversation context, message actions, timestamps, typing indicators, theme switching, voice input and a responsive interface."
+    },
+    {
+        "keywords": [
+            "smart chatbot knowledge base",
+            "chatbot knowledge base",
+            "responses json chatbot",
+            "what is chatbot knowledge base"
+        ],
+        "answer": "The Smart Chatbot uses a JSON knowledge base containing predefined keywords and answers. Relevant knowledge is selected and provided to the AI when answering user questions."
+    },
+    {
+        "keywords": [
+            "smart chatbot gemini",
+            "chatbot gemini",
+            "google gemini chatbot",
+            "what ai does smart chatbot use"
+        ],
+        "answer": "The Smart Chatbot uses Google's Gemini AI through a server-side backend to generate intelligent conversational responses."
+    },
+    {
+        "keywords": [
+            "smart chatbot security",
+            "chatbot security",
+            "smart chatbot api security",
+            "how is smart chatbot secured"
+        ],
+        "answer": "The Smart Chatbot keeps the Gemini API key on the server side and includes request validation, message length limits, timeout handling, safe API error responses and basic rate limiting."
+    },
+    {
+        "keywords": [
+            "smart chatbot frontend",
+            "what frontend does smart chatbot use",
+            "smart chatbot javascript",
+            "smart chatbot interface"
+        ],
+        "answer": "The Smart Chatbot uses a web-based frontend with JavaScript and CSS. The interface includes responsive design, theme switching, voice input, timestamps and message actions."
+    },
+        {
+        "keywords": [
+            "what is muhammad awais career goal",
+            "what is awais career goal",
+            "awais career goal",
+            "muhammad awais career goal",
+            "what does awais want to become",
+            "what does muhammad awais want to become"
+        ],
+        "answer": "Muhammad Awais's main career goal is to become an AI Engineer or Machine Learning Engineer. He wants to build practical AI and Machine Learning solutions and continue developing his technical skills."
+    },
+    {
+        "keywords": [
+            "awais dream job",
+            "muhammad awais dream job",
+            "what job does awais want",
+            "what career does awais want",
+            "awais target job"
+        ],
+        "answer": "Muhammad Awais aims to build a career as an AI Engineer or Machine Learning Engineer, with a strong focus on Machine Learning and Computer Vision."
+    },
+    {
+        "keywords": [
+            "what field does awais want to work in",
+            "awais preferred field",
+            "muhammad awais preferred field",
+            "awais ai ml career",
+            "awais machine learning career"
+        ],
+        "answer": "Muhammad Awais wants to work in Artificial Intelligence and Machine Learning, particularly in areas related to Machine Learning and Computer Vision."
+    },
+    {
+        "keywords": [
+            "what is awais interested in professionally",
+            "muhammad awais professional interests",
+            "awais professional interests",
+            "awais career interests"
+        ],
+        "answer": "Muhammad Awais's professional interests include Artificial Intelligence, Machine Learning, Computer Vision, Python and AI-powered software development."
+    },
+    {
+        "keywords": [
+            "what does awais plan after graduation",
+            "what will awais do after graduation",
+            "muhammad awais plans after graduation",
+            "awais after degree",
+            "awais plan after university"
+        ],
+        "answer": "After completing his BS Software Engineering degree, Muhammad Awais plans to start his professional career in the software and AI/ML field and gain practical industry experience."
+    },
+    {
+        "keywords": [
+            "where does awais want to work",
+            "where does muhammad awais want to work",
+            "awais job location",
+            "muhammad awais job location",
+            "awais first job"
+        ],
+        "answer": "Muhammad Awais plans to initially pursue a job in Pakistan, particularly considering Islamabad or Lahore, to gain professional experience."
+    },
+    {
+        "keywords": [
+            "does awais want to work abroad",
+            "muhammad awais abroad plans",
+            "awais abroad plans",
+            "awais international career",
+            "muhammad awais international career"
+        ],
+        "answer": "Muhammad Awais has a long-term goal of pursuing further education and career opportunities abroad, with the United States being one of his future goals."
+    },
+    {
+        "keywords": [
+            "does awais want to do ms",
+            "muhammad awais ms plans",
+            "awais masters plans",
+            "awais higher education",
+            "what does awais want to study after bs"
+        ],
+        "answer": "Muhammad Awais is interested in pursuing a Master's degree related to Machine Learning Engineering after completing his BS Software Engineering degree."
+    },
+    {
+        "keywords": [
+            "what does awais want to improve",
+            "awais skill improvement",
+            "muhammad awais improvement goals",
+            "awais learning goals",
+            "what skills does awais want to improve"
+        ],
+        "answer": "Muhammad Awais wants to continue improving his Python, Machine Learning, Computer Vision, software development and English communication skills."
+    },
+    {
+        "keywords": [
+            "what is awais future plan",
+            "muhammad awais future plans",
+            "awais future goals",
+            "awais long term goal",
+            "muhammad awais long term goal"
+        ],
+        "answer": "Muhammad Awais's long-term plan is to build a strong career in AI and Machine Learning, gain professional experience, continue higher education and pursue international career opportunities."
     }
 ]

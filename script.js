@@ -3,6 +3,18 @@ let previousInteractionId = null;
 
 
 // ===============================
+// CONVERSATION HISTORY
+// ===============================
+
+let conversationHistory = [];
+
+const MAX_CONVERSATION_HISTORY = 8;
+
+const CONVERSATION_STORAGE_KEY =
+    "conversationHistory";
+
+
+// ===============================
 // DOM ELEMENTS
 // ===============================
 
@@ -156,6 +168,184 @@ promptCards.forEach(card => {
 
 
 // ===============================
+// ADD CONVERSATION MESSAGE
+// ===============================
+
+function addConversationMessage(
+    role,
+    content
+) {
+
+    if (
+        !role ||
+        !content
+    ) {
+        return;
+    }
+
+    conversationHistory.push({
+
+        role:
+            role,
+
+        content:
+            String(content)
+
+    });
+
+
+    // Keep only recent messages
+    if (
+        conversationHistory.length >
+        MAX_CONVERSATION_HISTORY
+    ) {
+
+        conversationHistory =
+            conversationHistory.slice(
+                -MAX_CONVERSATION_HISTORY
+            );
+
+    }
+
+
+    // Save conversation context
+    saveConversationHistory();
+
+}
+
+
+// ===============================
+// GET CONVERSATION HISTORY
+// ===============================
+
+function getConversationHistory() {
+
+    return conversationHistory
+        .slice(-MAX_CONVERSATION_HISTORY)
+        .map(item => ({
+
+            role:
+                item.role,
+
+            content:
+                item.content
+
+        }));
+
+}
+
+
+// ===============================
+// SAVE CONVERSATION HISTORY
+// ===============================
+
+function saveConversationHistory() {
+
+    try {
+
+        localStorage.setItem(
+            CONVERSATION_STORAGE_KEY,
+            JSON.stringify(
+                conversationHistory
+            )
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Conversation history save failed:",
+            error
+        );
+
+    }
+
+}
+
+
+// ===============================
+// LOAD CONVERSATION HISTORY
+// ===============================
+
+function loadConversationHistory() {
+
+    try {
+
+        const savedHistory =
+            localStorage.getItem(
+                CONVERSATION_STORAGE_KEY
+            );
+
+
+        if (
+            !savedHistory
+        ) {
+
+            conversationHistory =
+                [];
+
+            return;
+
+        }
+
+
+        const parsedHistory =
+            JSON.parse(
+                savedHistory
+            );
+
+
+        if (
+            !Array.isArray(
+                parsedHistory
+            )
+        ) {
+
+            conversationHistory =
+                [];
+
+            return;
+
+        }
+
+
+        conversationHistory =
+            parsedHistory
+                .filter(
+                    item =>
+                        item &&
+                        (
+                            item.role === "user" ||
+                            item.role === "assistant"
+                        ) &&
+                        typeof item.content === "string"
+                )
+                .slice(
+                    -MAX_CONVERSATION_HISTORY
+                );
+
+
+        console.log(
+            "Conversation history restored:",
+            conversationHistory.length,
+            "messages"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Conversation history load failed:",
+            error
+        );
+
+        conversationHistory =
+            [];
+
+    }
+
+}
+
+
+// ===============================
 // MAIN SEND MESSAGE FUNCTION
 // ===============================
 
@@ -179,6 +369,13 @@ function sendMessage() {
 
     // Show user message
     userMessage(message);
+
+
+    // Add user message to conversation history
+    addConversationMessage(
+        "user",
+        message
+    );
 
 
     // Clear input
@@ -215,7 +412,10 @@ function sendMessage() {
                                     message,
 
                                 previousInteractionId:
-                                    previousInteractionId
+                                    previousInteractionId,
+
+                                conversationHistory:
+                                    getConversationHistory()
 
                             })
 
@@ -265,6 +465,14 @@ function sendMessage() {
                     );
 
 
+                    // Add assistant response
+                    // to conversation history
+                    addConversationMessage(
+                        "assistant",
+                        data.reply
+                    );
+
+
                     // Save Gemini interaction ID
                     if (data.interactionId) {
 
@@ -282,6 +490,14 @@ function sendMessage() {
                     botMessage(
                         fallbackAnswer,
                         message
+                    );
+
+
+                    // Add fallback response
+                    // to conversation history
+                    addConversationMessage(
+                        "assistant",
+                        fallbackAnswer
                     );
 
                 }
@@ -306,6 +522,14 @@ function sendMessage() {
                 botMessage(
                     fallbackAnswer,
                     message
+                );
+
+
+                // Add fallback response
+                // to conversation history
+                addConversationMessage(
+                    "assistant",
+                    fallbackAnswer
                 );
 
             }
@@ -1062,6 +1286,11 @@ function addMessageActions() {
                         showTyping();
 
 
+                        // Get current conversation context
+                        const regenerationHistory =
+                            getConversationHistory();
+
+
                         const response =
                             await fetch(
                                 "/api/chat",
@@ -1079,7 +1308,10 @@ function addMessageActions() {
                                             prompt,
 
                                         previousInteractionId:
-                                            null
+                                            previousInteractionId,
+
+                                        conversationHistory:
+                                            regenerationHistory
 
                                     })
 
@@ -1123,6 +1355,14 @@ function addMessageActions() {
                             );
 
 
+                            // Save regenerated response
+                            addConversationMessage(
+                                "assistant",
+                                data.reply
+                            );
+
+
+                            // Update interaction ID
                             if (
                                 data.interactionId
                             ) {
@@ -1134,9 +1374,19 @@ function addMessageActions() {
 
                         } else {
 
+                            const fallbackAnswer =
+                                findAnswer(prompt);
+
+
                             botMessage(
-                                findAnswer(prompt),
+                                fallbackAnswer,
                                 prompt
+                            );
+
+
+                            addConversationMessage(
+                                "assistant",
+                                fallbackAnswer
                             );
 
                         }
@@ -1153,9 +1403,19 @@ function addMessageActions() {
                         );
 
 
+                        const fallbackAnswer =
+                            findAnswer(prompt);
+
+
                         botMessage(
-                            findAnswer(prompt),
+                            fallbackAnswer,
                             prompt
+                        );
+
+
+                        addConversationMessage(
+                            "assistant",
+                            fallbackAnswer
                         );
 
 
@@ -1354,6 +1614,15 @@ function clearChat() {
         null;
 
 
+    conversationHistory =
+        [];
+
+
+    localStorage.removeItem(
+        CONVERSATION_STORAGE_KEY
+    );
+
+
     localStorage.removeItem(
         "chatHistory"
     );
@@ -1387,6 +1656,15 @@ function startNewChat() {
 
     previousInteractionId =
         null;
+
+
+    conversationHistory =
+        [];
+
+
+    localStorage.removeItem(
+        CONVERSATION_STORAGE_KEY
+    );
 
 
     localStorage.removeItem(
@@ -1724,6 +2002,8 @@ window.addEventListener(
 
 
         loadChatHistory();
+
+        loadConversationHistory();
 
     }
 );
